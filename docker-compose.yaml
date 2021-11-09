@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+  blue-bank-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+  
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "turma9"
+      MYSQL_DATABASE: "blue_bank"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
