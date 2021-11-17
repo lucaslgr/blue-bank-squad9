@@ -1,0 +1,29 @@
+version: '3.2'
+
+services:
+  blue-bank-api:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: blue-bank-api/api
+    ports:
+      - '8080:8080'
+      - '5005:5005'
+    environment:
+      - ADDITIONAL_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xmx1G -Xms128m -XX:MaxMetaspaceSize=128m
+      - PROFILE=dev
+    depends_on:
+      - mysql_db
+    restart: always
+    links:
+      - mysql_db
+  mysql_db:
+    image: mysql:5.6
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=blue_bank
+      - MYSQL_ROOT_PASSWORD=turma9
+    volumes:
+      - ./docker/volume_mysql:/var/lib/mysql
