@@ -48,10 +48,10 @@ CREATE TABLE enderecos
 CREATE TABLE contas_corrente
 (
     id_conta     INTEGER UNSIGNED AUTO_INCREMENT NOT NULL,
-    numero       VARCHAR(20),
-    agencia      VARCHAR(5),
+    numero       VARCHAR(20)                     NOT NULL,
+    agencia      VARCHAR(5)                      NOT NULL,
     data_criacao DATETIME DEFAULT NOW(),
-    senha        VARCHAR(255),
+    senha        VARCHAR(255)                    NOT NULL,
     saldo        BIGINT   DEFAULT 0,
     id_cliente   INTEGER UNSIGNED                NOT NULL,
 
