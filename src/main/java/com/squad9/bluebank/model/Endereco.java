@@ -20,7 +20,7 @@ import javax.validation.constraints.Pattern;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_endereco", nullable = false, columnDefinition = "BIGINT UNSIGNED")
+    @Column(name = "id_endereco", nullable = false)
     private Long id;
 
     @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "CEP inválido")
