@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "enderecos")
@@ -39,6 +40,7 @@ public class Endereco {
     @Column(name = "cidade", nullable = false, length = 100)
     private String cidade;
 
+    @Size(min = 2, max = 2, message = "O campo estado deve ter 2 caracteres")
     @Column(name = "estado", nullable = false, length = 2)
     @Enumerated(EnumType.STRING)
     private Estado estado;
