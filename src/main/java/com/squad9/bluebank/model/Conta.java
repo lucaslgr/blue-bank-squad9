@@ -19,24 +19,24 @@ public class Conta {
     private Long id;
 
     @Column(name = "numero")
-    @NotBlank(message = "O campo não pode estar vazio.")
+    @NotBlank(message = "O campo numero não pode estar vazio.")
     @Pattern(regexp = "(^([0-9]{3}).([0-9]{3}).([0-9]{3}).([0-9]{3}).([0-9]{3})-([0-9]{1})$)",
             message = "Número da conta inválido.")
     private String numero;
 
     @Column(name = "agencia")
-    @NotBlank(message = "O campo não pode estar vazio.")
+    @NotBlank(message = "O campo agencia não pode estar vazio.")
     @Pattern(regexp = "(^([0-9]{4,9})$)",
-            message = "Número da agência inválida.")
+            message = "Número da agência inválido.")
     private String agencia;
 
     @Column(name = "data_criacao")
-    @NotBlank(message = "O campo não pode estar vazio.")
+    @NotBlank(message = "O campo data_criacao não pode estar vazio.")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date data_criacao;
 
     @Column(name ="senha")
-    @NotBlank(message = "O campo não pode estar vazio.")
+    @NotBlank(message = "O campo senha não pode estar vazio.")
     private String senha;
 
     @Column(name = "saldo")
