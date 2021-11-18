@@ -11,29 +11,29 @@ public class Transacoes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_transacao")
+    @Column(name = "id_transacao",nullable = false)
     private Long id;
 
-    @Column(name = "valor")
+    @Column(name = "valor",nullable = false)
     @NotBlank(message = "O campo valor não pode estar vazio")
-    @PositiveOrZero
+    @PositiveOrZero(message = "Valor do campo valor é inválido.")
     private Long valor;
 
     @ManyToOne
     @NotBlank(message = "O campo id_conta_emissora não pode estar vazio")
-    @JoinColumn(name = "id_conta_emissora_fk")
+    @JoinColumn(name = "id_conta_emissora")
     private Conta id_conta_emissora;
 
     @ManyToOne
     @JoinColumn(name = "id_conta_receptora_fk")
     private Conta id_conta_receptora;
 
-    @Column(name = "data_envio")
+    @Column(name = "data_envio", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @NotBlank(message = "O campo data_envio não pode estar vazio")
     private Date data_envio;
 
-    @Column(name = "data_recebimento")
+    @Column(name = "data_recebimento", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @NotBlank(message = "O campo data_recebimento não pode estar vazio")
     private Date data_recebimento;

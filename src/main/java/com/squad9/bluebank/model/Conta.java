@@ -11,42 +11,45 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table (name = "contas_corrente")
+@Table (name = "contas_corrente",uniqueConstraints = @UniqueConstraint(columnNames = {"agencia","numero"}))
 public class Conta {
 
+    @OneToOne(targetEntity = Cliente.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    private Cliente cliente;
+
     @OneToMany(mappedBy = "id_conta_emissora")
-    private List<Transacoes> transacoes_emitidas;
+    private List<Transacoes> transacoesEmitidas;
 
     @OneToMany(mappedBy = "id_conta_receptora")
-    private List<Transacoes> transacoes_recebidas;
+    private List<Transacoes> transacoesRecebidas;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_conta")
+    @Column(name = "id_conta",nullable = false)
     private Long id;
 
-    @Column(name = "numero")
+    @Column(name = "numero",length = 20,nullable = false)
     @NotBlank(message = "O campo numero não pode estar vazio.")
-    @Pattern(regexp = "(^([0-9]{3}).([0-9]{3}).([0-9]{3}).([0-9]{3}).([0-9]{3})-([0-9]{1})$)",
-            message = "Número da conta inválido.")
+    @Pattern(regexp = "(^([0-9]{4,20})-([0-9]{1})$)", message = "Número da conta inválido.")
     private String numero;
 
-    @Column(name = "agencia")
+    @Column(name = "agencia",length = 5,nullable = false)
     @NotBlank(message = "O campo agencia não pode estar vazio.")
     @Pattern(regexp = "(^([0-9]{4,9})$)",
             message = "Número da agência inválido.")
     private String agencia;
 
-    @Column(name = "data_criacao")
+    @Column(name = "data_criacao",columnDefinition = "DATETIME DEFAULT NOW()")
     @NotBlank(message = "O campo data_criacao não pode estar vazio.")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date data_criacao;
 
-    @Column(name ="senha")
+    @Column(name ="senha", length = 255, nullable = false)
     @NotBlank(message = "O campo senha não pode estar vazio.")
     private String senha;
 
-    @Column(name = "saldo")
+    @Column(name = "saldo", nullable = false, columnDefinition = "DEFAULT 0") // Não sei se esse seria assim, fui na lógica do DATETIME
     @NotBlank(message = "O campo saldo não pode estar vazio.")
     @PositiveOrZero(message = "Saldo inválido.")
     private Long saldo;
