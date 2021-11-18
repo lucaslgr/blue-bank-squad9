@@ -9,3 +9,6 @@
         - <b>mvn clean install -DskipTests</b>
     - Instancie e rode os containers executando o comando no terminal:
         - <b>docker-compose up --build --force-recreate</b>
+        
+## Diagrama DER do banco de dados da aplicação
+<img src="./db/blue-bank-DB-DER.png" width="100%"/>
