@@ -56,7 +56,7 @@ public class Endereco {
 
     public Endereco() {}
 
-    public Endereco(String cep, String logradouro, String bairro, String cidade, Estado estado, String numeroCasa, String complemento) {
+    public Endereco(String cep, String logradouro, String bairro, String cidade, Estado estado, String numeroCasa, String complemento, Cliente cliente) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.bairro = bairro;
@@ -64,7 +64,9 @@ public class Endereco {
         this.estado = estado;
         this.numeroCasa = numeroCasa;
         this.complemento = complemento;
+        this.cliente = cliente;
     }
+
 
     public Long getId() {
         return this.id;
@@ -128,5 +130,13 @@ public class Endereco {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
