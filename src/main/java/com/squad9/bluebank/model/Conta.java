@@ -8,10 +8,17 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table (name = "contas_corrente")
 public class Conta {
+
+    @OneToMany(mappedBy = "id_conta_emissora")
+    private List<Transacoes> transacoes_emitidas;
+
+    @OneToMany(mappedBy = "id_conta_receptora")
+    private List<Transacoes> transacoes_recebidas;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
