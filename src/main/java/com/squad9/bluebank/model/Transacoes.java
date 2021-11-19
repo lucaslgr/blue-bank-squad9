@@ -2,7 +2,7 @@ package com.squad9.bluebank.model;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 
 @Entity
@@ -16,27 +16,27 @@ public class Transacoes {
 
     @Column(name = "valor",nullable = false)
     @NotBlank(message = "O campo valor não pode estar vazio")
-    @PositiveOrZero(message = "Valor do campo valor é inválido.")
+    @Positive(message = "Valor do campo valor é inválido.")
     private Long valor;
 
     @ManyToOne
     @NotBlank(message = "O campo id_conta_emissora não pode estar vazio")
     @JoinColumn(name = "id_conta_emissora")
-    private Conta id_conta_emissora;
+    private Conta contasEmissoras;
 
     @ManyToOne
-    @JoinColumn(name = "id_conta_receptora_fk")
-    private Conta id_conta_receptora;
+    @JoinColumn(name = "id_conta_receptora")
+    private Conta contasReceptoras;
 
     @Column(name = "data_envio", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @NotBlank(message = "O campo data_envio não pode estar vazio")
-    private Date data_envio;
+    private Date dataEnvio;
 
     @Column(name = "data_recebimento", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     @NotBlank(message = "O campo data_recebimento não pode estar vazio")
-    private Date data_recebimento;
+    private Date dataRecebimento;
 
     public Long getId() {
         return id;
@@ -54,35 +54,36 @@ public class Transacoes {
         this.valor = valor;
     }
 
-    public Conta getId_conta_emissora() {
-        return id_conta_emissora;
+    public Conta getContasEmissoras() {
+        return contasEmissoras;
     }
 
-    public void setId_conta_emissora(Conta id_conta_emissora) {
-        this.id_conta_emissora = id_conta_emissora;
+    public void setContasEmissoras(Conta contasEmissoras) {
+        this.contasEmissoras = contasEmissoras;
     }
 
-    public Conta getId_conta_receptora() {
-        return id_conta_receptora;
+    public Conta getContasReceptoras() {
+        return contasReceptoras;
     }
 
-    public void setId_conta_receptora(Conta id_conta_receptora) {
-        this.id_conta_receptora = id_conta_receptora;
+    public void setContasReceptoras(Conta contasReceptoras) {
+        this.contasReceptoras = contasReceptoras;
     }
 
-    public Date getData_envio() {
-        return data_envio;
+    public Date getDataEnvio() {
+        return dataEnvio;
     }
 
-    public void setData_envio(Date data_envio) {
-        this.data_envio = data_envio;
+    public void setDataEnvio(Date dataEnvio) {
+        this.dataEnvio = dataEnvio;
     }
 
-    public Date getData_recebimento() {
-        return data_recebimento;
+    public Date getDataRecebimento() {
+        return dataRecebimento;
     }
 
-    public void setData_recebimento(Date data_recebimento) {
-        this.data_recebimento = data_recebimento;
+    public void setDataRecebimento(Date dataRecebimento) {
+        this.dataRecebimento = dataRecebimento;
     }
 }
+

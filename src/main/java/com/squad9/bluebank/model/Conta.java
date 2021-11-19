@@ -2,7 +2,6 @@ package com.squad9.bluebank.model;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -43,16 +42,24 @@ public class Conta {
     @Column(name = "data_criacao",columnDefinition = "DATETIME DEFAULT NOW()")
     @NotBlank(message = "O campo data_criacao não pode estar vazio.")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    private Date data_criacao;
+    private Date dataCriacao;
 
     @Column(name ="senha", length = 255, nullable = false)
     @NotBlank(message = "O campo senha não pode estar vazio.")
     private String senha;
 
-    @Column(name = "saldo", nullable = false, columnDefinition = "DEFAULT 0") // Não sei se esse seria assim, fui na lógica do DATETIME
+    @Column(name = "saldo", nullable = false, columnDefinition = "BIGINT DEFAULT 0") // Não sei se esse seria assim, fui na lógica do DATETIME
     @NotBlank(message = "O campo saldo não pode estar vazio.")
     @PositiveOrZero(message = "Saldo inválido.")
     private Long saldo;
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
     public Long getId() {
         return id;
@@ -76,14 +83,6 @@ public class Conta {
 
     public void setAgencia(String agencia) {
         this.agencia = agencia;
-    }
-
-    public Date getData_criacao() {
-        return data_criacao;
-    }
-
-    public void setData_criacao(Date data_criacao) {
-        this.data_criacao = data_criacao;
     }
 
     public String getSenha() {
