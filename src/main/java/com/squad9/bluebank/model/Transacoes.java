@@ -22,11 +22,11 @@ public class Transacoes {
     @ManyToOne
     @NotBlank(message = "O campo id_conta_emissora não pode estar vazio")
     @JoinColumn(name = "id_conta_emissora")
-    private Conta contasEmissoras;
+    private Conta contaEmissora;
 
     @ManyToOne
-    @JoinColumn(name = "id_conta_receptora")
-    private Conta contasReceptoras;
+    @JoinColumn(name = "id_conta_receptora")  // Aqui é o nome do campo que ficará no DB -> Campo SQL.
+    private Conta contaReceptora;  // Isto é um campo da transação. Cada transação só tem uma única conta receptora, por isso singular.
 
     @Column(name = "data_envio", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -54,20 +54,20 @@ public class Transacoes {
         this.valor = valor;
     }
 
-    public Conta getContasEmissoras() {
-        return contasEmissoras;
+    public Conta getContaEmissora() {
+        return contaEmissora;
     }
 
-    public void setContasEmissoras(Conta contasEmissoras) {
-        this.contasEmissoras = contasEmissoras;
+    public void setContaEmissora(Conta contaEmissora) {
+        this.contaEmissora = contaEmissora;
     }
 
-    public Conta getContasReceptoras() {
-        return contasReceptoras;
+    public Conta getContaReceptora() {
+        return contaReceptora;
     }
 
-    public void setContasReceptoras(Conta contasReceptoras) {
-        this.contasReceptoras = contasReceptoras;
+    public void setContaReceptora(Conta contaReceptora) {
+        this.contaReceptora = contaReceptora;
     }
 
     public Date getDataEnvio() {
