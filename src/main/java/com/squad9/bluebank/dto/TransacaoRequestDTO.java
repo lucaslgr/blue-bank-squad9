@@ -5,20 +5,11 @@ import java.util.Date;
 //Serve para proteger nossa classe e "escolher" os atributos
 //que queremos receber no body do request em JSON
 public class TransacaoRequestDTO {
-    private Long idTransacao;
     private Integer valor;
     private Date dataEnvio;
     private Date dataRecebimento;
     private Long idContaEmissora;
     private Long idContaReceptora;
-
-    public Long getIdTransacao() {
-        return idTransacao;
-    }
-
-    public void setIdTransacao(Long idTransacao) {
-        this.idTransacao = idTransacao;
-    }
 
     public Integer getValor() {
         return valor;
