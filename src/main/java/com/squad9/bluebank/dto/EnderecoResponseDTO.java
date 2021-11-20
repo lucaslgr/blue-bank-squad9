@@ -42,6 +42,10 @@ public class EnderecoResponseDTO {
         this.complemento = endereco.getComplemento();
     }
 
+    public List<EnderecoResponseDTO> converter(List<Endereco> enderecos) {
+        return enderecos.stream().map(EnderecoResponseDTO::new).collect(Collectors.toList());
+    }
+
     public Long getId() {
         return id;
     }
