@@ -1,10 +1,13 @@
-package com.squad9.bluebank.dtos;
+package com.squad9.bluebank.dto;
+
+import com.squad9.bluebank.model.Cliente;
 
 import java.util.Date;
 
 //Serve para proteger nossa classe e "escolher" os atributos
-//que queremos receber no body do request em JSON
-public class ClienteRequestDTO {
+//que queremos retornar
+public class ClienteResponseDTO {
+    private Long id;
     private String nome;
     private String sobrenome;
     private String cpf;
@@ -13,12 +16,42 @@ public class ClienteRequestDTO {
     private String email;
     private String celular;
     private String telefone;
-    private String senha;
     private String nomeDoPai;
     private String nomeDaMae;
     private String profissao;
     private Integer rendaMensal;
     private Long patrimonio;
+
+    //Serve para converter um Objeto do tipo cliente
+    //e transformar em ClienteResponse
+    public static ClienteResponseDTO converter(Cliente cliente) {
+        var clienteResponseDTO = new ClienteResponseDTO();
+
+        clienteResponseDTO.setId(cliente.getId());
+        clienteResponseDTO.setNome(cliente.getNome());
+        clienteResponseDTO.setSobrenome(cliente.getSobrenome());
+        clienteResponseDTO.setCpf(cliente.getCpf());
+        clienteResponseDTO.setRg(cliente.getRg());
+        clienteResponseDTO.setDataDeNascimento(cliente.getDataDeNascimento());
+        clienteResponseDTO.setEmail(cliente.getEmail());
+        clienteResponseDTO.setCelular(cliente.getCelular());
+        clienteResponseDTO.setTelefone(cliente.getTelefone());
+        clienteResponseDTO.setNomeDoPai(cliente.getNomeDoPai());
+        clienteResponseDTO.setNomeDaMae(cliente.getNomeDaMae());
+        clienteResponseDTO.setProfissao(cliente.getProfissao());
+        clienteResponseDTO.setRendaMensal(cliente.getRendaMensal());
+        clienteResponseDTO.setPatrimonio(cliente.getPatrimonio());
+
+        return clienteResponseDTO;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -82,14 +115,6 @@ public class ClienteRequestDTO {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getNomeDoPai() {
