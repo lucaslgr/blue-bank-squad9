@@ -3,10 +3,6 @@ package com.squad9.bluebank.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 import com.squad9.bluebank.model.Endereco;
 import com.squad9.bluebank.model.Estado;
 
