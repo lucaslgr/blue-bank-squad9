@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 //Cria repository para Endereço
 @Repository
-public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
+public class EnderecoRepository extends JpaRepository<Endereco, Long> {
 }
