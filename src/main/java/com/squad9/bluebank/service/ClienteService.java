@@ -40,7 +40,7 @@ public class ClienteService {
     }
 
     //Listar todos os clientes
-    public List<ClienteResponseDTO> retornarTodosOsClientes(){
+    public List<ClienteResponseDTO> RetornarTodosOsClientes(){
         var clientes =  this.clienteRepository.findAll();
         return clientes.stream().map(ClienteResponseDTO::converter).collect(Collectors.toList());
     }
