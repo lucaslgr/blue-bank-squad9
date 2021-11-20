@@ -18,7 +18,7 @@ public class ClienteService {
     }
 
     //Salvar um cliente
-    public ClienteResponseDTO SalvarCliente(ClienteRequestDTO clienteRequestDTO){
+    public ClienteResponseDTO salvarCliente(ClienteRequestDTO clienteRequestDTO){
         var cliente = new Cliente();
         cliente.setNome(clienteRequestDTO.getNome());
         cliente.setSobrenome(clienteRequestDTO.getSobrenome());
@@ -40,19 +40,19 @@ public class ClienteService {
     }
 
     //Listar todos os clientes
-    public List<ClienteResponseDTO> RetornarTodosOsClientes(){
+    public List<ClienteResponseDTO> retornarTodosOsClientes(){
         var clientes =  this.clienteRepository.findAll();
         return clientes.stream().map(ClienteResponseDTO::converter).collect(Collectors.toList());
     }
 
     //Listar cliente por ID
-    public ClienteResponseDTO EncontrarClientePeloId(Long id) throws Exception {
+    public ClienteResponseDTO encontrarClientePeloId(Long id) throws Exception {
         var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Client Not Found!"));
         return ClienteResponseDTO.converter(cliente);
     }
 
     //Atualizar Cliente
-    public void AtualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
+    public void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
         var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Client Not Found!"));
 
         cliente.setNome(clienteRequestDTO.getNome());
@@ -70,7 +70,7 @@ public class ClienteService {
     }
 
     //Deleta o cliente por ID
-    public void DeletarCliente(Long id) throws Exception{
+    public void deletarCliente(Long id) throws Exception{
         var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Client Not Found!"));
         this.clienteRepository.delete(cliente);
     }
