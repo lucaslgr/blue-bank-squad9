@@ -17,7 +17,7 @@ public class Conta {
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "contaEmissora") // Aqui é o nome do campo (cammpo no Java) na Entity vinculada (Conta)
+    @OneToMany(mappedBy = "contaEmissora") // Aqui é o nome do campo (campo no Java) na Entity vinculada (Conta)
     private List<Transacao> transacoesEmitidas; // Cada conta pode ser vinculada como emissora de várias transações, por isso aqui é uma lista.
 
     @OneToMany(mappedBy = "contaReceptora")
