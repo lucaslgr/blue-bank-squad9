@@ -1,45 +1,32 @@
 package com.squad9.bluebank.dto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.squad9.bluebank.model.Endereco;
 import com.squad9.bluebank.model.Estado;
 
 public class EnderecoResponseDTO {
     
     private Long id;
-
     private String cep;
-
     private String logradouro;
-
     private String bairro;
-
     private String cidade;
-
     private Estado estado;
-
     private String numeroCasa;
-
     private String complemento;
 
-    public EnderecoResponseDTO() {
-    }
+    public static EnderecoResponseDTO converter(Endereco endereco) {
+        var enderecoResponseDTO = new EnderecoResponseDTO();
 
-    public EnderecoResponseDTO(Endereco endereco) {
-        this.id = endereco.getId();
-        this.cep = endereco.getCep();
-        this.logradouro = endereco.getLogradouro();
-        this.bairro = endereco.getBairro();
-        this.cidade = endereco.getCidade();
-        this.estado = endereco.getEstado();
-        this.numeroCasa = endereco.getNumeroCasa();
-        this.complemento = endereco.getComplemento();
-    }
+        enderecoResponseDTO.setId(endereco.getId());
+        enderecoResponseDTO.setCep(endereco.getCep());
+        enderecoResponseDTO.setLogradouro(endereco.getLogradouro());
+        enderecoResponseDTO.setBairro(endereco.getBairro());
+        enderecoResponseDTO.setCidade(endereco.getCidade());
+        enderecoResponseDTO.setEstado(endereco.getEstado());
+        enderecoResponseDTO.setNumeroCasa(endereco.getNumeroCasa());
+        enderecoResponseDTO.setComplemento(endereco.getComplemento());
 
-    public List<EnderecoResponseDTO> converter(List<Endereco> enderecos) {
-        return enderecos.stream().map(EnderecoResponseDTO::new).collect(Collectors.toList());
+        return enderecoResponseDTO;
     }
 
     public Long getId() {
