@@ -5,6 +5,7 @@ import com.squad9.bluebank.dto.TransacaoResponseDTO;
 import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.model.Conta;
 import com.squad9.bluebank.model.Transacao;
+import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
 import com.squad9.bluebank.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class TransacaoServiceImpl implements TransacaoService{
     private TransacaoRepository transacaoRepository;
     @Autowired
     private ContaRepository contaRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
 
     @Override
     public void salvar(TransacaoRequestDTO transacaoRequestDTO) throws Exception {
@@ -61,8 +64,9 @@ public class TransacaoServiceImpl implements TransacaoService{
     }
 
     @Override
-    public List<TransacaoResponseDTO> pegaTransacoesPeloIdDoCliente(Long idCliente) {
-        final Long idConta = contaRepository.findByIdCliente(idCliente).getId();
+    public List<TransacaoResponseDTO> pegaTransacoesPeloIdDoCliente(Long idCliente) throws Exception {
+        final Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() -> new Exception("Cliente inválido."));
+        final Long idConta = contaRepository.findByCliente(cliente).getId();
         final List<Transacao> transacoes = transacaoRepository.findAllByIdContaOrdenadoPorDataEnvioDesc(idConta);
         return transacoes.stream()
                 .map(TransacaoResponseDTO::converter)

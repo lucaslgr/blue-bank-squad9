@@ -9,7 +9,7 @@ public interface TransacaoService {
 
     void salvar(TransacaoRequestDTO transacaoRequestDTO) throws Exception;
 
-    List<TransacaoResponseDTO> pegaTransacoesPeloIdDoCliente(Long idCliente);
+    List<TransacaoResponseDTO> pegaTransacoesPeloIdDoCliente(Long idCliente) throws Exception;
 
     List<TransacaoResponseDTO> pegaTodasTransacoesDoBanco();
 }
