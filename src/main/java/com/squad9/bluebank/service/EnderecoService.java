@@ -7,7 +7,7 @@ import com.squad9.bluebank.model.Cliente;
 public interface EnderecoService {
 
     //Cadastrar novo endereço.
-    public EnderecoResponseDTO salvarEndereco(EnderecoRequestDTO enderecoRequestDTO,Cliente cliente);
+    public EnderecoResponseDTO salvarEndereco(EnderecoRequestDTO enderecoRequestDTO,Long idCliente) throws Exception;
 
     //Retornar dados do endereço.
     public EnderecoResponseDTO retornarEnderecoPeloId(Long id) throws Exception;
