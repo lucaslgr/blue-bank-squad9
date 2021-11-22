@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContaRepository  extends JpaRepository<Conta, Long> {
-    Cliente findByIdCliente(Long idCliente);
+    Conta findByIdCliente(Long idCliente);
 }
