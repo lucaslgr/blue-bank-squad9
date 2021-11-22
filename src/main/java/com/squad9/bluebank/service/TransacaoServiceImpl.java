@@ -63,7 +63,7 @@ public class TransacaoServiceImpl implements TransacaoService{
     @Override
     public List<TransacaoResponseDTO> pegaTransacoesPeloIdDoCliente(Long idCliente) {
         final Long idConta = contaRepository.findByIdCliente(idCliente).getId();
-        final List<Transacao> transacoes = transacaoRepository.findAllByIdContaEmissoraOrIdContaReceptoraOrderByDataEnvioDesc(idConta, idConta);
+        final List<Transacao> transacoes = transacaoRepository.findAllByIdContaOrdenadoPorDataEnvioDesc(idConta);
         return transacoes.stream()
                 .map(TransacaoResponseDTO::converter)
                 .collect(Collectors.toList());

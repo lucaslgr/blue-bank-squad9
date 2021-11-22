@@ -2,13 +2,17 @@ package com.squad9.bluebank.repository;
 
 import com.squad9.bluebank.model.Transacao;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
 public interface TransacaoRepository extends JpaRepository <Transacao,Long> {
-    List<Transacao> findAllByIdContaEmissoraOrIdContaReceptoraOrderByDataEnvioDesc(Long idContaEmissora, Long idContaReceptora);
+    @Query(
+            value="SELECT * FROM transacoes t WHERE t.id_conta_emissora = :idConta OR t.id_conta_receptora = :idConta ORDER BY data_envio DESC"
+    )
+    List<Transacao> findAllByIdContaOrdenadoPorDataEnvioDesc(Long idConta);
 
     List<Transacao> findAllOrderByDataEnvioDesc();
 }
