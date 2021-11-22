@@ -10,9 +10,10 @@ import java.util.List;
 @Repository
 public interface TransacaoRepository extends JpaRepository <Transacao,Long> {
     @Query(
-            value="SELECT * FROM transacoes t WHERE t.id_conta_emissora = :idConta OR t.id_conta_receptora = :idConta ORDER BY data_envio DESC"
+            value="SELECT * FROM transacoes t WHERE t.id_conta_emissora = :idConta OR t.id_conta_receptora = :idConta ORDER BY data_envio DESC",
+            nativeQuery = true
     )
     List<Transacao> findAllByIdContaOrdenadoPorDataEnvioDesc(Long idConta);
 
-    List<Transacao> findAllOrderByDataEnvioDesc();
+    List<Transacao> findAllByOrderByDataEnvioDesc();
 }

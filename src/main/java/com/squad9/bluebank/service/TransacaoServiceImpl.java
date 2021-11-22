@@ -75,7 +75,7 @@ public class TransacaoServiceImpl implements TransacaoService{
 
     @Override
     public List<TransacaoResponseDTO> pegaTodasTransacoesDoBanco() {
-        return transacaoRepository.findAllOrderByDataEnvioDesc().stream()
+        return transacaoRepository.findAllByOrderByDataEnvioDesc().stream()
                 .map(TransacaoResponseDTO::converter)
                 .collect(Collectors.toList());
     }
