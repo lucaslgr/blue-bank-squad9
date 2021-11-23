@@ -10,11 +10,13 @@ import com.squad9.bluebank.repository.ContaRepository;
 import com.squad9.bluebank.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.expression.ExpressionException;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class TransacaoServiceImpl implements TransacaoService{
 
     @Autowired
