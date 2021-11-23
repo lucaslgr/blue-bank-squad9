@@ -6,7 +6,9 @@ import com.squad9.bluebank.model.Endereco;
 import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EnderecoServiceImpl implements EnderecoService{
 
     @Autowired
