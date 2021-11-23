@@ -4,22 +4,44 @@ import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
 import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
     private ClienteRepository clienteRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public ClienteService(ClienteRepository clienteRepository) {
+    @Autowired
+    public ClienteService(ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
         this.clienteRepository = clienteRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     //Salvar um cliente
-    public ClienteResponseDTO salvarCliente(ClienteRequestDTO clienteRequestDTO){
+    public ClienteResponseDTO salvarCliente(ClienteRequestDTO clienteRequestDTO) throws Exception{
+        if (this.clienteRepository.findByCpf(clienteRequestDTO.getCpf()).isPresent()) {
+            throw new Exception("Cliente com CPF já cadastrado!");
+        }
+
+        if (this.clienteRepository.findByRg(clienteRequestDTO.getRg()).isPresent()) {
+            throw new Exception("Cliente com RG já cadastrado!");
+        }
+
+        if (this.clienteRepository.findByEmail(clienteRequestDTO.getEmail()).isPresent()) {
+            throw new Exception("Cliente com Email já cadastrado!");
+        }
+
         var cliente = new Cliente();
+
+        //Criptografando a senha
+        cliente.setSenha(passwordEncoder.encode(clienteRequestDTO.getSenha()));
+
         cliente.setNome(clienteRequestDTO.getNome());
         cliente.setSobrenome(clienteRequestDTO.getSobrenome());
         cliente.setCpf(clienteRequestDTO.getCpf());
@@ -28,7 +50,6 @@ public class ClienteService {
         cliente.setEmail(clienteRequestDTO.getEmail());
         cliente.setCelular(clienteRequestDTO.getCelular());
         cliente.setTelefone(clienteRequestDTO.getTelefone());
-        cliente.setSenha(clienteRequestDTO.getSenha());
         cliente.setNomeDoPai(clienteRequestDTO.getNomeDoPai());
         cliente.setNomeDaMae(clienteRequestDTO.getNomeDaMae());
         cliente.setProfissao(clienteRequestDTO.getProfissao());
@@ -47,13 +68,13 @@ public class ClienteService {
 
     //Listar cliente por ID
     public ClienteResponseDTO encontrarClientePeloId(Long id) throws Exception {
-        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Client Not Found!"));
+        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
         return ClienteResponseDTO.converter(cliente);
     }
 
     //Atualizar Cliente
     public void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
-        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Client Not Found!"));
+        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
 
         cliente.setNome(clienteRequestDTO.getNome());
         cliente.setSobrenome(clienteRequestDTO.getSobrenome());
@@ -71,7 +92,7 @@ public class ClienteService {
 
     //Deleta o cliente por ID
     public void deletarCliente(Long id) throws Exception{
-        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Client Not Found!"));
+        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
         this.clienteRepository.delete(cliente);
     }
 }
