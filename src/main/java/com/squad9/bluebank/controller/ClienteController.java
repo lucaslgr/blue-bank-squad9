@@ -10,42 +10,42 @@ import java.util.List;
 public class ClienteController {
 
     @PostMapping
-    public void criarCliente(@RequestBody ClienteRequestDTO clienteRequestDTO) {
+    public void criarCliente(@RequestBody ClienteRequestDTO clienteRequestDTO) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
     @GetMapping
-    public List<ClienteResponseDTO> listarTodosClientes() {
+    public List<ClienteResponseDTO> listarTodosClientes() throws Exception{
         //Apagar comentário e fazer implementação
     }
 
     @GetMapping(value = "/{idCliente}")
-    public ClienteResponseDTO verDadosDoCliente(@PathVariable Long idCliente) {
+    public ClienteResponseDTO verDadosDoCliente(@PathVariable Long idCliente) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
     @PutMapping(value = "/{idCliente}")
-    public void atualizarDadosDoCliente(@PathVariable Long idCliente) {
+    public void atualizarDadosDoCliente(@PathVariable Long idCliente) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
     @DeleteMapping
-    public void deletarCliente(@PathVariable Long idCliente) {
+    public void deletarCliente(@PathVariable Long idCliente) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
     @GetMapping(value = "/transacoes/{idCliente}")
-    public List<TransacaoResponseDTO> verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) {
+    public List<TransacaoResponseDTO> verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
     @PostMapping(value = "/transacao/{idCliente}")
-    public void realizarTransacao(@PathVariable Long idCliente, @RequestBody TransacaoRequestDTO transacaoRequestDTO) {
+    public void realizarTransacao(@PathVariable Long idCliente, @RequestBody TransacaoRequestDTO transacaoRequestDTO) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
     @PostMapping(value = "/endereco/{idCliente}")
-    public void cadastrarEndereco(@PathVariable Long idCliente, @RequestBody EnderecoRequestDTO enderecoRequestDTO){
+    public void cadastrarEndereco(@PathVariable Long idCliente, @RequestBody EnderecoRequestDTO enderecoRequestDTO) throws Exception{
         //Apagar comentário e fazer implementação
     }
 }
