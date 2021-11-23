@@ -1,6 +1,10 @@
 package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.*;
+import com.squad9.bluebank.service.EnderecoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,6 +12,9 @@ import java.util.List;
 @RequestMapping("api/cliente")
 @RestController
 public class ClienteController {
+
+    @Autowired
+    private EnderecoService enderecoService;
 
     @PostMapping
     public void criarCliente(@RequestBody ClienteRequestDTO clienteRequestDTO) throws Exception{
@@ -45,7 +52,14 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/{idCliente}/endereco")
-    public void cadastrarEndereco(@PathVariable Long idCliente, @RequestBody EnderecoRequestDTO enderecoRequestDTO) throws Exception{
-        //Apagar comentário e fazer implementação
+    public ResponseEntity cadastrarEndereco(@PathVariable Long idCliente, @RequestBody EnderecoRequestDTO enderecoRequestDTO) throws Exception{
+
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(this.enderecoService.salvarEndereco(enderecoRequestDTO, idCliente));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
     }
+
 }
