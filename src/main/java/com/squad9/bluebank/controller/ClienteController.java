@@ -34,17 +34,17 @@ public class ClienteController {
         //Apagar comentário e fazer implementação
     }
 
-    @GetMapping(value = "/transacoes/{idCliente}")
+    @GetMapping(value = "/{idCliente}/transacoes")
     public List<TransacaoResponseDTO> verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
-    @PostMapping(value = "/transacao/{idCliente}")
+    @PostMapping(value = "/{idCliente}/transacao")
     public void realizarTransacao(@PathVariable Long idCliente, @RequestBody TransacaoRequestDTO transacaoRequestDTO) throws Exception{
         //Apagar comentário e fazer implementação
     }
 
-    @PostMapping(value = "/endereco/{idCliente}")
+    @PostMapping(value = "/{idCliente}/endereco")
     public void cadastrarEndereco(@PathVariable Long idCliente, @RequestBody EnderecoRequestDTO enderecoRequestDTO) throws Exception{
         //Apagar comentário e fazer implementação
     }
