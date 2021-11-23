@@ -13,17 +13,18 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ClienteService {
+public class ClienteServiceImpl implements ClienseService{
     private ClienteRepository clienteRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ClienteService(ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
+    public ClienteServiceImpl(ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
         this.clienteRepository = clienteRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     //Salvar um cliente
+    @Override
     public ClienteResponseDTO salvarCliente(ClienteRequestDTO clienteRequestDTO) throws Exception{
         if (this.clienteRepository.findByCpf(clienteRequestDTO.getCpf()).isPresent()) {
             throw new Exception("Cliente com CPF já cadastrado!");
@@ -61,18 +62,21 @@ public class ClienteService {
     }
 
     //Listar todos os clientes
+    @Override
     public List<ClienteResponseDTO> retornarTodosOsClientes(){
         var clientes =  this.clienteRepository.findAll();
         return clientes.stream().map(ClienteResponseDTO::converter).collect(Collectors.toList());
     }
 
     //Listar cliente por ID
+    @Override
     public ClienteResponseDTO encontrarClientePeloId(Long id) throws Exception {
         var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
         return ClienteResponseDTO.converter(cliente);
     }
 
     //Atualizar Cliente
+    @Override
     public void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
         var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
 
@@ -91,6 +95,7 @@ public class ClienteService {
     }
 
     //Deleta o cliente por ID
+    @Override
     public void deletarCliente(Long id) throws Exception{
         var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
         this.clienteRepository.delete(cliente);
