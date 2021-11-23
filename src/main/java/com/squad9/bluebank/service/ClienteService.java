@@ -7,7 +7,7 @@ import com.squad9.bluebank.model.Cliente;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public interface ClienseService {
+public interface ClienteService {
     ClienteResponseDTO salvarCliente(ClienteRequestDTO clienteRequestDTO) throws Exception;
 
     //Listar todos os clientes
