@@ -11,6 +11,7 @@ import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,28 +22,41 @@ public class ContaServiceImpl implements ContaService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    private final String numeroAgencia = "00001";
+
+    private PasswordEncoder passwordEncoder;
+
 
     //Cadastra um nova conta
     @Override
-    public Conta cadastrarNovaConta(ContaRequestDTO contaRequestDTO) throws Exception {
+    public ContaResponseDTO cadastrarNovaConta(ContaRequestDTO contaRequestDTO) throws Exception {
+        // Verificar se a pessoa já pelo id
+        var cliente = clienteRepository.findByCpf(contaRequestDTO.getCpf()).orElseThrow(() -> new Exception("Cliente não existe"));
+
+        // Gerar número da conta
+        Long numeroConta = 10000 + cliente.getId();
+        String stringNumeroConta = numeroConta.toString();
+
+        // Criptografar senha
+        Conta conta = new Conta();
+        conta.setSenha(passwordEncoder.encode(contaRequestDTO.getSenha()));
         
-        return conta;
+        conta.setCliente(cliente);
+        conta.setNumero(stringNumeroConta);
+        conta.setAgencia(numeroAgencia);
+        
+        this.contaRepository.save(conta);
+        return ContaResponseDTO.converter(conta);
     }
 
     //Retorna os dados da conta
     @Override
     public ContaResponseDTO retornaDadosDaConta(Long idConta) throws Exception {
         //Verifica se o id do cliente logado é o mesmo id do cliente da conta sendo requisitada
-        var Cliente cliente = this.contaRepository.findById(idConta).getCliente();
-        Long idCliente = cliente.getId();
-        if () {
-            throw new Exception("Conta não pertencente ao cliente");
-        }
-        
-        //
+                        
         var conta = this.contaRepository.findById(idConta).orElseThrow(() -> new Exception("Conta não válida"));
         return ContaResponseDTO.converter(conta);
 
     }
 
-    }
+}

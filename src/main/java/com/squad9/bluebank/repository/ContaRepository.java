@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContaRepository  extends JpaRepository<Conta, Long> {
-    Optional<Conta>  findByCliente(Conta conta);
+    Optional<Conta> findByCliente(Cliente cliente);
 }
