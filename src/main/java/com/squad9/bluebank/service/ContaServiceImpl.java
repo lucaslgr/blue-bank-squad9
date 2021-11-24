@@ -11,7 +11,7 @@ import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,7 +24,7 @@ public class ContaServiceImpl implements ContaService {
 
     private final String numeroAgencia = "00001";
 
-    private PasswordEncoder passwordEncoder;
+    //private PasswordEncoder passwordEncoder;
 
 
     //Cadastra um nova conta
@@ -39,7 +39,7 @@ public class ContaServiceImpl implements ContaService {
 
         // Criptografar senha
         Conta conta = new Conta();
-        conta.setSenha(passwordEncoder.encode(contaRequestDTO.getSenha()));
+//        conta.setSenha(passwordEncoder.encode(contaRequestDTO.getSenha()));
         
         conta.setCliente(cliente);
         conta.setNumero(stringNumeroConta);
