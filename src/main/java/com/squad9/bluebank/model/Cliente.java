@@ -36,7 +36,7 @@ public class Cliente {
 
     @Column(name = "data_de_nascimento", nullable = false)
     @Temporal(TemporalType.DATE)
-    @NotBlank(message = "O campo data_de_nascimento não pode estar vazio.")
+    @NotNull(message = "O campo data_de_nascimento não pode estar vazio.")
     @Past(message = "Data inválida.")
     private Date dataDeNascimento;
 
@@ -78,12 +78,12 @@ public class Cliente {
     private String profissao;
 
     @Column(name = "renda_mensal", nullable = false)
-    @NotBlank(message = "O campo renda_mensal não pode estar vazio.")
+    @NotNull(message = "O campo renda_mensal não pode estar vazio.")
     @Positive(message = "Valor de renda mensal inválido.")
     private Integer rendaMensal;
 
     @Column(name = "patrimonio", nullable = false)
-    @NotBlank(message = "O campo patrimonio não pode estar vazio.")
+    @NotNull(message = "O campo patrimonio não pode estar vazio.")
     @PositiveOrZero(message = "Valor de patrimônio mensal inválido.")
     private Long patrimonio;
 

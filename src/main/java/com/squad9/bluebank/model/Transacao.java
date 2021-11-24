@@ -2,6 +2,7 @@ package com.squad9.bluebank.model;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Date;
 
@@ -15,28 +16,29 @@ public class Transacao {
     private Long id;
 
     @Column(name = "valor",nullable = false)
-    @NotBlank(message = "O campo valor não pode estar vazio")
+    @NotNull(message = "O campo valor não pode estar vazio")
     @Positive(message = "Valor do campo valor é inválido.")
     private Long valor;
 
-    @ManyToOne
-    @NotBlank(message = "O campo id_conta_emissora não pode estar vazio")
-    @JoinColumn(name = "id_conta_emissora")
-    private Conta contaEmissora;
-
-    @ManyToOne
-    @JoinColumn(name = "id_conta_receptora")  // Aqui é o nome do campo que ficará no DB -> Campo SQL.
-    private Conta contaReceptora;  // Isto é um campo da transação. Cada transação só tem uma única conta receptora, por isso singular.
-
     @Column(name = "data_envio", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    @NotBlank(message = "O campo data_envio não pode estar vazio")
+    @NotNull(message = "O campo data_envio não pode estar vazio")
     private Date dataEnvio;
 
     @Column(name = "data_recebimento", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    @NotBlank(message = "O campo data_recebimento não pode estar vazio")
+    @NotNull(message = "O campo data_recebimento não pode estar vazio")
     private Date dataRecebimento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_conta_emissora")
+    @NotNull(message = "O campo id_conta_emissora não pode estar vazio")
+    private Conta contaEmissora;
+
+    @ManyToOne
+    @JoinColumn(name = "id_conta_receptora")
+    @NotNull(message = "O campo id_conta_receptora não pode estar vazio")
+    private Conta contaReceptora;
 
     public Long getId() {
         return id;
