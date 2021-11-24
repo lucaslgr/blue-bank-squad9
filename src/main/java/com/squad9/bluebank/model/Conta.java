@@ -4,25 +4,13 @@ package com.squad9.bluebank.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "contas_corrente", uniqueConstraints = @UniqueConstraint(columnNames = {"agencia", "numero"}))
 public class Conta {
-
-    @OneToOne(targetEntity = Cliente.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-    private Cliente cliente;
-
-    @OneToMany(mappedBy = "contaEmissora")
-    private List<Transacao> transacoesEmitidas;
-
-    @OneToMany(mappedBy = "contaReceptora")
-    private List<Transacao> transacoesRecebidas;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,19 +29,30 @@ public class Conta {
     private String agencia;
 
     @Column(name = "data_criacao", columnDefinition = "DATETIME DEFAULT NOW()")
-    @NotBlank(message = "O campo data_criacao não pode estar vazio.")
+    @NotNull(message = "O campo data_criacao não pode estar vazio.")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date dataCriacao;
 
     @Column(name = "senha", length = 255, nullable = false)
     @NotBlank(message = "O campo senha não pode estar vazio.")
+    @Size(min = 6, message = "A senha deve conter no mínimo 6 caracteres.")
     private String senha;
 
     @Column(name = "saldo", nullable = false, columnDefinition = "BIGINT DEFAULT 0")
-    // Não sei se esse seria assim, fui na lógica do DATETIME
-    @NotBlank(message = "O campo saldo não pode estar vazio.")
+    @NotNull(message = "O campo saldo não pode estar vazio.")
     @PositiveOrZero(message = "Saldo inválido.")
     private Long saldo;
+
+    @OneToOne(targetEntity = Cliente.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    @NotNull(message = "O campo cliente é obrigatório")
+    private Cliente cliente;
+
+    @OneToMany(mappedBy = "contaEmissora")
+    private List<Transacao> transacoesEmitidas;
+
+    @OneToMany(mappedBy = "contaReceptora")
+    private List<Transacao> transacoesRecebidas;
 
     public Cliente getCliente() {
         return cliente;
