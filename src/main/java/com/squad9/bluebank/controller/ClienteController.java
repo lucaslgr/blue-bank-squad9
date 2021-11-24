@@ -1,6 +1,10 @@
 package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.*;
+import com.squad9.bluebank.service.ClienteService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,6 +12,12 @@ import java.util.List;
 @RequestMapping("api/cliente")
 @RestController
 public class ClienteController {
+
+    private ClienteService clienteService;
+
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
 
     @PostMapping
     public void criarCliente(@RequestBody ClienteRequestDTO clienteRequestDTO) throws Exception{
@@ -30,8 +40,13 @@ public class ClienteController {
     }
 
     @DeleteMapping
-    public void deletarCliente(@PathVariable Long idCliente) throws Exception{
-        //Apagar comentário e fazer implementação
+    public ResponseEntity<String> deletarCliente(@PathVariable Long idCliente) throws Exception{
+        try {
+            clienteService.deletarCliente(idCliente);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Cliente deletado com sucesso");
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
     }
 
     @GetMapping(value = "/{idCliente}/transacoes")
