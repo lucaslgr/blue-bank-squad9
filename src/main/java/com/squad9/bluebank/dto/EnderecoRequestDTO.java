@@ -1,7 +1,5 @@
 package com.squad9.bluebank.dto;
 
-import com.squad9.bluebank.model.Estado;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -22,8 +20,13 @@ public class EnderecoRequestDTO {
     @NotBlank(message = "O campo cidade é obrigatório")
     private String cidade;
 
-    @NotNull(message = "O campo estado é obrigatório")
-    private Estado estado;
+    @NotBlank(message = "O campo estado é obrigatório")
+    @Size(min = 2, max = 2, message = "Campo estado é inválido")
+    @Pattern(
+            regexp = "AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO",
+            message = "O campo estado é invalido"
+    )
+    private String estado;
 
     @NotBlank(message = "O campo numeroCasa é obrigatório")
     @Pattern(regexp = "^\\d+$", message = "Número da casa inválido")
@@ -63,11 +66,11 @@ public class EnderecoRequestDTO {
         this.cidade = cidade;
     }
 
-    public Estado getEstado() {
+    public String getEstado() {
         return this.estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
