@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequestMapping("api/clientes")
 @RestController
@@ -31,13 +33,13 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
+    public ResponseEntity<?> criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(clienteService.salvarCliente(clienteRequestDTO));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(error.getMessage());
+                    .body(formataUmErroGenerico(error.getMessage()));
         }
 
     }
@@ -58,46 +60,52 @@ public class ClienteController {
 //    }
 
     @DeleteMapping
-    public ResponseEntity<String> deletarCliente(@PathVariable Long idCliente) throws Exception{
+    public ResponseEntity<?> deletarCliente(@PathVariable Long idCliente) throws Exception{
         try {
             clienteService.deletarCliente(idCliente);
             return ResponseEntity.status(HttpStatus.CREATED).body("Cliente deletado com sucesso");
         } catch (Exception error) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
         }
     }
 
     @GetMapping(value = "/{idCliente}/transacoes")
-    public ResponseEntity verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) {
+    public ResponseEntity<?> verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(
                     transacaoService.pegaTransacoesPeloIdDoCliente(idCliente)
             );
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(error.getMessage());
+                    .body(formataUmErroGenerico(error.getMessage()));
         }
     }
 
     
     @PostMapping(value = "/{idCliente}/transacao")
-    public ResponseEntity<String> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception{
+    public ResponseEntity<?> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception{
         try {
             transacaoService.salvar(transacaoRequestDTO);
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body("Transação bem sucedida");
         } catch (Exception error) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
         }
     }
 
     @PostMapping(value = "/{idCliente}/endereco")
-    public ResponseEntity cadastrarEndereco(@RequestBody @Valid EnderecoRequestDTO enderecoRequestDTO, @PathVariable Long idCliente) throws Exception {
+    public ResponseEntity<?> cadastrarEndereco(@RequestBody @Valid EnderecoRequestDTO enderecoRequestDTO, @PathVariable Long idCliente) throws Exception {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(this.enderecoService.salvarEndereco(enderecoRequestDTO, idCliente));
         } catch (Exception error) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
         }
+    }
+
+    private Map<String, String> formataUmErroGenerico(String msg) {
+        Map<String, String> error = new HashMap<>();
+        error.put("error", msg);
+        return error;
     }
 }
