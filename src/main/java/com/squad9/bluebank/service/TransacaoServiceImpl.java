@@ -68,8 +68,8 @@ public class TransacaoServiceImpl implements TransacaoService{
     @Override
     public List<TransacaoResponseDTO> pegaTransacoesPeloIdDoCliente(Long idCliente) throws Exception {
         final Cliente cliente = clienteRepository.findById(idCliente).orElseThrow(() -> new Exception("Cliente inválido."));
-        final Long idConta = contaRepository.findByCliente(cliente).getId();
-        final List<Transacao> transacoes = transacaoRepository.findAllByIdContaOrdenadoPorDataEnvioDesc(idConta);
+        final Conta conta = contaRepository.findByCliente(cliente).orElseThrow(() -> new Exception("Conta inexistente."));
+        final List<Transacao> transacoes = transacaoRepository.findAllByIdContaOrdenadoPorDataEnvioDesc(conta.getId());
         return transacoes.stream()
                 .map(TransacaoResponseDTO::converter)
                 .collect(Collectors.toList());

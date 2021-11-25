@@ -2,17 +2,32 @@ package com.squad9.bluebank.dto;
 
 import com.squad9.bluebank.model.Estado;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class EnderecoRequestDTO {
+
+    @NotBlank(message = "O campo cep não pode estar vazio.")
+    @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "CEP inválido")
     private String cep;
 
+    @NotBlank(message = "O campo logradouro é obrigatório")
     private String logradouro;
 
+    @NotBlank(message = "O campo bairro é obrigatório")
     private String bairro;
 
+    @NotBlank(message = "O campo cidade é obrigatório")
     private String cidade;
 
+    @NotNull(message = "O campo estado é obrigatório")
+    @Size(min = 2, max = 2, message = "O campo estado deve ter 2 caracteres")
     private Estado estado;
 
+    @NotBlank(message = "O campo numeroCasa é obrigatório")
+    @Pattern(regexp = "^\\d+$", message = "Número da casa inválido")
     private String numeroCasa;
 
     private String complemento;

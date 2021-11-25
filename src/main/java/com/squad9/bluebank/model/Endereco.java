@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -24,29 +25,32 @@ public class Endereco {
     @Column(name = "id_endereco", nullable = false)
     private Long id;
 
-    @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "CEP inválido")
     @Column(name = "cep", nullable = false, length = 9)
+    @NotBlank(message = "O campo cep não pode estar vazio.")
+    @Pattern(regexp = "^\\d{5}-\\d{3}$", message = "CEP inválido")
     private String cep;
 
-    @NotBlank(message = "O campo logradouro é obrigatório")
     @Column(name = "logradouro", nullable = false, length = 255)
+    @NotBlank(message = "O campo logradouro é obrigatório")
     private String logradouro;
 
-    @NotBlank(message = "O campo bairro é obrigatório")
     @Column(name = "bairro", nullable = false, length = 100)
+    @NotBlank(message = "O campo bairro é obrigatório")
     private String bairro;
 
-    @NotBlank(message = "O campo cidade é obrigatório")
     @Column(name = "cidade", nullable = false, length = 100)
+    @NotBlank(message = "O campo cidade é obrigatório")
     private String cidade;
 
-    @Size(min = 2, max = 2, message = "O campo estado deve ter 2 caracteres")
     @Column(name = "estado", nullable = false, length = 2)
+    @NotNull(message = "O campo estado é obrigatório")
+    @Size(min = 2, max = 2, message = "O campo estado deve ter 2 caracteres")
     @Enumerated(EnumType.STRING)
     private Estado estado;
 
-    @Pattern(regexp = "^\\d+$", message = "Número da casa inválido")
     @Column(name = "numero_casa", nullable = false, length = 10)
+    @NotBlank(message = "O campo numeroCasa é obrigatório")
+    @Pattern(regexp = "^\\d+$", message = "Número da casa inválido")
     private String numeroCasa;
 
     @Column(name = "complemento", length = 100)
@@ -54,6 +58,7 @@ public class Endereco {
 
     @OneToOne(targetEntity = Cliente.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
+    @NotNull(message = "O campo id_cliente é obrigatório")
     private Cliente cliente;
 
     public Endereco() {}
