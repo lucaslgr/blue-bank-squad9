@@ -9,11 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ClienteServiceImpl implements ClienseService{
+public class ClienteServiceImpl implements ClienteService {
     private ClienteRepository clienteRepository;
     private PasswordEncoder passwordEncoder;
 
