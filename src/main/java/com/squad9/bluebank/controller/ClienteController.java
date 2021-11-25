@@ -2,6 +2,7 @@ package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.*;
 import com.squad9.bluebank.service.ClienteService;
+import com.squad9.bluebank.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,12 @@ import java.util.List;
 @RestController
 public class ClienteController {
     private ClienteService clienteService;
+    private TransacaoService transacaoService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService) {
+    public ClienteController(ClienteService clienteService, TransacaoService transacaoService) {
         this.clienteService = clienteService;
+        this.transacaoService = transacaoService;
     }
 
     @PostMapping
@@ -26,7 +29,7 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(clienteService.salvarCliente(clienteRequestDTO));
         } catch (Exception error) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(error.getMessage());
         }
 
@@ -52,10 +55,18 @@ public class ClienteController {
 //        //Apagar comentário e fazer implementação
 //    }
 //
-//    @GetMapping(value = "/{idCliente}/transacoes")
-//    public List<TransacaoResponseDTO> verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
+    @GetMapping(value = "/{idCliente}/transacoes")
+    public ResponseEntity verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente){
+        System.out.println(idCliente);
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    transacaoService.pegaTransacoesPeloIdDoCliente(idCliente)
+            );
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(error.getMessage());
+        }
+    }
 //
 //    @PostMapping(value = "/{idCliente}/transacao")
 //    public void realizarTransacao(@PathVariable Long idCliente, @RequestBody TransacaoRequestDTO transacaoRequestDTO) throws Exception{
