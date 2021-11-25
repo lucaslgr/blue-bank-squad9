@@ -2,6 +2,7 @@ package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.EnderecoRequestDTO;
+import com.squad9.bluebank.dto.TransacaoRequestDTO;
 import com.squad9.bluebank.service.ClienteService;
 import com.squad9.bluebank.service.EnderecoService;
 import com.squad9.bluebank.service.TransacaoService;
@@ -73,12 +74,18 @@ public class ClienteController {
         }
     }
 
-    //
-//    @PostMapping(value = "/{idCliente}/transacao")
-//    public void realizarTransacao(@PathVariable Long idCliente, @RequestBody TransacaoRequestDTO transacaoRequestDTO) throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
-//
+    
+    @PostMapping(value = "/{idCliente}/transacao")
+    public ResponseEntity<String> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception{
+        try {
+            transacaoService.salvar(transacaoRequestDTO);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body("Transação bem sucedida");
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
+    }
+
     @PostMapping(value = "/{idCliente}/endereco")
     public ResponseEntity cadastrarEndereco(@RequestBody @Valid EnderecoRequestDTO enderecoRequestDTO, @PathVariable Long idCliente) throws Exception {
         try {
