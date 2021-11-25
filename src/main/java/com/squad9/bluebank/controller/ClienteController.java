@@ -49,10 +49,16 @@ public class ClienteController {
 //        //Apagar comentário e fazer implementação
 //    }
 //
-//    @GetMapping(value = "/{idCliente}")
-//    public ClienteResponseDTO verDadosDoCliente(@PathVariable Long idCliente) throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
+    @GetMapping(value = "/{idCliente}")
+    public ResponseEntity<?> verDadosDoCliente(@PathVariable Long idCliente) throws Exception{
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(clienteService.encontrarClientePeloId(idCliente));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmErroGenerico(error.getMessage()));
+        }
+    }
 //
 //    @PutMapping(value = "/{idCliente}")
 //    public void atualizarDadosDoCliente(@PathVariable Long idCliente) throws Exception{
@@ -63,7 +69,7 @@ public class ClienteController {
     public ResponseEntity<?> deletarCliente(@PathVariable Long idCliente) throws Exception{
         try {
             clienteService.deletarCliente(idCliente);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Cliente deletado com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado com sucesso");
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
         }
