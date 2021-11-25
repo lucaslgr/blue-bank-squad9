@@ -59,7 +59,7 @@ public class ClienteController {
 //        //Apagar comentário e fazer implementação
 //    }
 
-    @DeleteMapping
+    @DeleteMapping(value = "/{idCliente}")
     public ResponseEntity<?> deletarCliente(@PathVariable Long idCliente) throws Exception{
         try {
             clienteService.deletarCliente(idCliente);
