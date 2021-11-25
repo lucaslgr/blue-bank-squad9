@@ -52,7 +52,7 @@ public class ClienteController {
     @GetMapping(value = "/{idCliente}")
     public ResponseEntity<?> verDadosDoCliente(@PathVariable Long idCliente) throws Exception{
         try {
-            return ResponseEntity.status(HttpStatus.CREATED)
+            return ResponseEntity.status(HttpStatus.OK)
                     .body(clienteService.encontrarClientePeloId(idCliente));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -69,7 +69,7 @@ public class ClienteController {
     public ResponseEntity<?> deletarCliente(@PathVariable Long idCliente) throws Exception{
         try {
             clienteService.deletarCliente(idCliente);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Cliente deletado com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado com sucesso");
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
         }
