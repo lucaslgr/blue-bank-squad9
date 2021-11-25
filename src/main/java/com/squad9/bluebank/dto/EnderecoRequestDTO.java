@@ -23,7 +23,6 @@ public class EnderecoRequestDTO {
     private String cidade;
 
     @NotNull(message = "O campo estado é obrigatório")
-    @Size(min = 2, max = 2, message = "O campo estado deve ter 2 caracteres")
     private Estado estado;
 
     @NotBlank(message = "O campo numeroCasa é obrigatório")
