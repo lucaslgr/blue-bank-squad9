@@ -21,9 +21,15 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<ClienteResponseDTO> criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(clienteService.salvarCliente(clienteRequestDTO));
+    public ResponseEntity criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(clienteService.salvarCliente(clienteRequestDTO));
+        } catch (Exception error) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(error.getMessage());
+        }
+
     }
 
 //    @GetMapping

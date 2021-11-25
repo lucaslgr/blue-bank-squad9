@@ -40,9 +40,8 @@ public class ClienteRequestDTO {
     )
     private String celular;
 
-    @NotBlank(message = "O campo telefone não pode estar vazio.")
     @Pattern(
-            regexp = "(^[0-9]{2})?(\\s|-)?(9?[0-9]{4})-?([0-9]{4}$)",
+            regexp = "(^\\([1-9]{2}\\) [0-9]{4}\\-[0-9]{4}$)",
             message = "Telefone inválido."
     )
     private String telefone;
