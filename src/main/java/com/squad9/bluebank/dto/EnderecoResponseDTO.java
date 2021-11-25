@@ -1,7 +1,6 @@
 package com.squad9.bluebank.dto;
 
 import com.squad9.bluebank.model.Endereco;
-import com.squad9.bluebank.model.Estado;
 
 public class EnderecoResponseDTO {
     
@@ -10,7 +9,7 @@ public class EnderecoResponseDTO {
     private String logradouro;
     private String bairro;
     private String cidade;
-    private Estado estado;
+    private String estado;
     private String numeroCasa;
     private String complemento;
 
@@ -69,11 +68,11 @@ public class EnderecoResponseDTO {
         this.cidade = cidade;
     }
 
-    public Estado getEstado() {
+    public String getEstado() {
         return this.estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

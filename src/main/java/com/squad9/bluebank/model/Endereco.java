@@ -43,9 +43,13 @@ public class Endereco {
     private String cidade;
 
     @Column(name = "estado", nullable = false, length = 2)
-    @NotNull(message = "O campo estado é obrigatório")
-    @Enumerated(EnumType.STRING)
-    private Estado estado;
+    @NotBlank(message = "O campo estado é obrigatório")
+    @Size(min = 2, max = 2, message = "Campo estado é inválido")
+    @Pattern(
+            regexp = "AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO",
+            message = "O campo estado é invalido"
+    )
+    private String estado;
 
     @Column(name = "numero_casa", nullable = false, length = 10)
     @NotBlank(message = "O campo numeroCasa é obrigatório")
@@ -62,7 +66,7 @@ public class Endereco {
 
     public Endereco() {}
 
-    public Endereco(String cep, String logradouro, String bairro, String cidade, Estado estado, String numeroCasa, String complemento, Cliente cliente) {
+    public Endereco(String cep, String logradouro, String bairro, String cidade, String estado, String numeroCasa, String complemento, Cliente cliente) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.bairro = bairro;
@@ -114,11 +118,11 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public Estado getEstado() {
+    public String getEstado() {
         return this.estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
