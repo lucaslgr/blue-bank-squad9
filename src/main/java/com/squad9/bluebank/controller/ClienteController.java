@@ -76,7 +76,7 @@ public class ClienteController {
 
     
     @PostMapping(value = "/{idCliente}/transacao")
-    public ResponseEntity<String> realizarTransacao(@PathVariable Long idCliente, @RequestBody TransacaoRequestDTO transacaoRequestDTO) throws Exception{
+    public ResponseEntity<String> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception{
         try {
             transacaoService.salvar(transacaoRequestDTO);
             return ResponseEntity.status(HttpStatus.CREATED)
