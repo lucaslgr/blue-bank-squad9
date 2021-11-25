@@ -1,10 +1,10 @@
 DROP
-    DATABASE IF EXISTS db_bancoblue;
+    DATABASE IF EXISTS blue_bank;
 CREATE
-    DATABASE db_bancoblue;
+    DATABASE blue_bank;
 
 USE
-    db_bancoblue;
+    blue_bank;
 
 CREATE TABLE clientes
 (
@@ -75,14 +75,14 @@ CREATE UNIQUE INDEX conta_agencia_numero
     ON contas_corrente (agencia, numero);
 
 -- SETANDO AS REFERENCIAS DE FOREIGN KEYS
-ALTER TABLE db_bancoblue.enderecos
+ALTER TABLE blue_bank.enderecos
     ADD FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente);
 
-ALTER TABLE db_bancoblue.contas_corrente
+ALTER TABLE blue_bank.contas_corrente
     ADD FOREIGN KEY (id_cliente) REFERENCES clientes (id_cliente);
 
-ALTER TABLE db_bancoblue.transacoes
+ALTER TABLE blue_bank.transacoes
     ADD FOREIGN KEY (id_conta_emissora) REFERENCES contas_corrente (id_conta);
 
-ALTER TABLE db_bancoblue.transacoes
+ALTER TABLE blue_bank.transacoes
     ADD FOREIGN KEY (id_conta_receptora) REFERENCES contas_corrente (id_conta);
