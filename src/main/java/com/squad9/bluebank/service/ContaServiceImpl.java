@@ -33,6 +33,11 @@ public class ContaServiceImpl implements ContaService {
         // Verificar se a pessoa já pelo id
         var cliente = clienteRepository.findByCpf(contaRequestDTO.getCpf()).orElseThrow(() -> new Exception("Cliente não existe"));
 
+        //Verificar se o cliente já possui conta
+        if (contaRepository.findByCliente(cliente).isPresent()) {
+            throw new Exception("Cliente já possui conta");
+        }
+
         // Gerar número da conta
         Long numeroConta = 10000 + cliente.getId();
         String stringNumeroConta = numeroConta.toString();

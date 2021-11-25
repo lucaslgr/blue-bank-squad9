@@ -117,8 +117,6 @@ public class ClienteController {
     @PostMapping(value = "/{idCLiente}/conta")
     public ResponseEntity<?> criarConta(@RequestBody @Valid ContaRequestDTO contaRequestDTO) {
         try {
-            // Verifica se o cliente já possui conta
-            // if (contaRequestDTO.getCpf() != null) throw new Exception ("Cliente já possui conta");
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(contaService.cadastrarNovaConta(contaRequestDTO));
         } catch (Exception error) {
