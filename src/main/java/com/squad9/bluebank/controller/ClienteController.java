@@ -55,12 +55,17 @@ public class ClienteController {
 //    public void atualizarDadosDoCliente(@PathVariable Long idCliente) throws Exception{
 //        //Apagar comentário e fazer implementação
 //    }
-//
-//    @DeleteMapping
-//    public void deletarCliente(@PathVariable Long idCliente) throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
-//
+
+    @DeleteMapping
+    public ResponseEntity<String> deletarCliente(@PathVariable Long idCliente) throws Exception{
+        try {
+            clienteService.deletarCliente(idCliente);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Cliente deletado com sucesso");
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
+    }
+
     @GetMapping(value = "/{idCliente}/transacoes")
     public ResponseEntity verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) {
         try {
