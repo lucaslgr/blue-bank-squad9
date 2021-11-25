@@ -63,7 +63,6 @@ public class ClienteController {
 //
     @GetMapping(value = "/{idCliente}/transacoes")
     public ResponseEntity verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente){
-        System.out.println(idCliente);
         try {
             return ResponseEntity.status(HttpStatus.OK).body(
                     transacaoService.pegaTransacoesPeloIdDoCliente(idCliente)
