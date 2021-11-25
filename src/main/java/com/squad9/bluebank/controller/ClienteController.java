@@ -1,7 +1,9 @@
 package com.squad9.bluebank.controller;
 
-import com.squad9.bluebank.dto.*;
+import com.squad9.bluebank.dto.ClienteRequestDTO;
+import com.squad9.bluebank.dto.EnderecoRequestDTO;
 import com.squad9.bluebank.service.ClienteService;
+import com.squad9.bluebank.service.EnderecoService;
 import com.squad9.bluebank.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,18 +11,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RequestMapping("api/clientes")
 @RestController
 public class ClienteController {
     private ClienteService clienteService;
     private TransacaoService transacaoService;
+    private EnderecoService enderecoService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService, TransacaoService transacaoService) {
+    public ClienteController(
+            ClienteService clienteService,
+            TransacaoService transacaoService,
+            EnderecoService enderecoService) {
         this.clienteService = clienteService;
         this.transacaoService = transacaoService;
+        this.enderecoService = enderecoService;
     }
 
     @PostMapping
@@ -30,12 +36,12 @@ public class ClienteController {
                     .body(clienteService.salvarCliente(clienteRequestDTO));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(error.getMessage());
+                    .body(error.getMessage());
         }
 
     }
 
-//    @GetMapping
+    //    @GetMapping
 //    public List<ClienteResponseDTO> listarTodosClientes() throws Exception{
 //        //Apagar comentário e fazer implementação
 //    }
@@ -61,8 +67,7 @@ public class ClienteController {
    }
 
     @GetMapping(value = "/{idCliente}/transacoes")
-    public ResponseEntity verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente){
-        System.out.println(idCliente);
+    public ResponseEntity verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(
                     transacaoService.pegaTransacoesPeloIdDoCliente(idCliente)
@@ -72,14 +77,21 @@ public class ClienteController {
                     .body(error.getMessage());
         }
     }
-//
+
+    //
 //    @PostMapping(value = "/{idCliente}/transacao")
 //    public void realizarTransacao(@PathVariable Long idCliente, @RequestBody TransacaoRequestDTO transacaoRequestDTO) throws Exception{
 //        //Apagar comentário e fazer implementação
 //    }
 //
-//    @PostMapping(value = "/{idCliente}/endereco")
-//    public void cadastrarEndereco(@PathVariable Long idCliente, @RequestBody EnderecoRequestDTO enderecoRequestDTO) throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
+
+    @PostMapping(value = "/{idCliente}/endereco")
+    public ResponseEntity cadastrarEndereco(@RequestBody @Valid EnderecoRequestDTO enderecoRequestDTO, @PathVariable Long idCliente) throws Exception {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(this.enderecoService.salvarEndereco(enderecoRequestDTO, idCliente));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+        }
+    }
 }

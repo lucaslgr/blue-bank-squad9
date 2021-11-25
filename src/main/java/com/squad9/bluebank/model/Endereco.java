@@ -44,7 +44,6 @@ public class Endereco {
 
     @Column(name = "estado", nullable = false, length = 2)
     @NotNull(message = "O campo estado é obrigatório")
-    @Size(min = 2, max = 2, message = "O campo estado deve ter 2 caracteres")
     @Enumerated(EnumType.STRING)
     private Estado estado;
 
