@@ -1,6 +1,7 @@
 package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.*;
+import com.squad9.bluebank.service.EnderecoService;
 import com.squad9.bluebank.service.ClienteService;
 import com.squad9.bluebank.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,16 @@ import java.util.List;
 public class ClienteController {
     private ClienteService clienteService;
     private TransacaoService transacaoService;
+    private EnderecoService enderecoService;
 
     @Autowired
-    public ClienteController(ClienteService clienteService, TransacaoService transacaoService) {
+    public ClienteController(
+      ClienteService clienteService,
+      TransacaoService transacaoService,
+      EnderecoService enderecoService) {
         this.clienteService = clienteService;
         this.transacaoService = transacaoService;
+        this.enderecoService = enderecoService;
     }
 
     @PostMapping
@@ -73,8 +79,14 @@ public class ClienteController {
 //        //Apagar comentário e fazer implementação
 //    }
 //
-//    @PostMapping(value = "/{idCliente}/endereco")
-//    public void cadastrarEndereco(@PathVariable Long idCliente, @RequestBody EnderecoRequestDTO enderecoRequestDTO) throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
+      @PostMapping(value = "/{idCliente}/endereco")
+      public ResponseEntity cadastrarEndereco(@RequestBody @Valid EnderecoRequestDTO enderecoRequestDTO, @PathVariable Long idCliente) throws Exception{
+
+          try {
+              return ResponseEntity.status(HttpStatus.CREATED)
+                      .body(this.enderecoService.salvarEndereco(enderecoRequestDTO, idCliente));
+          } catch (Exception error) {
+              return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error.getMessage());
+          }
+      }
 }
