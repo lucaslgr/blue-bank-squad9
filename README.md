@@ -6,9 +6,23 @@
     - Docker e Docker Compose instalados
 - Passo a passo:
     - Gere o <b>.jar</b> da aplicação executando o comando no terminal:
-        - <b>mvn clean install -DskipTests</b>
+        - ```
+          mvn clean install -DskipTests
+          ```
     - Instancie e rode os containers executando o comando no terminal:
-        - <b>docker-compose up --build --force-recreate</b>
+        - ```
+            docker-compose up --build --force-recreate
+          ```
         
 ## Diagrama DER do banco de dados da aplicação
 <img src="./db/blue-bank-DB-DER.png" width="100%"/>
+
+## Acessar documentação [SWAGGER]
+- Se estiver rodando localmente, acesse:
+    ```
+        http://localhost:8080/swagger-ui.html
+    ```
+- Se estiver rodando em algum servidor, acesse:
+    ```
+        <BASE_URL>/swagger-ui.html
+    ```

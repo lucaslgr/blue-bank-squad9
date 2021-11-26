@@ -8,6 +8,7 @@ import com.squad9.bluebank.service.ClienteService;
 import com.squad9.bluebank.service.ContaService;
 import com.squad9.bluebank.service.EnderecoService;
 import com.squad9.bluebank.service.TransacaoService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping("api/clientes")
+@RequestMapping(value = "api/clientes", produces = "application/json", consumes = "application/json")
 @RestController
 public class ClienteController {
     private ClienteService clienteService;
@@ -37,6 +38,7 @@ public class ClienteController {
         this.contaService = contaService;
     }
 
+    @ApiOperation(value = "Cria um clinete")
     @PostMapping
     public ResponseEntity<?> criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
         try {
@@ -49,6 +51,7 @@ public class ClienteController {
 
     }
 
+    @ApiOperation(value = "Retorna dados de um cliente")
     @GetMapping(value = "/{idCliente}")
     public ResponseEntity<?> verDadosDoCliente(@PathVariable Long idCliente) throws Exception {
         try {
@@ -65,6 +68,7 @@ public class ClienteController {
 //        //Apagar comentário e fazer implementação
 //    }
 
+    @ApiOperation(value = "Deleta um cliente")
     @DeleteMapping(value = "/{idCliente}")
     public ResponseEntity<?> deletarCliente(@PathVariable Long idCliente) throws Exception {
         try {
@@ -77,6 +81,7 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Retorna um histórico de transações do cliente")
     @GetMapping(value = "/{idCliente}/transacoes")
     public ResponseEntity<?> verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) {
         try {
@@ -88,6 +93,7 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Realiza uma transação entre a conta de um cliente para outra")
     @PostMapping(value = "/{idCliente}/transacao")
     public ResponseEntity<?> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception {
         try {
@@ -100,6 +106,7 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Cadastra um endereço para um cliente")
     @PostMapping(value = "/{idCliente}/endereco")
     public ResponseEntity<?> cadastrarEndereco(@RequestBody @Valid EnderecoRequestDTO enderecoRequestDTO, @PathVariable Long idCliente) throws Exception {
         try {
@@ -111,6 +118,7 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Cria uma conta para um cliente")
     @PostMapping(value = "/{idCLiente}/conta")
     public ResponseEntity<?> criarConta(@RequestBody @Valid ContaRequestDTO contaRequestDTO) {
         try {
