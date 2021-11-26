@@ -44,24 +44,19 @@ public class ClienteController {
                     .body(clienteService.salvarCliente(clienteRequestDTO));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(formataUmErroGenerico(error.getMessage()));
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
 
     }
 
-    //    @GetMapping
-//    public List<ClienteResponseDTO> listarTodosClientes() throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
-//
     @GetMapping(value = "/{idCliente}")
-    public ResponseEntity<?> verDadosDoCliente(@PathVariable Long idCliente) throws Exception{
+    public ResponseEntity<?> verDadosDoCliente(@PathVariable Long idCliente) throws Exception {
         try {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(clienteService.encontrarClientePeloId(idCliente));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(formataUmErroGenerico(error.getMessage()));
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
     }
 //
@@ -71,36 +66,37 @@ public class ClienteController {
 //    }
 
     @DeleteMapping(value = "/{idCliente}")
-    public ResponseEntity<?> deletarCliente(@PathVariable Long idCliente) throws Exception{
+    public ResponseEntity<?> deletarCliente(@PathVariable Long idCliente) throws Exception {
         try {
             clienteService.deletarCliente(idCliente);
-            return ResponseEntity.status(HttpStatus.OK).body("Cliente deletado com sucesso");
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(formataUmRetornoGenerico("sucesso", "Cliente deletado com sucesso"));
         } catch (Exception error) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
     }
 
     @GetMapping(value = "/{idCliente}/transacoes")
     public ResponseEntity<?> verHistoricoTransacoesDaContaDoCliente(@PathVariable Long idCliente) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(
-                    transacaoService.pegaTransacoesPeloIdDoCliente(idCliente)
-            );
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(transacaoService.pegaTransacoesPeloIdDoCliente(idCliente));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(formataUmErroGenerico(error.getMessage()));
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
     }
 
-    
     @PostMapping(value = "/{idCliente}/transacao")
-    public ResponseEntity<?> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception{
+    public ResponseEntity<?> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception {
         try {
             transacaoService.salvar(transacaoRequestDTO);
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body("Transação bem sucedida");
+                    .body(formataUmRetornoGenerico("sucesso", "Transação bem sucedida"));
         } catch (Exception error) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
     }
 
@@ -110,14 +106,9 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(this.enderecoService.salvarEndereco(enderecoRequestDTO, idCliente));
         } catch (Exception error) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(formataUmErroGenerico(error.getMessage()));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
-    }
-
-    private Map<String, String> formataUmErroGenerico(String msg) {
-        Map<String, String> error = new HashMap<>();
-        error.put("error", msg);
-        return error;
     }
 
     @PostMapping(value = "/{idCLiente}/conta")
@@ -127,8 +118,13 @@ public class ClienteController {
                     .body(contaService.cadastrarNovaConta(contaRequestDTO));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(formataUmErroGenerico(error.getMessage()));
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
+    }
 
+    private Map<String, String> formataUmRetornoGenerico(String topico, String msg) {
+        Map<String, String> error = new HashMap<>();
+        error.put(topico, msg);
+        return error;
     }
 }

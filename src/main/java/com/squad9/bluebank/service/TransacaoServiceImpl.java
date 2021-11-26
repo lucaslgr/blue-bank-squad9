@@ -8,8 +8,7 @@ import com.squad9.bluebank.model.Transacao;
 import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
 import com.squad9.bluebank.repository.TransacaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.ExpressionException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,14 +16,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TransacaoServiceImpl implements TransacaoService{
+public class TransacaoServiceImpl implements TransacaoService {
 
-    @Autowired
     private TransacaoRepository transacaoRepository;
-    @Autowired
     private ContaRepository contaRepository;
-    @Autowired
     private ClienteRepository clienteRepository;
+    private PasswordEncoder passwordEncoder;
+
+    public TransacaoServiceImpl(TransacaoRepository transacaoRepository,
+                                ContaRepository contaRepository,
+                                ClienteRepository clienteRepository,
+                                PasswordEncoder passwordEncoder) {
+        this.transacaoRepository = transacaoRepository;
+        this.contaRepository = contaRepository;
+        this.clienteRepository = clienteRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public void salvar(TransacaoRequestDTO transacaoRequestDTO) throws Exception {
@@ -39,22 +46,24 @@ public class TransacaoServiceImpl implements TransacaoService{
                 () -> new Exception("Conta receptora inválida.")
         );
 
+        if (!passwordEncoder.matches(transacaoRequestDTO.getSenhaContaEmissora(), contaEmissora.getSenha())) {
+            throw new Exception("Senha inválida.");
+        }
+
         final Long valorTransacao = transacaoRequestDTO.getValor();
         final Long saldoContaEmissora = contaEmissora.getSaldo();
-        if(saldoContaEmissora < valorTransacao) {
+        if (saldoContaEmissora < valorTransacao) {
             throw new Exception("Saldo insuficiente.");
         }
 
-        if(idContaEmissora.equals(idContaReceptora)) {
+        if (idContaEmissora.equals(idContaReceptora)) {
             throw new Exception("Transação inválida.");
         }
 
-        contaEmissora.setSaldo(saldoContaEmissora - valorTransacao);
-        contaRepository.save(contaEmissora);
+        contaRepository.updateSaldo(contaEmissora.getId(), saldoContaEmissora - valorTransacao);
 
         final Long saldoContaReceptora = contaReceptora.getSaldo();
-        contaReceptora.setSaldo(saldoContaReceptora + valorTransacao);
-        contaRepository.save(contaReceptora);
+        contaRepository.updateSaldo(contaReceptora.getId(), saldoContaReceptora + valorTransacao);
 
         final Transacao transacao = new Transacao();
         transacao.setValor(valorTransacao);
