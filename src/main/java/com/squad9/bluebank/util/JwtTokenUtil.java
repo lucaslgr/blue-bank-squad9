@@ -29,6 +29,11 @@ public class JwtTokenUtil {
         return algorithm;
     }
 
+    public String getEmailDoToken(String token) {
+        String email = JWT.require(getSigner()).build().verify(token).getSubject();
+        return email;
+    }
+
     public boolean isTokenValido(String token) {
         try {
             JWT.require(getSigner()).build().verify(token);
@@ -37,5 +42,4 @@ public class JwtTokenUtil {
             return false;
         }
     }
-
 }
