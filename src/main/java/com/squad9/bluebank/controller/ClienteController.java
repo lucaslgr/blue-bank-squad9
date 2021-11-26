@@ -3,6 +3,8 @@ package com.squad9.bluebank.controller;
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ContaRequestDTO;
 import com.squad9.bluebank.dto.EnderecoRequestDTO;
+import com.squad9.bluebank.dto.LoginRequestDTO;
+import com.squad9.bluebank.dto.LoginResponseDTO;
 import com.squad9.bluebank.dto.TransacaoRequestDTO;
 import com.squad9.bluebank.service.ClienteService;
 import com.squad9.bluebank.service.ContaService;
@@ -11,6 +13,7 @@ import com.squad9.bluebank.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -47,6 +50,18 @@ public class ClienteController {
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
 
+    }
+
+    @PostMapping(value = "/login")
+    public ResponseEntity<?> loginCliente(@RequestBody @Valid LoginRequestDTO loginRequestDTO) throws BadCredentialsException {
+        try {
+            String token = clienteService.loginCliente(loginRequestDTO);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new LoginResponseDTO(token));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
+        }
     }
 
     @GetMapping(value = "/{idCliente}")
