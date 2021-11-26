@@ -4,6 +4,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Date;
@@ -29,6 +30,9 @@ public class TransacaoRequestDTO {
 
     @NotNull(message = "O campo idContaReceptora não pode estar vazio")
     private Long idContaReceptora;
+
+    @NotBlank(message = "O campo da senha da conta emissora não pode estar vazio")
+    private String senhaContaEmissora;
 
     public Long getValor() {
         return valor;
@@ -68,5 +72,13 @@ public class TransacaoRequestDTO {
 
     public void setIdContaReceptora(Long idContaReceptora) {
         this.idContaReceptora = idContaReceptora;
+    }
+
+    public String getSenhaContaEmissora() {
+        return senhaContaEmissora;
+    }
+
+    public void setSenhaContaEmissora(String senhaContaEmissora) {
+        this.senhaContaEmissora = senhaContaEmissora;
     }
 }
