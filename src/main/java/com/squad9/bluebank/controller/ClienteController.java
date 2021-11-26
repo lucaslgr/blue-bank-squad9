@@ -1,9 +1,6 @@
 package com.squad9.bluebank.controller;
 
-import com.squad9.bluebank.dto.ClienteRequestDTO;
-import com.squad9.bluebank.dto.ContaRequestDTO;
-import com.squad9.bluebank.dto.EnderecoRequestDTO;
-import com.squad9.bluebank.dto.TransacaoRequestDTO;
+import com.squad9.bluebank.dto.*;
 import com.squad9.bluebank.service.ClienteService;
 import com.squad9.bluebank.service.ContaService;
 import com.squad9.bluebank.service.EnderecoService;
@@ -61,10 +58,12 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/{idCliente}")
-    public ResponseEntity<Map<String, String>> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception{
-        clienteService.atualizarCliente(idCliente,clienteRequestDTO);
+    public ResponseEntity<Map<String, String>> atualizarDadosDoCliente(
+            @PathVariable Long idCliente,
+            @RequestBody @Valid ClienteUpdateRequestDTO clienteUpdateRequestDTO
+    ) throws Exception{
         try {
-            clienteService.atualizarCliente(idCliente,clienteRequestDTO);
+            clienteService.atualizarCliente(idCliente, clienteUpdateRequestDTO);
             return ResponseEntity.status(HttpStatus.OK)
                     .body(formataUmRetornoGenerico("sucesso","Cliente atualizado com sucesso"));
         } catch (Exception error){

@@ -2,6 +2,7 @@ package com.squad9.bluebank.service;
 
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
+import com.squad9.bluebank.dto.ClienteUpdateRequestDTO;
 import com.squad9.bluebank.model.Cliente;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface ClienteService {
     ClienteResponseDTO encontrarClientePeloId(Long id) throws Exception;
 
     //Atualizar Cliente
-    void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception;
+    void atualizarCliente(Long id, ClienteUpdateRequestDTO clienteUpdateRequestDTO) throws Exception;
 
     //Deleta o cliente por ID
     void deletarCliente(Long id) throws Exception;

@@ -2,7 +2,9 @@ package com.squad9.bluebank.service;
 
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
+import com.squad9.bluebank.dto.ClienteUpdateRequestDTO;
 import com.squad9.bluebank.model.Cliente;
+import com.squad9.bluebank.repository.ClienteCustomRepository;
 import com.squad9.bluebank.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,12 +17,17 @@ import java.util.stream.Collectors;
 public class ClienteServiceImpl implements ClienteService {
 
     private ClienteRepository clienteRepository;
+    private ClienteCustomRepository clienteCustomRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ClienteServiceImpl(ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
+    public ClienteServiceImpl(
+            ClienteRepository clienteRepository,
+            PasswordEncoder passwordEncoder,
+            ClienteCustomRepository clienteCustomRepository) {
         this.clienteRepository = clienteRepository;
         this.passwordEncoder = passwordEncoder;
+        this.clienteCustomRepository = clienteCustomRepository;
     }
 
     //Salvar um cliente
@@ -77,21 +84,14 @@ public class ClienteServiceImpl implements ClienteService {
 
     //Atualizar Cliente
     @Override
-    public void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
-        var cliente = this.clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
+    public void atualizarCliente(Long id, ClienteUpdateRequestDTO clienteUpdateRequestDTO) throws Exception {
+        this.clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
 
-        cliente.setNome(clienteRequestDTO.getNome());
-        cliente.setSobrenome(clienteRequestDTO.getSobrenome());
-        cliente.setCelular(clienteRequestDTO.getCelular());
-        cliente.setTelefone(clienteRequestDTO.getTelefone());
-        cliente.setSenha(clienteRequestDTO.getSenha());
-        cliente.setNomeDoPai(clienteRequestDTO.getNomeDoPai());
-        cliente.setNomeDaMae(clienteRequestDTO.getNomeDaMae());
-        cliente.setProfissao(clienteRequestDTO.getProfissao());
-        cliente.setRendaMensal(clienteRequestDTO.getRendaMensal());
-        cliente.setPatrimonio(clienteRequestDTO.getPatrimonio());
+        if (clienteUpdateRequestDTO.getEmail() != null) {
+            //TODO Verificar se o email já não pertence a outro cliente
+        }
 
-        this.clienteRepository.save(cliente);
+        this.clienteCustomRepository.atualizaCliente(id, clienteUpdateRequestDTO);
     }
 
     //Deleta o cliente por ID
