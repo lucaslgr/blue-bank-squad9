@@ -8,6 +8,7 @@ import com.squad9.bluebank.model.Transacao;
 import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
 import com.squad9.bluebank.repository.TransacaoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class TransacaoServiceImpl implements TransacaoService {
     private ClienteRepository clienteRepository;
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
     public TransacaoServiceImpl(TransacaoRepository transacaoRepository,
                                 ContaRepository contaRepository,
                                 ClienteRepository clienteRepository,

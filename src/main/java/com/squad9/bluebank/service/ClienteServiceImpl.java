@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
+
     private ClienteRepository clienteRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -24,7 +25,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     //Salvar um cliente
     @Override
-    public ClienteResponseDTO salvarCliente(ClienteRequestDTO clienteRequestDTO) throws Exception{
+    public ClienteResponseDTO salvarCliente(ClienteRequestDTO clienteRequestDTO) throws Exception {
         if (this.clienteRepository.findByCpf(clienteRequestDTO.getCpf()).isPresent()) {
             throw new Exception("Cliente com CPF já cadastrado!");
         }
@@ -62,22 +63,22 @@ public class ClienteServiceImpl implements ClienteService {
 
     //Listar todos os clientes
     @Override
-    public List<ClienteResponseDTO> retornarTodosOsClientes(){
-        var clientes =  this.clienteRepository.findAll();
+    public List<ClienteResponseDTO> retornarTodosOsClientes() {
+        var clientes = this.clienteRepository.findAll();
         return clientes.stream().map(ClienteResponseDTO::converter).collect(Collectors.toList());
     }
 
     //Listar cliente por ID
     @Override
     public ClienteResponseDTO encontrarClientePeloId(Long id) throws Exception {
-        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
+        var cliente = this.clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
         return ClienteResponseDTO.converter(cliente);
     }
 
     //Atualizar Cliente
     @Override
     public void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
-        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
+        var cliente = this.clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
 
         cliente.setNome(clienteRequestDTO.getNome());
         cliente.setSobrenome(clienteRequestDTO.getSobrenome());
@@ -95,8 +96,8 @@ public class ClienteServiceImpl implements ClienteService {
 
     //Deleta o cliente por ID
     @Override
-    public void deletarCliente(Long id) throws Exception{
-        var cliente =  this.clienteRepository.findById(id).orElseThrow(() ->  new Exception("Cliente não encontrado!"));
+    public void deletarCliente(Long id) throws Exception {
+        var cliente = this.clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
         this.clienteRepository.delete(cliente);
     }
 }
