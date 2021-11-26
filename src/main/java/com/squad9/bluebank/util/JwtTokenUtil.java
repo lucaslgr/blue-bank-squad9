@@ -4,7 +4,11 @@ import java.util.Date;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.AlgorithmMismatchException;
+import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 
 import org.springframework.stereotype.Component;
 
@@ -38,7 +42,7 @@ public class JwtTokenUtil {
         try {
             JWT.require(getSigner()).build().verify(token);
             return true;
-        } catch (Exception e) {
+        } catch (JWTVerificationException e) {
             return false;
         }
     }
