@@ -29,4 +29,13 @@ public class JwtTokenUtil {
         return algorithm;
     }
 
+    public boolean isTokenValido(String token) {
+        try {
+            JWT.require(getSigner()).build().verify(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
