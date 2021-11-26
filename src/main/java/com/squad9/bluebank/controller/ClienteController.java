@@ -1,9 +1,11 @@
 package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.ClienteRequestDTO;
+import com.squad9.bluebank.dto.ContaRequestDTO;
 import com.squad9.bluebank.dto.EnderecoRequestDTO;
 import com.squad9.bluebank.dto.TransacaoRequestDTO;
 import com.squad9.bluebank.service.ClienteService;
+import com.squad9.bluebank.service.ContaService;
 import com.squad9.bluebank.service.EnderecoService;
 import com.squad9.bluebank.service.TransacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +23,18 @@ public class ClienteController {
     private ClienteService clienteService;
     private TransacaoService transacaoService;
     private EnderecoService enderecoService;
+    private ContaService contaService;
 
     @Autowired
     public ClienteController(
             ClienteService clienteService,
             TransacaoService transacaoService,
-            EnderecoService enderecoService) {
+            EnderecoService enderecoService,
+            ContaService contaService) {
         this.clienteService = clienteService;
         this.transacaoService = transacaoService;
         this.enderecoService = enderecoService;
+        this.contaService = contaService;
     }
 
     @PostMapping
@@ -113,5 +118,17 @@ public class ClienteController {
         Map<String, String> error = new HashMap<>();
         error.put("error", msg);
         return error;
+    }
+
+    @PostMapping(value = "/{idCLiente}/conta")
+    public ResponseEntity<?> criarConta(@RequestBody @Valid ContaRequestDTO contaRequestDTO) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(contaService.cadastrarNovaConta(contaRequestDTO));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmErroGenerico(error.getMessage()));
+        }
+
     }
 }

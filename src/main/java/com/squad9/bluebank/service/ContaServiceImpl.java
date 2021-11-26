@@ -1,6 +1,7 @@
 package com.squad9.bluebank.service;
 
 import java.util.List;
+import java.util.Random;
 
 import com.squad9.bluebank.dto.ClienteResponseDTO;
 import com.squad9.bluebank.dto.ContaRequestDTO;
@@ -17,15 +18,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class ContaServiceImpl implements ContaService {
 
-    @Autowired
     private ContaRepository contaRepository;
-    @Autowired
     private ClienteRepository clienteRepository;
-
-    private final String numeroAgencia = "00001";
-
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    public ContaServiceImpl(ContaRepository contaRepository, ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
+        this.contaRepository = contaRepository;
+        this.clienteRepository = clienteRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    private final String numeroAgencia = "00001";
 
     //Cadastra um nova conta
     @Override
@@ -33,14 +37,16 @@ public class ContaServiceImpl implements ContaService {
         // Verificar se a pessoa já pelo id
         var cliente = clienteRepository.findByCpf(contaRequestDTO.getCpf()).orElseThrow(() -> new Exception("Cliente não existe"));
 
-        // Gerar número da conta
-        Long numeroConta = 10000 + cliente.getId();
-        String stringNumeroConta = numeroConta.toString();
+        //Verificar se o cliente já possui conta
+        if (contaRepository.findByCliente(cliente).isPresent()) {
+            throw new Exception("Cliente já possui conta");
+        }
 
-        // Criptografar senha
+        // Gerar número da conta
+        String stringNumeroConta = geraNumeroConta(cliente.getId());
+
         Conta conta = new Conta();
-        conta.setSenha(passwordEncoder.encode(contaRequestDTO.getSenha()));
-        
+        conta.setSenha(passwordEncoder.encode(contaRequestDTO.getSenha())); // Criptografar senha
         conta.setCliente(cliente);
         conta.setNumero(stringNumeroConta);
         conta.setAgencia(numeroAgencia);
@@ -59,4 +65,9 @@ public class ContaServiceImpl implements ContaService {
 
     }
 
+    private String geraNumeroConta(Long idCliente) {
+        Long numeroConta = 10000 + idCliente;
+        Integer digito = (new Random()).nextInt(10);
+        return (numeroConta.toString() + "-" + digito.toString());
+    }
 }

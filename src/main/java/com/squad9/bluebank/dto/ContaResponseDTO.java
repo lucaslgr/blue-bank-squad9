@@ -20,6 +20,7 @@ public class ContaResponseDTO {
         contaResponseDTO.setNumero(conta.getNumero());
         contaResponseDTO.setDataCriacao(conta.getDataCriacao());
         contaResponseDTO.setSaldo(conta.getSaldo());
+        contaResponseDTO.setIdCliente(conta.getCliente().getId());
 
         return contaResponseDTO;
     }
