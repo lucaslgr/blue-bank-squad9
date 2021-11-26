@@ -2,7 +2,6 @@ package com.squad9.bluebank.model;
 
 
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -33,7 +32,7 @@ public class Conta {
     private String agencia;
 
     @Column(name = "data_criacao")
-    @ColumnDefault(value="CURRENT_TIMESTAMP")
+    @ColumnDefault(value = "CURRENT_TIMESTAMP")
     @Generated(GenerationTime.INSERT)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date dataCriacao;

@@ -9,7 +9,6 @@ import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
 import com.squad9.bluebank.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TransacaoServiceImpl implements TransacaoService{
+public class TransacaoServiceImpl implements TransacaoService {
 
     @Autowired
     private TransacaoRepository transacaoRepository;
@@ -41,20 +40,18 @@ public class TransacaoServiceImpl implements TransacaoService{
 
         final Long valorTransacao = transacaoRequestDTO.getValor();
         final Long saldoContaEmissora = contaEmissora.getSaldo();
-        if(saldoContaEmissora < valorTransacao) {
+        if (saldoContaEmissora < valorTransacao) {
             throw new Exception("Saldo insuficiente.");
         }
 
-        if(idContaEmissora.equals(idContaReceptora)) {
+        if (idContaEmissora.equals(idContaReceptora)) {
             throw new Exception("Transação inválida.");
         }
 
-        contaEmissora.setSaldo(saldoContaEmissora - valorTransacao);
-        contaRepository.save(contaEmissora);
+        contaRepository.updateSaldo(contaEmissora.getId(), saldoContaEmissora - valorTransacao);
 
         final Long saldoContaReceptora = contaReceptora.getSaldo();
-        contaReceptora.setSaldo(saldoContaReceptora + valorTransacao);
-        contaRepository.save(contaReceptora);
+        contaRepository.updateSaldo(contaReceptora.getId(), saldoContaReceptora + valorTransacao);
 
         final Transacao transacao = new Transacao();
         transacao.setValor(valorTransacao);

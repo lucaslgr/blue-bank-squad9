@@ -1,5 +1,9 @@
 package com.squad9.bluebank.dto;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.Date;
@@ -12,16 +16,18 @@ public class TransacaoRequestDTO {
     @Positive(message = "Valor do campo valor é inválido.")
     private Long valor;
 
-    @NotNull(message = "O campo data_envio não pode estar vazio")
+    @ColumnDefault(value = "CURRENT_TIMESTAMP")
+    @Generated(GenerationTime.INSERT)
     private Date dataEnvio;
 
-    @NotNull(message = "O campo data_recebimento não pode estar vazio")
+    @ColumnDefault(value = "CURRENT_TIMESTAMP")
+    @Generated(GenerationTime.INSERT)
     private Date dataRecebimento;
 
-    @NotNull(message = "O campo id_conta_emissora não pode estar vazio")
+    @NotNull(message = "O campo idContaEmissora não pode estar vazio")
     private Long idContaEmissora;
 
-    @NotNull(message = "O campo id_conta_receptora não pode estar vazio")
+    @NotNull(message = "O campo idContaReceptora não pode estar vazio")
     private Long idContaReceptora;
 
     public Long getValor() {
