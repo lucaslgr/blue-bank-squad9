@@ -1,6 +1,10 @@
 package com.squad9.bluebank.model;
 
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -28,8 +32,9 @@ public class Conta {
             message = "Número da agência inválido.")
     private String agencia;
 
-    @Column(name = "data_criacao", columnDefinition = "DATETIME DEFAULT NOW()")
-    @NotNull(message = "O campo data_criacao não pode estar vazio.")
+    @Column(name = "data_criacao")
+    @ColumnDefault(value="CURRENT_TIMESTAMP")
+    @Generated(GenerationTime.INSERT)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date dataCriacao;
 
@@ -38,8 +43,9 @@ public class Conta {
     @Size(min = 6, message = "A senha deve conter no mínimo 6 caracteres.")
     private String senha;
 
-    @Column(name = "saldo", nullable = false, columnDefinition = "BIGINT DEFAULT 0")
-    @NotNull(message = "O campo saldo não pode estar vazio.")
+    @Column(name = "saldo")
+    @ColumnDefault("0")
+    @Generated(GenerationTime.INSERT)
     @PositiveOrZero(message = "Saldo inválido.")
     private Long saldo;
 
