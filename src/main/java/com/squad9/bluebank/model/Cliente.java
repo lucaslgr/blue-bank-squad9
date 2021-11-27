@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -85,6 +86,12 @@ public class Cliente {
     @NotNull(message = "O campo patrimonio não pode estar vazio.")
     @PositiveOrZero(message = "Valor de patrimônio mensal inválido.")
     private Long patrimonio;
+
+    @OneToOne(mappedBy = "cliente", fetch = FetchType.EAGER)
+    private Conta conta;
+
+    @OneToOne(mappedBy = "cliente", fetch = FetchType.EAGER)
+    private Endereco endereco;
 
     public Long getId() {
         return id;
@@ -204,5 +211,21 @@ public class Cliente {
 
     public void setPatrimonio(Long patrimonio) {
         this.patrimonio = patrimonio;
+    }
+
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
