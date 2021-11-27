@@ -90,6 +90,8 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setProfissao(clienteRequestDTO.getProfissao());
         cliente.setRendaMensal(clienteRequestDTO.getRendaMensal());
         cliente.setPatrimonio(clienteRequestDTO.getPatrimonio());
+        cliente.setRg(clienteRequestDTO.getRg());
+        cliente.setDataDeNascimento(clienteRequestDTO.getDataDeNascimento());
 
         this.clienteRepository.save(cliente);
     }
