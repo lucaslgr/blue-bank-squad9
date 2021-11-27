@@ -62,11 +62,19 @@ public class ClienteController {
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
     }
-//
-//    @PutMapping(value = "/{idCliente}")
-//    public void atualizarDadosDoCliente(@PathVariable Long idCliente) throws Exception{
-//        //Apagar comentário e fazer implementação
-//    }
+
+    @PutMapping(value = "/{idCliente}")
+    public ResponseEntity<Map<String, String>> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception{
+        clienteService.atualizarCliente(idCliente,clienteRequestDTO);
+        try {
+            clienteService.atualizarCliente(idCliente,clienteRequestDTO);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(formataUmRetornoGenerico("sucesso","Cliente atualizado com sucesso"));
+        } catch (Exception error){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
+        }
+    }
 
     @ApiOperation(value = "Deleta um cliente")
     @DeleteMapping(value = "/{idCliente}")
