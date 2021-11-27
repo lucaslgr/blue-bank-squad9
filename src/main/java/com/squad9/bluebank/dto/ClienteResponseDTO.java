@@ -47,8 +47,10 @@ public class ClienteResponseDTO {
         clienteResponseDTO.setProfissao(cliente.getProfissao());
         clienteResponseDTO.setRendaMensal(cliente.getRendaMensal());
         clienteResponseDTO.setPatrimonio(cliente.getPatrimonio());
-        clienteResponseDTO.setEnderecoResponseDTO(EnderecoResponseDTO.converter(cliente.getEndereco()));
-        clienteResponseDTO.setContaResponseDTO(ContaResponseDTO.converter(cliente.getConta()));
+        if(cliente.getEndereco() != null)
+            clienteResponseDTO.setEnderecoResponseDTO(EnderecoResponseDTO.converter(cliente.getEndereco()));
+        if (cliente.getConta() != null)
+            clienteResponseDTO.setContaResponseDTO(ContaResponseDTO.converter(cliente.getConta()));
 
         return clienteResponseDTO;
     }
