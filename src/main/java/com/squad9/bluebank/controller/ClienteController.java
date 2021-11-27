@@ -63,8 +63,9 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Atualiza dados de um cliente")
     @PutMapping(value = "/{idCliente}")
-    public ResponseEntity<Map<String, String>> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception{
+    public ResponseEntity<?> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception{
         clienteService.atualizarCliente(idCliente,clienteRequestDTO);
         try {
             clienteService.atualizarCliente(idCliente,clienteRequestDTO);
