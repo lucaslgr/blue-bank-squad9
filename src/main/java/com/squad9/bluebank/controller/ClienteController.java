@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequestMapping(value = "api/clientes", produces = "application/json", consumes = "application/json")
+@RequestMapping(value = "api/clientes", produces = "application/json")
 @RestController
 public class ClienteController {
     private ClienteService clienteService;
@@ -39,7 +39,7 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Cria um clinete")
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public ResponseEntity<?> criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -64,7 +64,7 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Atualiza dados de um cliente")
-    @PutMapping(value = "/{idCliente}")
+    @PutMapping(value = "/{idCliente}", consumes = "application/json")
     public ResponseEntity<?> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception{
         clienteService.atualizarCliente(idCliente,clienteRequestDTO);
         try {
@@ -103,7 +103,7 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Realiza uma transação entre a conta de um cliente para outra")
-    @PostMapping(value = "/{idCliente}/transacao")
+    @PostMapping(value = "/{idCliente}/transacao", consumes = "application/json")
     public ResponseEntity<?> realizarTransacao(@PathVariable Long idCliente, @RequestBody @Valid TransacaoRequestDTO transacaoRequestDTO) throws Exception {
         try {
             transacaoService.salvar(transacaoRequestDTO);
@@ -116,7 +116,7 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Cadastra um endereço para um cliente")
-    @PostMapping(value = "/{idCliente}/endereco")
+    @PostMapping(value = "/{idCliente}/endereco", consumes = "application/json")
     public ResponseEntity<?> cadastrarEndereco(@RequestBody @Valid EnderecoRequestDTO enderecoRequestDTO, @PathVariable Long idCliente) throws Exception {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -128,7 +128,7 @@ public class ClienteController {
     }
 
     @ApiOperation(value = "Cria uma conta para um cliente")
-    @PostMapping(value = "/{idCLiente}/conta")
+    @PostMapping(value = "/{idCLiente}/conta", consumes = "application/json")
     public ResponseEntity<?> criarConta(@RequestBody @Valid ContaRequestDTO contaRequestDTO) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
