@@ -37,4 +37,4 @@ build/
 
 ### AWS ###
 ec2-52-23-240-140.compute-1.amazonaws.com
-./src/main/resources/application.aws-ec2.properties
+application.aws-ec2.properties
