@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.repository.ClienteRepository;
+import com.squad9.bluebank.service.DetalheUsuario;
+import com.squad9.bluebank.service.DetalheUsuarioServiceImpl;
 import com.squad9.bluebank.util.JwtTokenUtil;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -23,13 +27,16 @@ public class JwtAutorizacaoFilter extends OncePerRequestFilter {
 
     private final JwtTokenUtil jwtTokenUtil;
     private final ClienteRepository clienteRepository;
+    private final DetalheUsuarioServiceImpl detalheUsuarioService;
 
     public JwtAutorizacaoFilter(
         JwtTokenUtil jwtTokenUtil, 
-        ClienteRepository clienteRepository
+        ClienteRepository clienteRepository,
+        DetalheUsuarioServiceImpl detalheUsuarioService
     ) {
         this.jwtTokenUtil = jwtTokenUtil;
         this.clienteRepository = clienteRepository;
+        this.detalheUsuarioService = detalheUsuarioService;
     }
 
     @Override
@@ -48,9 +55,10 @@ public class JwtAutorizacaoFilter extends OncePerRequestFilter {
             return;
         }
 
-        Cliente cliente = clienteRepository.findByEmail(jwtTokenUtil.getEmailDoToken(token)).orElse(new Cliente());
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(cliente.getEmail(), cliente.getSenha(),
+        DetalheUsuario detalheUsuario = (DetalheUsuario)detalheUsuarioService.loadUserByUsername(jwtTokenUtil.getEmailDoToken(token));
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(detalheUsuario, null,
                 new ArrayList<>());
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
