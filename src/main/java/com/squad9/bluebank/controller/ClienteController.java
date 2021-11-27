@@ -66,7 +66,6 @@ public class ClienteController {
     @ApiOperation(value = "Atualiza dados de um cliente")
     @PutMapping(value = "/{idCliente}", consumes = "application/json")
     public ResponseEntity<?> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception{
-        clienteService.atualizarCliente(idCliente,clienteRequestDTO);
         try {
             clienteService.atualizarCliente(idCliente,clienteRequestDTO);
             return ResponseEntity.status(HttpStatus.OK)
