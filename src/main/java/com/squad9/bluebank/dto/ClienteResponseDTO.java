@@ -1,6 +1,8 @@
 package com.squad9.bluebank.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.squad9.bluebank.model.Cliente;
+import com.squad9.bluebank.model.Conta;
 
 import java.util.Date;
 
@@ -21,6 +23,10 @@ public class ClienteResponseDTO {
     private String profissao;
     private Integer rendaMensal;
     private Long patrimonio;
+    @JsonProperty("conta")
+    private ContaResponseDTO contaResponseDTO;
+    @JsonProperty("endereco")
+    private EnderecoResponseDTO enderecoResponseDTO;
 
     //Serve para converter um Objeto do tipo cliente
     //e transformar em ClienteResponse
@@ -41,6 +47,10 @@ public class ClienteResponseDTO {
         clienteResponseDTO.setProfissao(cliente.getProfissao());
         clienteResponseDTO.setRendaMensal(cliente.getRendaMensal());
         clienteResponseDTO.setPatrimonio(cliente.getPatrimonio());
+        if(cliente.getEndereco() != null)
+            clienteResponseDTO.setEnderecoResponseDTO(EnderecoResponseDTO.converter(cliente.getEndereco()));
+        if (cliente.getConta() != null)
+            clienteResponseDTO.setContaResponseDTO(ContaResponseDTO.converter(cliente.getConta()));
 
         return clienteResponseDTO;
     }
@@ -155,5 +165,21 @@ public class ClienteResponseDTO {
 
     public void setPatrimonio(Long patrimonio) {
         this.patrimonio = patrimonio;
+    }
+
+    public ContaResponseDTO getContaResponseDTO() {
+        return contaResponseDTO;
+    }
+
+    public void setContaResponseDTO(ContaResponseDTO contaResponseDTO) {
+        this.contaResponseDTO = contaResponseDTO;
+    }
+
+    public EnderecoResponseDTO getEnderecoResponseDTO() {
+        return enderecoResponseDTO;
+    }
+
+    public void setEnderecoResponseDTO(EnderecoResponseDTO enderecoResponseDTO) {
+        this.enderecoResponseDTO = enderecoResponseDTO;
     }
 }
