@@ -9,9 +9,9 @@ INSERT INTO `blue_bank`.`enderecos` (`cep`, `logradouro`, `bairro`, `cidade`, `e
 INSERT INTO `blue_bank`.`enderecos` (`cep`, `logradouro`, `bairro`, `cidade`, `estado`, `numero_casa`, `id_cliente`) VALUES ('85604-491', 'Napoleão Bonaparte', ' Bairro Alto', 'Curitiba', 'PR', '216', 3);
 
 -- INSERINDO CONTAS
-INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('2885214654-7', '0624', '2020-01-15', '123', '38500', 1);
-INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('82451-5', '3125', '2019-11-10', '123', '10580', 2);
-INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('07429709-2', '2156', '2019-07-11', '123', '5000', 3);
+INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('2885214654-7', '062454561', '2020-01-15', '123', '38500', 1);
+INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('82451-5', '31255616', '2019-11-10', '123', '10580', 2);
+INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('07429709-2', '2156561', '2019-07-11', '123', '5000', 3);
 
 -- INSERINDO TRANSACOES
 INSERT INTO `blue_bank`.`transacoes` (`valor`, `id_conta_emissora`, `id_conta_receptora`, `data_envio`, `data_recebimento`) VALUES ('5000', '1', '3', '2020-05-11', '2020-05-11');
