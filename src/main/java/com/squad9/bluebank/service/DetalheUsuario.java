@@ -36,6 +36,10 @@ public class DetalheUsuario implements UserDetails {
         return cliente.orElse(new Cliente()).getEmail();
     }
 
+    public Long getId() {
+        return cliente.orElse(new Cliente()).getId();
+    }
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
