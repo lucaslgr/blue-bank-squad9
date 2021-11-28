@@ -14,9 +14,9 @@
             docker-compose up --build --force-recreate
           ```
 ## Para rodar o projeto utilizando outro arquivo de configuração de application.properties
-- Para gerar o .jar vá até a pasta do projeto pelo terminal e rode o comando:
+- Para rodar o .jar vá até a pasta do projeto pelo terminal e rode o comando:
   -  ```
-        mvn clean install -Dskiptests -Dspring.profiles.active=localdebug
+        java -jar -Dspring.profiles.active=localdebug blue-bank-0.0.1-SNAPSHOT.jar
      ```
 - Para setar diretamente no Intellij:
   - <img src="./img/application-properties-param-intellij.png"/>
