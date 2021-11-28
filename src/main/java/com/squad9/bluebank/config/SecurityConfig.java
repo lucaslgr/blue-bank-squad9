@@ -44,7 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
             .antMatchers(HttpMethod.POST, "/api/clientes/login").permitAll()
-            .anyRequest().authenticated();
+            .anyRequest().authenticated().and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean
