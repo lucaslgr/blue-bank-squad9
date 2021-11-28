@@ -1,5 +1,6 @@
 package com.squad9.bluebank.config;
 
+import com.squad9.bluebank.filter.ExceptionHandlerFilter;
 import com.squad9.bluebank.filter.JwtAutorizacaoFilter;
 import com.squad9.bluebank.service.DetalheUsuarioServiceImpl;
 
@@ -41,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().disable();
         http.logout().disable();
         http.addFilterBefore(jwtAutorizacaoFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new ExceptionHandlerFilter(), JwtAutorizacaoFilter.class);
         http.authorizeRequests()
             .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
             .antMatchers(HttpMethod.POST, "/api/clientes/login").permitAll()
