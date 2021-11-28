@@ -15,6 +15,7 @@ import com.squad9.bluebank.service.DetalheUsuarioServiceImpl;
 import com.squad9.bluebank.util.JwtTokenUtil;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,18 +42,16 @@ public class JwtAutorizacaoFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+            throws BadCredentialsException, ServletException, IOException {
     
         final String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (header == null || !header.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
+            throw new BadCredentialsException("Token nao informado");
         }
 
         String token = header.substring(7);
         if (!jwtTokenUtil.isTokenValido(token)) {
-            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "O token não é valido.");
-            return;
+            throw new BadCredentialsException("Token invalido");
         }
 
         DetalheUsuario detalheUsuario = (DetalheUsuario)detalheUsuarioService.loadUserByUsername(jwtTokenUtil.getEmailDoToken(token));
