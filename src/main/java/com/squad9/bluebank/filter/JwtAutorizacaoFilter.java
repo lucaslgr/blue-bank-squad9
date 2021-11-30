@@ -28,18 +28,15 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class JwtAutorizacaoFilter extends OncePerRequestFilter {
 
     private final JwtTokenUtil jwtTokenUtil;
-    private final ClienteRepository clienteRepository;
     private final DetalheUsuarioServiceImpl detalheUsuarioService;
 
     private final String AUTORIZACAO_BEARER = "Bearer ";
 
     public JwtAutorizacaoFilter(
         JwtTokenUtil jwtTokenUtil, 
-        ClienteRepository clienteRepository,
         DetalheUsuarioServiceImpl detalheUsuarioService
     ) {
         this.jwtTokenUtil = jwtTokenUtil;
-        this.clienteRepository = clienteRepository;
         this.detalheUsuarioService = detalheUsuarioService;
     }
 
