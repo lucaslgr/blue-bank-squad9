@@ -2,7 +2,6 @@ package com.squad9.bluebank.config;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.squad9.bluebank.filter.ExceptionHandlerFilter;
 import com.squad9.bluebank.filter.JwtAutorizacaoFilter;
 import com.squad9.bluebank.service.DetalheUsuarioServiceImpl;
 
@@ -17,7 +16,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.LogoutFilter;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -64,21 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAutorizacaoFilter, UsernamePasswordAuthenticationFilter.class);
-        http.addFilterBefore(new ExceptionHandlerFilter(), LogoutFilter.class);
-
-
-        // http.csrf().disable();
-        // http.cors();
-        // http.formLogin().disable();
-        // http.logout().disable();
-        // http.addFilterBefore(jwtAutorizacaoFilter, UsernamePasswordAuthenticationFilter.class);
-        // http.addFilterBefore(new ExceptionHandlerFilter(), JwtAutorizacaoFilter.class);
-        // http.antMatcher("/**")
-        // http.authorizeRequests()
-        //     .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
-        //     .antMatchers(HttpMethod.POST, "/api/clientes/login").permitAll()
-        //     .anyRequest().authenticated().and()
-        //     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Bean
