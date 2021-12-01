@@ -1,10 +1,7 @@
 package com.squad9.bluebank.config;
 
-import javax.servlet.http.HttpServletResponse;
-
 import com.squad9.bluebank.filter.JwtAutorizacaoFilter;
 import com.squad9.bluebank.service.DetalheUsuarioServiceImpl;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.http.HttpServletResponse;
+
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -24,8 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtAutorizacaoFilter jwtAutorizacaoFilter;
 
     public SecurityConfig(
-        DetalheUsuarioServiceImpl detalheUsuarioService,
-        JwtAutorizacaoFilter jwtAutorizacaoFilter
+            DetalheUsuarioServiceImpl detalheUsuarioService,
+            JwtAutorizacaoFilter jwtAutorizacaoFilter
     ) {
         this.detalheUsuarioService = detalheUsuarioService;
         this.jwtAutorizacaoFilter = jwtAutorizacaoFilter;
@@ -41,25 +40,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http = http.cors().and().csrf().disable();
 
         http = http
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and();
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and();
 
         http = http
-            .exceptionHandling()
-            .authenticationEntryPoint(
-                (request, response, ex) -> {
-                    response.setStatus(
-                        HttpServletResponse.SC_UNAUTHORIZED
-                    );
-                }
-            )
-            .and();
+                .exceptionHandling()
+                .authenticationEntryPoint(
+                        (request, response, ex) -> {
+                            response.setStatus(
+                                    HttpServletResponse.SC_UNAUTHORIZED
+                            );
+                        }
+                )
+                .and();
 
         http.authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
-            .antMatchers(HttpMethod.POST, "/api/clientes/login").permitAll()
-            .anyRequest().authenticated();
+                .antMatchers(HttpMethod.POST, "/api/clientes").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/clientes/login").permitAll()
+                .antMatchers("/v2/api-docs",
+                        "/configuration/ui",
+                        "/swagger-resources/**",
+                        "/configuration/security",
+                        "/swagger-ui.html",
+                        "/webjars/**").permitAll()
+                .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAutorizacaoFilter, UsernamePasswordAuthenticationFilter.class);
     }

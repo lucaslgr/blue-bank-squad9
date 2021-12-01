@@ -34,7 +34,7 @@ public class ClienteController {
         this.contaService = contaService;
     }
 
-    @ApiOperation(value = "Cria um clinete")
+    @ApiOperation(value = "Cria um cliente")
     @PostMapping(consumes = "application/json")
     public ResponseEntity<?> criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
         try {
