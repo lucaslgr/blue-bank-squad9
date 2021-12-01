@@ -11,8 +11,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
+
+import static com.squad9.bluebank.utils.formatadorStringJson.formataUmRetornoGenerico;
 
 @RequestMapping(value = "api/clientes", produces = "application/json")
 @RestController
@@ -21,30 +21,36 @@ public class ClienteController {
     private TransacaoService transacaoService;
     private EnderecoService enderecoService;
     private ContaService contaService;
+    private SNSService snsService;
 
     @Autowired
     public ClienteController(
             ClienteService clienteService,
             TransacaoService transacaoService,
             EnderecoService enderecoService,
-            ContaService contaService) {
+            ContaService contaService,
+            SNSService snsService) {
         this.clienteService = clienteService;
         this.transacaoService = transacaoService;
         this.enderecoService = enderecoService;
         this.contaService = contaService;
+        this.snsService = snsService;
     }
 
     @ApiOperation(value = "Cria um cliente")
     @PostMapping(consumes = "application/json")
     public ResponseEntity<?> criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(clienteService.salvarCliente(clienteRequestDTO));
+            final ClienteResponseDTO clienteResponseDTO = clienteService.salvarCliente(clienteRequestDTO);
+
+            //Publicando a mensagem no topico do SNS AWS para informar que um novo cliente foi cadastrado
+            snsService.publicaMensagemNoTopicoDeCadastroDeNovosClientes(clienteResponseDTO);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponseDTO);
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
-
     }
 
     @PostMapping(value = "/login")
@@ -84,7 +90,7 @@ public class ClienteController {
         if (!idCliente.equals(detalheUsuario.getId())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
         }
-
+      
         try {
             clienteService.atualizarCliente(idCliente, clienteRequestDTO);
             return ResponseEntity.status(HttpStatus.OK)
@@ -186,9 +192,5 @@ public class ClienteController {
         }
     }
 
-    private Map<String, String> formataUmRetornoGenerico(String topico, String msg) {
-        Map<String, String> error = new HashMap<>();
-        error.put(topico, msg);
-        return error;
-    }
+
 }
