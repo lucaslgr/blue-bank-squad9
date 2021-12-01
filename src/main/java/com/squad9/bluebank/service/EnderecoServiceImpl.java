@@ -23,6 +23,11 @@ public class EnderecoServiceImpl implements EnderecoService {
     //Cadastrar novo endereço.
     public EnderecoResponseDTO salvarEndereco(EnderecoRequestDTO enderecoRequestDTO, Long idCliente) throws Exception {
         var cliente = this.clienteRepository.findById(idCliente).orElseThrow(() -> new Exception("Cliente não encontrado"));
+        var clienteEndereco = cliente.getEndereco();
+        if (clienteEndereco != null) {
+            throw new Exception("Cliente já possui um endereço cadastrado");
+        }
+        
         var endereco = new Endereco(enderecoRequestDTO.getCep(), enderecoRequestDTO.getLogradouro(), enderecoRequestDTO.getBairro(), enderecoRequestDTO.getCidade(), enderecoRequestDTO.getEstado(), enderecoRequestDTO.getNumeroCasa(), enderecoRequestDTO.getComplemento(), cliente);
 
         this.enderecoRepository.save(endereco);
