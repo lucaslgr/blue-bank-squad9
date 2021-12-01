@@ -182,4 +182,24 @@ public class ClienteResponseDTO {
     public void setEnderecoResponseDTO(EnderecoResponseDTO enderecoResponseDTO) {
         this.enderecoResponseDTO = enderecoResponseDTO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                    "id=" + id +
+                    ", nome='" + nome + '\'' +
+                    ", sobrenome='" + sobrenome + '\'' +
+                    ", cpf='" + cpf + '\'' +
+                    ", rg='" + rg + '\'' +
+                    ", dataDeNascimento=" + dataDeNascimento +
+                    ", email='" + email + '\'' +
+                    ", celular='" + celular + '\'' +
+                    ", telefone='" + telefone + '\'' +
+                    ", nomeDoPai='" + nomeDoPai + '\'' +
+                    ", nomeDaMae='" + nomeDaMae + '\'' +
+                    ", profissao='" + profissao + '\'' +
+                    ", rendaMensal=" + rendaMensal +
+                    ", patrimonio=" + patrimonio +
+                '}';
+    }
 }

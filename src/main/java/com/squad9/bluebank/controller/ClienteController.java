@@ -1,13 +1,7 @@
 package com.squad9.bluebank.controller;
 
-import com.squad9.bluebank.dto.ClienteRequestDTO;
-import com.squad9.bluebank.dto.ContaRequestDTO;
-import com.squad9.bluebank.dto.EnderecoRequestDTO;
-import com.squad9.bluebank.dto.TransacaoRequestDTO;
-import com.squad9.bluebank.service.ClienteService;
-import com.squad9.bluebank.service.ContaService;
-import com.squad9.bluebank.service.EnderecoService;
-import com.squad9.bluebank.service.TransacaoService;
+import com.squad9.bluebank.dto.*;
+import com.squad9.bluebank.service.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
+
+import static com.squad9.bluebank.utils.formatadorStringJson.formataUmRetornoGenerico;
 
 @RequestMapping(value = "api/clientes", produces = "application/json")
 @RestController
@@ -25,30 +19,36 @@ public class ClienteController {
     private TransacaoService transacaoService;
     private EnderecoService enderecoService;
     private ContaService contaService;
+    private SNSService snsService;
 
     @Autowired
     public ClienteController(
             ClienteService clienteService,
             TransacaoService transacaoService,
             EnderecoService enderecoService,
-            ContaService contaService) {
+            ContaService contaService,
+            SNSService snsService) {
         this.clienteService = clienteService;
         this.transacaoService = transacaoService;
         this.enderecoService = enderecoService;
         this.contaService = contaService;
+        this.snsService = snsService;
     }
 
-    @ApiOperation(value = "Cria um clinete")
+    @ApiOperation(value = "Cria um cliente")
     @PostMapping(consumes = "application/json")
     public ResponseEntity<?> criarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequestDTO) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(clienteService.salvarCliente(clienteRequestDTO));
+            final ClienteResponseDTO clienteResponseDTO = clienteService.salvarCliente(clienteRequestDTO);
+
+            //Publicando a mensagem no topico do SNS AWS para informar que um novo cliente foi cadastrado
+            snsService.publicaMensagemNoTopicoDeCadastroDeNovosClientes(clienteResponseDTO);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponseDTO);
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
-
     }
 
     @ApiOperation(value = "Retorna dados de um cliente")
@@ -65,12 +65,12 @@ public class ClienteController {
 
     @ApiOperation(value = "Atualiza dados de um cliente")
     @PutMapping(value = "/{idCliente}", consumes = "application/json")
-    public ResponseEntity<?> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception{
+    public ResponseEntity<?> atualizarDadosDoCliente(@PathVariable Long idCliente, @RequestBody @Valid ClienteRequestDTO clienteRequestDTO) throws Exception {
         try {
-            clienteService.atualizarCliente(idCliente,clienteRequestDTO);
+            clienteService.atualizarCliente(idCliente, clienteRequestDTO);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(formataUmRetornoGenerico("sucesso","Cliente atualizado com sucesso"));
-        } catch (Exception error){
+                    .body(formataUmRetornoGenerico("sucesso", "Cliente atualizado com sucesso"));
+        } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
         }
@@ -138,9 +138,5 @@ public class ClienteController {
         }
     }
 
-    private Map<String, String> formataUmRetornoGenerico(String topico, String msg) {
-        Map<String, String> error = new HashMap<>();
-        error.put(topico, msg);
-        return error;
-    }
+
 }
