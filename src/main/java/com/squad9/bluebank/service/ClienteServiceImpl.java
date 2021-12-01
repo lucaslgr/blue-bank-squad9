@@ -114,7 +114,7 @@ public class ClienteServiceImpl implements ClienteService {
         var cliente = clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
         final String email = clienteRequestDTO.getEmail();
 
-        if(clienteRepository.findByEmailExceptById(email, id).isPresent()) {
+        if(clienteRepository.findByEmailNotIdCliente(email, id).isPresent()) {
             throw new Exception("Email já utilizado.");
         }
 
