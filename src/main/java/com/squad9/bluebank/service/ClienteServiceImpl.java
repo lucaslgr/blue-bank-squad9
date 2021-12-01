@@ -2,12 +2,20 @@ package com.squad9.bluebank.service;
 
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
+import com.squad9.bluebank.dto.LoginRequestDTO;
+import com.squad9.bluebank.dto.LoginResponseDTO;
 import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.repository.ClienteRepository;
+import com.squad9.bluebank.util.JwtTokenUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,11 +24,20 @@ public class ClienteServiceImpl implements ClienteService {
 
     private ClienteRepository clienteRepository;
     private PasswordEncoder passwordEncoder;
+    private AuthenticationManager authenticationManager;
+    private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    public ClienteServiceImpl(ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
+    public ClienteServiceImpl(
+        ClienteRepository clienteRepository, 
+        PasswordEncoder passwordEncoder,
+        AuthenticationManager authenticationManager,
+        JwtTokenUtil jwtTokenUtil
+    ) {
         this.clienteRepository = clienteRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     //Salvar um cliente
@@ -59,6 +76,22 @@ public class ClienteServiceImpl implements ClienteService {
 
         this.clienteRepository.save(cliente);
         return ClienteResponseDTO.converter(cliente);
+    }
+
+    @Override
+    public String loginCliente(LoginRequestDTO loginRequestDTO) throws Exception {
+        try {
+            authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getSenha(), new ArrayList<>()));
+        } catch (BadCredentialsException e) {
+            throw new Exception("Email ou senha inválidos");
+        }
+
+        // gerar token
+        String token = jwtTokenUtil.gerarToken(loginRequestDTO.getEmail());
+    
+        // retornar token
+        return token;
     }
 
     //Listar todos os clientes
