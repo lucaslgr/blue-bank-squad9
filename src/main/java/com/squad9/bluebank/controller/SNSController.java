@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.squad9.bluebank.utils.formatadorStringJson.formataUmRetornoGenerico;
+import static com.squad9.bluebank.util.formatadorStringJson.formataUmRetornoGenerico;
 
 @RequestMapping(value = "api/sns", produces = "application/json")
 @RestController

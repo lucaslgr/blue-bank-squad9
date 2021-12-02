@@ -1,7 +1,6 @@
 package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.*;
-import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.service.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static com.squad9.bluebank.utils.formatadorStringJson.formataUmRetornoGenerico;
+import static com.squad9.bluebank.util.formatadorStringJson.formataUmRetornoGenerico;
 
 @RequestMapping(value = "api/clientes", produces = "application/json")
 @RestController

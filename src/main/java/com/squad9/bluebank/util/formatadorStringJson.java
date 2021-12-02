@@ -1,4 +1,4 @@
-package com.squad9.bluebank.utils;
+package com.squad9.bluebank.util;
 
 import java.util.HashMap;
 import java.util.Map;
