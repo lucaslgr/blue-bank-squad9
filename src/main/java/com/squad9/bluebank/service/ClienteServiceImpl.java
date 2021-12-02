@@ -3,15 +3,14 @@ package com.squad9.bluebank.service;
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
 import com.squad9.bluebank.dto.LoginRequestDTO;
-import com.squad9.bluebank.dto.LoginResponseDTO;
 import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.util.JwtTokenUtil;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +28,10 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     public ClienteServiceImpl(
-        ClienteRepository clienteRepository, 
-        PasswordEncoder passwordEncoder,
-        AuthenticationManager authenticationManager,
-        JwtTokenUtil jwtTokenUtil
+            ClienteRepository clienteRepository,
+            PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
+            JwtTokenUtil jwtTokenUtil
     ) {
         this.clienteRepository = clienteRepository;
         this.passwordEncoder = passwordEncoder;
@@ -80,16 +79,19 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public String loginCliente(LoginRequestDTO loginRequestDTO) throws Exception {
+        Long idCliente;
         try {
-            authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getSenha(), new ArrayList<>()));
+            final Authentication authenticate = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getSenha(), new ArrayList<>()));
+            final DetalheUsuario usuarioLogado = (DetalheUsuario) authenticate.getPrincipal();
+            idCliente = usuarioLogado.getId();
         } catch (BadCredentialsException e) {
             throw new Exception("Email ou senha inválidos");
         }
 
         // gerar token
-        String token = jwtTokenUtil.gerarToken(loginRequestDTO.getEmail());
-    
+        String token = jwtTokenUtil.gerarToken(loginRequestDTO.getEmail(), idCliente);
+
         // retornar token
         return token;
     }
@@ -114,7 +116,7 @@ public class ClienteServiceImpl implements ClienteService {
         var cliente = clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
         final String email = clienteRequestDTO.getEmail();
 
-        if(clienteRepository.findByEmailExceptById(email, id).isPresent()) {
+        if (clienteRepository.findByEmailExceptById(email, id).isPresent()) {
             throw new Exception("Email já utilizado.");
         }
 
