@@ -15,10 +15,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtTokenUtil {
     
-    public String gerarToken(String email) throws Exception {
+    public String gerarToken(String email, Long idCliente) throws Exception {
         try {
             String token = JWT.create()
                 .withSubject(email)
+                .withClaim("idCliente", idCliente)
                 .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .sign(getSigner());
             return token;

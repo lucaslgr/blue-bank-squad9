@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -80,15 +81,18 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public String loginCliente(LoginRequestDTO loginRequestDTO) throws Exception {
+        Long idCliente;
         try {
-            authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getSenha(), new ArrayList<>()));
+            final Authentication authenticate = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getSenha(), new ArrayList<>()));
+            final DetalheUsuario usuarioLogado = (DetalheUsuario) authenticate.getPrincipal();
+            idCliente = usuarioLogado.getId();
         } catch (BadCredentialsException e) {
             throw new Exception("Email ou senha inválidos");
         }
 
         // gerar token
-        String token = jwtTokenUtil.gerarToken(loginRequestDTO.getEmail());
+        String token = jwtTokenUtil.gerarToken(loginRequestDTO.getEmail(), idCliente);
     
         // retornar token
         return token;
