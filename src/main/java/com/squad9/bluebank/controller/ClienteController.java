@@ -1,6 +1,7 @@
 package com.squad9.bluebank.controller;
 
 import com.squad9.bluebank.dto.*;
+import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.service.*;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,6 +143,11 @@ public class ClienteController {
             @AuthenticationPrincipal DetalheUsuario detalheUsuario) throws Exception {
         if (!idCliente.equals(detalheUsuario.getId())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
+        }
+        ClienteResponseDTO cliente = clienteService.encontrarClientePeloId(idCliente);
+        if (!cliente.getContaResponseDTO().getIdConta().equals(transacaoRequestDTO.getIdContaEmissora())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(formataUmRetornoGenerico("error","Operação inválida"));
         }
 
         try {
