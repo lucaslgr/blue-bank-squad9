@@ -21,7 +21,7 @@ public interface ClienteService {
     ClienteResponseDTO encontrarClientePeloId(Long id) throws Exception;
 
     //Atualizar Cliente
-    void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception;
+    String atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception;
 
     //Deleta o cliente por ID
     void deletarCliente(Long id) throws Exception;

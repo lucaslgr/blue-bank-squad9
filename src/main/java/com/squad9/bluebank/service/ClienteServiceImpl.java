@@ -112,7 +112,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     //Atualizar Cliente
     @Override
-    public void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
+    public String atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
         var cliente = clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
         final String email = clienteRequestDTO.getEmail();
 
@@ -134,6 +134,10 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setDataDeNascimento(clienteRequestDTO.getDataDeNascimento());
 
         this.clienteRepository.save(cliente);
+
+        //Gera um novo token caso o email do usuario tenha sido alterado
+        String token = jwtTokenUtil.gerarToken(email, cliente.getId());
+        return token;
     }
 
     //Deleta o cliente por ID
