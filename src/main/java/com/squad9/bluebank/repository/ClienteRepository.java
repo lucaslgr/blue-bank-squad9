@@ -16,5 +16,4 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     @Query("select c from Cliente c where c.email = :email and c.id <> :idCliente")
     Optional<Cliente> findByEmailExceptById(@Param("email") String email, @Param("idCliente") Long idCliente);
-//    Optional<Cliente> findByEmailExceptById(String email, Long idCliente);
 }
