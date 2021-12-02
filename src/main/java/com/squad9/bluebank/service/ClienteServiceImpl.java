@@ -111,8 +111,14 @@ public class ClienteServiceImpl implements ClienteService {
     //Atualizar Cliente
     @Override
     public void atualizarCliente(Long id, ClienteRequestDTO clienteRequestDTO) throws Exception {
-        var cliente = this.clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
+        var cliente = clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
+        final String email = clienteRequestDTO.getEmail();
 
+        if(clienteRepository.findByEmailExceptById(email, id).isPresent()) {
+            throw new Exception("Email já utilizado.");
+        }
+
+        cliente.setEmail(email);
         cliente.setNome(clienteRequestDTO.getNome());
         cliente.setSobrenome(clienteRequestDTO.getSobrenome());
         cliente.setCelular(clienteRequestDTO.getCelular());
@@ -123,7 +129,6 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setProfissao(clienteRequestDTO.getProfissao());
         cliente.setRendaMensal(clienteRequestDTO.getRendaMensal());
         cliente.setPatrimonio(clienteRequestDTO.getPatrimonio());
-        cliente.setRg(clienteRequestDTO.getRg());
         cliente.setDataDeNascimento(clienteRequestDTO.getDataDeNascimento());
 
         this.clienteRepository.save(cliente);
