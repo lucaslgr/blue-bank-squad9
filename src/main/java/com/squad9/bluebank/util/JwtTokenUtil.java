@@ -1,27 +1,23 @@
 package com.squad9.bluebank.util;
 
-import java.util.Date;
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.AlgorithmMismatchException;
-import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.exceptions.TokenExpiredException;
-
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 @Component
 public class JwtTokenUtil {
-    
+
     public String gerarToken(String email, Long idCliente) throws Exception {
         try {
             String token = JWT.create()
-                .withSubject(email)
-                .withClaim("idCliente", idCliente)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
-                .sign(getSigner());
+                    .withSubject(email)
+                    .withClaim("idCliente", idCliente)
+                    .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+                    .sign(getSigner());
             return token;
         } catch (JWTCreationException e) {
             throw new Exception("Não foi possivel gerar JWT token");

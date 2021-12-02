@@ -3,11 +3,9 @@ package com.squad9.bluebank.service;
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
 import com.squad9.bluebank.dto.LoginRequestDTO;
-import com.squad9.bluebank.dto.LoginResponseDTO;
 import com.squad9.bluebank.model.Cliente;
 import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.util.JwtTokenUtil;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -30,10 +28,10 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Autowired
     public ClienteServiceImpl(
-        ClienteRepository clienteRepository, 
-        PasswordEncoder passwordEncoder,
-        AuthenticationManager authenticationManager,
-        JwtTokenUtil jwtTokenUtil
+            ClienteRepository clienteRepository,
+            PasswordEncoder passwordEncoder,
+            AuthenticationManager authenticationManager,
+            JwtTokenUtil jwtTokenUtil
     ) {
         this.clienteRepository = clienteRepository;
         this.passwordEncoder = passwordEncoder;
@@ -93,7 +91,7 @@ public class ClienteServiceImpl implements ClienteService {
 
         // gerar token
         String token = jwtTokenUtil.gerarToken(loginRequestDTO.getEmail(), idCliente);
-    
+
         // retornar token
         return token;
     }
@@ -118,7 +116,7 @@ public class ClienteServiceImpl implements ClienteService {
         var cliente = clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
         final String email = clienteRequestDTO.getEmail();
 
-        if(clienteRepository.findByEmailExceptById(email, id).isPresent()) {
+        if (clienteRepository.findByEmailExceptById(email, id).isPresent()) {
             throw new Exception("Email já utilizado.");
         }
 
