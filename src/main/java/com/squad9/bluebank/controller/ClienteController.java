@@ -92,9 +92,9 @@ public class ClienteController {
         }
       
         try {
-            clienteService.atualizarCliente(idCliente, clienteRequestDTO);
+            String novoToken = clienteService.atualizarCliente(idCliente, clienteRequestDTO);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(formataUmRetornoGenerico("sucesso", "Cliente atualizado com sucesso"));
+                    .body(formataUmRetornoGenerico("novoToken", novoToken));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
