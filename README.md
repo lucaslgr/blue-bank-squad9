@@ -8,11 +8,11 @@
 <h3>:handshake: Equipe : <b style="color: #03A9F5;">L.A.J.Y.M</b></h3>
 <table>
     <tr>
-        <th>Ayanara</th>
-        <th>João</th>
-        <th>Lucas</th>
-        <th>Maxwel</th>
-        <th>Yuri</th>
+        <th style="width:80px;">Ayanara</th>
+        <th style="width:80px;">João</th>
+        <th style="width:80px;">Lucas</th>
+        <th style="width:80px;">Maxwel</th>
+        <th style="width:80px;">Yuri</th>
     </tr>
     <tr>
         <td style="text-align: center;">
