@@ -1,9 +1,10 @@
-<div style="text-align: center;">
+<div style="align: center;">
 <h1> PROJETO <b style="color: #03A9F5;">BLUE BANK</b> </h1>
 </div>
 
 <h3>:loudspeaker: O que é o projeto? </h3>
 <p>O projeto <b>Blue Bank</b> é uma API REST de um banco fictício desenvolvido em Java com framework Spring e serviços da AWS Cloud. O Blue Bank é a entrega do desafio final do treinamento de <b>Java e AWS</b> fornecido pela <b>Gama Academy</b> e pelo <b>Banco PAN</b>.</p>
+<a href="./assets/files/desafio-final-pan.pdf"> Acesse aqui o pdf com a descrição completa do desafio.</a>
 
 <h3>:handshake: Equipe : <b style="color: #03A9F5;">L.A.J.Y.M</b></h3>
 <table>
@@ -17,27 +18,27 @@
     <tr>
         <td style="text-align: center;">
             <a href="https://www.linkedin.com/in/ayanara/">
-                <img src="./img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
         <td style="text-align: center;">
             <a href="https://www.linkedin.com/in/joaovictorschiavon/">
-                <img src="./img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
         <td style="text-align: center;">
             <a href="https://www.linkedin.com/in/lucas-guimar%C3%A3es-rocha/">
-                <img src="./img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
         <td style="text-align: center;">
             <a href="https://www.linkedin.com/in/maxwelfcoelho/">
-                <img src="./img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
         <td style="text-align: center;">
             <a href="https://www.linkedin.com/in/yuri-campos/">
-                <img src="./img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
     </tr>
@@ -65,7 +66,7 @@
         java -jar -Dspring.profiles.active=localdebug blue-bank-0.0.1-SNAPSHOT.jar
      ```
 - Para setar diretamente no Intellij:
-    - <img src="./img/application-properties-param-intellij.png"/>
+    - <img src="assets/img/application-properties-param-intellij.png"/>
 
 <b>OBS: O application.properties default está com as configurações para rodar utilizando os containers que são
 levantados no docker-compose.</b>
@@ -88,35 +89,35 @@ levantados no docker-compose.</b>
 ## Subindo a API no AWS EC2
 
 - <b> 1º - Criando a máquina virtual no EC2: </b>Siga os passos a passos indicados nas imagens após logar na sua conta na AWS.
-    <img src="./img/aws-ec2/1.png" />
+    <img src="assets/img/aws-ec2/1.png" />
 
-    <img src="./img/aws-ec2/2.png" />
+    <img src="assets/img/aws-ec2/2.png" />
 
-    <img src="./img/aws-ec2/3.png" />
+    <img src="assets/img/aws-ec2/3.png" />
 
-    <img src="./img/aws-ec2/4.png" />
+    <img src="assets/img/aws-ec2/4.png" />
 
-    <img src="./img/aws-ec2/5.png" />
+    <img src="assets/img/aws-ec2/5.png" />
 
-    <img src="./img/aws-ec2/6.png" />
+    <img src="assets/img/aws-ec2/6.png" />
 
-    <img src="./img/aws-ec2/7.png" />
+    <img src="assets/img/aws-ec2/7.png" />
 
-    <img src="./img/aws-ec2/8.png" />
+    <img src="assets/img/aws-ec2/8.png" />
 
-    <img src="./img/aws-ec2/9.png" />
+    <img src="assets/img/aws-ec2/9.png" />
 
-    <img src="./img/aws-ec2/10.png" />
+    <img src="assets/img/aws-ec2/10.png" />
 
-    <img src="./img/aws-ec2/11.png" />
+    <img src="assets/img/aws-ec2/11.png" />
 
-    <img src="./img/aws-ec2/12.png" />
+    <img src="assets/img/aws-ec2/12.png" />
 
-    <img src="./img/aws-ec2/13.png" />
+    <img src="assets/img/aws-ec2/13.png" />
 
 - <b> 2º - Configurando a máquina: </b>Agora, com a sua máquina Ubuntu já lançada e rodando iremos conectar via SSH para configurar o Ubuntu e deixá-lo pronto para executar uma aplicação Java Spring com Mysql. Para isso utilizaremos as informações disponibilizadas na aba SSH client.
 
-<img src="./img/aws-ec2/14.png" />
+<img src="assets/img/aws-ec2/14.png" />
 
     - Torne o arquivo .pem da sua chave que você fez download um arquivo executável com o comando:
         ```
@@ -137,7 +138,7 @@ levantados no docker-compose.</b>
         ```
         sudo cat /etc/mysql/debian.cnf
         ```
-        <img src="./img/aws-ec2/15.png" width="90%" />
+        <img src="assets/img/aws-ec2/15.png" width="90%" />
 
     - Exporte o username e o password como variaveis de ambiente na sua instancia de Ubuntu na AWS:
         ```
