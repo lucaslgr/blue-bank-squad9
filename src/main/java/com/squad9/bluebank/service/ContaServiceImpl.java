@@ -2,6 +2,7 @@ package com.squad9.bluebank.service;
 
 import com.squad9.bluebank.dto.ContaRequestDTO;
 import com.squad9.bluebank.dto.ContaResponseDTO;
+import com.squad9.bluebank.dto.DepositoRequestDTO;
 import com.squad9.bluebank.model.Conta;
 import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
@@ -54,11 +55,18 @@ public class ContaServiceImpl implements ContaService {
     //Retorna os dados da conta
     @Override
     public ContaResponseDTO retornaDadosDaConta(Long idConta) throws Exception {
-        //Verifica se o id do cliente logado é o mesmo id do cliente da conta sendo requisitada
-
-        var conta = this.contaRepository.findById(idConta).orElseThrow(() -> new Exception("Conta não válida"));
+        var conta = contaRepository.findById(idConta).orElseThrow(() -> new Exception("Conta inválida"));
         return ContaResponseDTO.converter(conta);
 
+    }
+
+    @Override
+    public void realizarDeposito(DepositoRequestDTO depositoRequestDTO) throws Exception {
+        final String numeroContaDestino = depositoRequestDTO.getNumeroContaDestino();
+        var conta = contaRepository.findByNumero(numeroContaDestino).orElseThrow(() -> new Exception("Conta inválida."));
+
+        final Long novoSaldoDaConta = conta.getSaldo() + depositoRequestDTO.getValor();
+        contaRepository.updateSaldo(conta.getId(), novoSaldoDaConta);
     }
 
     private String geraNumeroConta(Long idCliente) {

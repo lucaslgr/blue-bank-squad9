@@ -1,8 +1,6 @@
 package com.squad9.bluebank.dto;
 
 import org.hibernate.validator.constraints.br.CPF;
-
-import javax.persistence.Column;
 import javax.validation.constraints.*;
 import java.util.Date;
 

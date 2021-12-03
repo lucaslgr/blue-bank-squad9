@@ -90,7 +90,7 @@ public class ClienteController {
         if (!idCliente.equals(detalheUsuario.getId())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
         }
-      
+
         try {
             String novoToken = clienteService.atualizarCliente(idCliente, clienteRequestDTO);
             return ResponseEntity.status(HttpStatus.OK)
@@ -146,7 +146,7 @@ public class ClienteController {
         ClienteResponseDTO cliente = clienteService.encontrarClientePeloId(idCliente);
         if (!cliente.getContaResponseDTO().getIdConta().equals(transacaoRequestDTO.getIdContaEmissora())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(formataUmRetornoGenerico("error","Operação inválida"));
+                    .body(formataUmRetornoGenerico("error", "Operação inválida"));
         }
 
         try {
@@ -197,5 +197,27 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Permite o cliente logado realizar um depósito em uma conta, seja dele ou não.")
+    @PostMapping(value = "/{idCliente}/deposito", consumes = "application/json")
+    public ResponseEntity<?> realizarDepositoNaConta(
+            @RequestBody @Valid DepositoRequestDTO depositoRequestDTO,
+            @PathVariable Long idCliente,
+            @AuthenticationPrincipal DetalheUsuario detalheUsuario
+    ) {
+        if (!idCliente.equals(detalheUsuario.getId())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
+        }
 
+        try {
+            contaService.realizarDeposito(depositoRequestDTO);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(formataUmRetornoGenerico(
+                            "msg",
+                            "Depósito realizado com sucesso na conta: " + depositoRequestDTO.getNumeroContaDestino())
+                    );
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
+        }
+    }
 }
