@@ -1,4 +1,4 @@
-package com.squad9.bluebank.controller;
+package com.squad9.bluebank.validation;
 
 import java.util.HashMap;
 import java.util.Map;
