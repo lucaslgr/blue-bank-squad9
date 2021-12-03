@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -87,10 +86,10 @@ public class Cliente {
     @PositiveOrZero(message = "Valor de patrimônio mensal inválido.")
     private Long patrimonio;
 
-    @OneToOne(mappedBy = "cliente", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Conta conta;
 
-    @OneToOne(mappedBy = "cliente", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Endereco endereco;
 
     public Long getId() {
