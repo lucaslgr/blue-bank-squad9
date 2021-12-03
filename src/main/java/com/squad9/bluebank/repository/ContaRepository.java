@@ -19,4 +19,6 @@ public interface ContaRepository extends JpaRepository<Conta, Long> {
     @Modifying
     @Query("update Conta c set c.saldo = :saldo where c.id = :idConta")
     void updateSaldo(@Param("idConta") Long idConta, @Param("saldo") Long saldo);
+
+    Optional<Conta> findByNumero(String numeroContaDestino);
 }
