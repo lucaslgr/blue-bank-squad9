@@ -1,17 +1,6 @@
 package com.squad9.bluebank.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -61,10 +50,11 @@ public class Endereco {
 
     @OneToOne(targetEntity = Cliente.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente")
-    @NotNull(message = "O campo id_cliente é obrigatório")
+    @NotNull(message = "O campo cliente é obrigatório")
     private Cliente cliente;
 
-    public Endereco() {}
+    public Endereco() {
+    }
 
     public Endereco(String cep, String logradouro, String bairro, String cidade, String estado, String numeroCasa, String complemento, Cliente cliente) {
         this.cep = cep;

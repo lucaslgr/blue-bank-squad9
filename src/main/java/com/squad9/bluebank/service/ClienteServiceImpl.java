@@ -4,7 +4,12 @@ import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
 import com.squad9.bluebank.dto.LoginRequestDTO;
 import com.squad9.bluebank.model.Cliente;
+import com.squad9.bluebank.model.Conta;
+import com.squad9.bluebank.model.Endereco;
 import com.squad9.bluebank.repository.ClienteRepository;
+import com.squad9.bluebank.repository.ContaRepository;
+import com.squad9.bluebank.repository.EnderecoRepository;
+import com.squad9.bluebank.repository.TransacaoRepository;
 import com.squad9.bluebank.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +27,9 @@ import java.util.stream.Collectors;
 public class ClienteServiceImpl implements ClienteService {
 
     private ClienteRepository clienteRepository;
+    private ContaRepository contaRepository;
+    private EnderecoRepository enderecoRepository;
+    private TransacaoRepository transacaoRepository;
     private PasswordEncoder passwordEncoder;
     private AuthenticationManager authenticationManager;
     private JwtTokenUtil jwtTokenUtil;
@@ -29,11 +37,17 @@ public class ClienteServiceImpl implements ClienteService {
     @Autowired
     public ClienteServiceImpl(
             ClienteRepository clienteRepository,
+            ContaRepository contaRepository,
+            EnderecoRepository enderecoRepository,
+            TransacaoRepository transacaoRepository,
             PasswordEncoder passwordEncoder,
             AuthenticationManager authenticationManager,
             JwtTokenUtil jwtTokenUtil
     ) {
         this.clienteRepository = clienteRepository;
+        this.contaRepository = contaRepository;
+        this.enderecoRepository = enderecoRepository;
+        this.transacaoRepository = transacaoRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
@@ -125,7 +139,7 @@ public class ClienteServiceImpl implements ClienteService {
         cliente.setSobrenome(clienteRequestDTO.getSobrenome());
         cliente.setCelular(clienteRequestDTO.getCelular());
         cliente.setTelefone(clienteRequestDTO.getTelefone());
-        cliente.setSenha(clienteRequestDTO.getSenha());
+        cliente.setSenha(passwordEncoder.encode(clienteRequestDTO.getSenha()));
         cliente.setNomeDoPai(clienteRequestDTO.getNomeDoPai());
         cliente.setNomeDaMae(clienteRequestDTO.getNomeDaMae());
         cliente.setProfissao(clienteRequestDTO.getProfissao());
@@ -144,6 +158,16 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public void deletarCliente(Long id) throws Exception {
         var cliente = this.clienteRepository.findById(id).orElseThrow(() -> new Exception("Cliente não encontrado!"));
+        final Conta conta = cliente.getConta();
+        if (conta != null) {
+            this.transacaoRepository.deleteByContaReceptora(conta);
+            this.transacaoRepository.deleteByContaEmissora(conta);
+            this.contaRepository.delete(conta);
+        }
+        final Endereco endereco = cliente.getEndereco();
+        if (endereco != null) {
+            this.enderecoRepository.delete(endereco);
+        }
         this.clienteRepository.delete(cliente);
     }
 }
