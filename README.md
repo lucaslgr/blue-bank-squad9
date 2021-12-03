@@ -1,7 +1,7 @@
 <h1 style="text-align:center;">PROJETO <b style="color: #03A9F5;">BLUE BANK</b> </h1>
 
 <h3>:loudspeaker: O que é o projeto? </h3>
-<p>O projeto <b>Blue Bank</b> é uma API REST de um banco fictício desenvolvido em Java com framework Spring e serviços da AWS Cloud. O Blue Bank é a entrega do desafio final do treinamento de <b>Java e AWS</b> fornecido pela <b>Gama Academy</b> e pelo <b>Banco PAN</b></p>.
+<p>O projeto <b>Blue Bank</b> é uma API REST de um banco fictício desenvolvido em Java com framework Spring e serviços da AWS Cloud. O Blue Bank é a entrega do desafio final do treinamento de <b>Java e AWS</b> fornecido pela <b>Gama Academy</b> e pelo <b>Banco PAN</b>.</p>
 
 <h3>:handshake: Equipe : <b style="color: #03A9F5;">L.A.J.Y.M</b></h3>
 <table>
