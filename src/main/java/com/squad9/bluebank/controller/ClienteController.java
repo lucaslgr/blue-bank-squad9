@@ -197,5 +197,23 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Permite o cliente logado realizar um depósito em uma conta.")
+    @PostMapping(value = "/{idCliente}/deposito", consumes = "application/json")
+    public ResponseEntity<?> realizarDepositoNaConta(
+            @RequestBody @Valid DepositoRequestDTO depositoRequestDTO,
+            @PathVariable Long idCliente,
+            @AuthenticationPrincipal DetalheUsuario detalheUsuario
+    ) {
+        if (!idCliente.equals(detalheUsuario.getId())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
+        }
 
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(contaService.realizarDeposito(DepositoRequestDTO));
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
+        }
+    }
 }
