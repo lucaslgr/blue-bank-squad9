@@ -210,7 +210,7 @@ public class ClienteController {
 
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(contaService.realizarDeposito(DepositoRequestDTO));
+                    .body(contaService.realizarDeposito(depositoRequestDTO));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
