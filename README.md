@@ -7,18 +7,18 @@
 <h3>:handshake: Equipe : <b style="color: #03A9F5;">L.A.J.Y.M</b></h3>
 <table>
     <tr>
-        <th>Lucas</th>
-        <th>Ayanara</th>
-        <th>João</th>
-        <th>Yuri</th>
-        <th>Maxwel</th>
-    </tr>
-    <tr>
         <th><b>L.</b></th>
         <th><b>A.</b></th>
         <th><b>J.</b></th>
         <th><b>Y.</b></th>
         <th><b>M.</b></th>
+    </tr>
+    <tr>
+        <th>Lucas</th>
+        <th>Ayanara</th>
+        <th>João</th>
+        <th>Yuri</th>
+        <th>Maxwel</th>
     </tr>
     <tr>
         <td align="center">
