@@ -569,6 +569,35 @@ Body
     </td>
   </tr>
 <tr></tr>
+  <tr>
+    <td colspan="3" align="center">  :arrow_right_hook: Cadastra um email de administrador como uma subscription no SNS da AWS para receber notificação de novos clientes cadastrados. </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      /api/sns/subscricao/{email}
+    </td>
+    <td rowspan="2">
+      POST
+    </td>
+    <td>
+<pre>
+Header
+{
+  "Accept" : "application/json"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
+{
+}
+</pre>
+    </td>
+  </tr>
+<tr></tr>
 </table>
 
 
