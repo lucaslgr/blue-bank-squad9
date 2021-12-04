@@ -218,7 +218,7 @@
     <th>Body</th>
   </tr>
   <tr>
-    <td colspan="4">Realizar Login do cliente</td>
+    <td colspan="4"> <center> :arrow_right_hook: Realizar Login do cliente</center> </td>
   </tr>
   <tr>
     <td>
