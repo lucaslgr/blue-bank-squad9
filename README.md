@@ -177,6 +177,7 @@
     - [X] O Banco deve ser entregue em script SQL junto ao repositório.
 
 - <h4 id="recursos-extras">Extras:</h4>
+
   - Planejamento (Metodologias Ágeis):
     - [X] Criação do backlog com tarefas referentes ao desenvolvimento.
     - [X] Criação do icebox com tarefas extras propostas para implementações futuras.
