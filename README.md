@@ -399,7 +399,7 @@ Body
   </tr>
 <tr></tr>
   <tr>
-    <td colspan="3" align="center">  :arrow_right_hook: Cadastrar um novo endereço para um cliente </td>
+    <td colspan="3" align="center">  :arrow_right_hook: Cadastrar um endereço para um cliente </td>
   </tr>
   <tr>
     <td rowspan="2">
@@ -431,6 +431,39 @@ Body
   "estado": "string",
   "logradouro": "string",
   "numeroCasa": "string"
+}
+</pre>
+    </td>
+  </tr>
+<tr></tr>
+  <tr>
+    <td colspan="3" align="center">  :arrow_right_hook: Cadastrar uma conta para um cliente </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      /api/clientes/{idCliente}/conta
+    </td>
+    <td rowspan="2">
+      POST
+    </td>
+    <td>
+<pre>
+Header
+{
+  "Content-Type" : "application/json",
+  "Accept" : "application/json",
+  "Authorization" : "Bearer {clienteToken}"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
+{
+  "cpf": "string",
+  "senha": "string"
 }
 </pre>
     </td>
