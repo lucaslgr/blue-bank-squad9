@@ -207,15 +207,15 @@
 
 <h3 id="endpoints"> :boom: Endpoints da API</h3>
 
-<table style="font-size:12px">
-  <tr>
+<table>
+  <tr  style="font-size:14px">
     <th>URL</th>
     <th>Verbo HTTP</th>
     <th>Header</th>
     <th>Body</th>
     <th>Descrição</th>
   </tr>
-  <tr>
+  <tr style="font-size:12px">
     <td>
       /api/clientes/login
     </td>
