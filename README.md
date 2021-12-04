@@ -316,8 +316,6 @@ Header
 <pre>
 Body
 {
-  "Content-Type" : "application/json",
-  "Authorization" : "Bearer {clienteToken}"
 }
 </pre>
     </td>
