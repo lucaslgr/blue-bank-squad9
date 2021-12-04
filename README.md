@@ -207,15 +207,16 @@
 
 <h3 id="endpoints"> :boom: Endpoints da API</h3>
 
+<font size="2">
 <table>
-  <tr  style="font-size:14px">
+  <tr>
     <th>URL</th>
     <th>Verbo HTTP</th>
     <th>Header</th>
     <th>Body</th>
     <th>Descrição</th>
   </tr>
-  <tr style="font-size:12px">
+  <tr>
     <td>
       /api/clientes/login
     </td>
@@ -238,7 +239,7 @@
     </td>
   </tr>
 </table>
-
+</font>
 <hr>
 
 ## Acessar documentação [SWAGGER]
