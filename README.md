@@ -75,7 +75,7 @@
 
 <hr>
 
-<h3 id="requisitos"> 🧾 Requisitos para rodar o projeto.</h3>
+<h3 id="requisitos"> 🧾 Requisitos para rodar o projeto</h3>
 
 <h4 id="requisitos-com-docker"> Com Docker:</h4> 
 
@@ -92,7 +92,7 @@
 
 <hr>
 
-<h3 id="como-rodar"> 🏗️ Rodar o projeto.</h3>
+<h3 id="como-rodar"> 🏗️ Rodar o projeto</h3>
 
 <h4 id="rodar-com-docker"> Com Docker:</h4> 
 
@@ -127,10 +127,10 @@
 
 <hr>
 
-<h3 id="db"> :wastebasket: Banco de Dados.</h3>
+<h3 id="db"> :wastebasket: Banco de Dados</h3>
 
 <h4 id="dtr">DTR do banco de dados: </h4>
-&nbsp;&nbsp;&nbsp;&nbsp;<img align="center" src="./db/blue-bank-DB-DER.png" width="80%"/>
+&nbsp;&nbsp;&nbsp;&nbsp; <img src="./db/blue-bank-DB-DER.png" width="80%"/>
 
 <h4 id="sql-criar">Script SQL para inicializar o banco: </h4>
 &nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="./db/db_bancoblue.sql">🔗 Link</a>
