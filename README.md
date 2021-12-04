@@ -214,11 +214,10 @@
   <tr>
     <th>URL</th>
     <th>Verbo HTTP</th>
-    <th>Header</th>
-    <th>Body</th>
+    <th>Dados</th>
   </tr>
   <tr>
-    <td colspan="4" align="center">  :arrow_right_hook: Realizar login de um cliente </td>
+    <td colspan="3" align="center">  :arrow_right_hook: Realizar login de um cliente </td>
   </tr>
   <tr>
     <td>
@@ -228,10 +227,13 @@
       POST
     </td>
     <td>
-- Content-Type: application/json
-    </td>
-    <td>
       <pre>
+Header
+{
+ "Content-Type" : "application/json"
+}
+
+Body
 {
  "email" : "string",
  "senha" : "string"
@@ -240,7 +242,7 @@
     </td>
   </tr>
    <tr>
-    <td colspan="4" align="center">  :arrow_right_hook: Realizar cadastro de um novo cliente </td>
+    <td colspan="3" align="center">  :arrow_right_hook: Realizar cadastro de um novo cliente </td>
   </tr>
     <tr>
     <td>
@@ -248,9 +250,6 @@
     </td>
     <td>
       POST
-    </td>
-    <td>
-- Content-Type: application/json
     </td>
     <td>
       <pre>
@@ -274,7 +273,7 @@
     </td>
   </tr>
   <tr>
-    <td colspan="4" align="center">  :arrow_right_hook: Ver dados de um cliente </td>
+    <td colspan="3" align="center">  :arrow_right_hook: Ver dados de um cliente </td>
   </tr>
   <tr>
     <td>
@@ -282,10 +281,6 @@
     </td>
     <td>
       GET
-    </td>
-    <td>
-- Content-Type: application/json
-- Authorization: Bearer <b>token</b>
     </td>
     <td>
       <pre>
