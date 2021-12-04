@@ -398,6 +398,44 @@ Body
     </td>
   </tr>
 <tr></tr>
+  <tr>
+    <td colspan="3" align="center">  :arrow_right_hook: Cadastrar um novo endereço para um cliente </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      /api/clientes/{idCliente}/endereco
+    </td>
+    <td rowspan="2">
+      POST
+    </td>
+    <td>
+<pre>
+Header
+{
+  "Content-Type" : "application/json",
+  "Accept" : "application/json",
+  "Authorization" : "Bearer {clienteToken}"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
+{
+  "bairro": "string",
+  "cep": "string",
+  "cidade": "string",
+  "complemento": "string",
+  "estado": "string",
+  "logradouro": "string",
+  "numeroCasa": "string"
+}
+</pre>
+    </td>
+  </tr>
+<tr></tr>
 </table>
 
 
