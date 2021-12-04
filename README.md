@@ -46,9 +46,14 @@
 
 - <a href="#requisitos">Requisitos para rodar o projeto.</a>
 - <a href="#como-rodar">Como rodar o projeto.</a>
-- <a href="#dtr">DTR do banco de dados.</a>
-- <a href="#tecnologias">Tecnologias utilizadas no projeto.</a>
-- <a href="#recursos">Recursos implementados no projeto.</a>
+- <a href="#db">Banco de dados.</a>
+  - <a href="#dtr">DTR do banco de dados.</a>
+  - <a href="#sql-criar">Script SQL para inicializar o banco.</a>
+  - <a href="#sql-popular">Script SQL para popular o banco.</a>
+- <a href="#tecnologias">Tecnologias e recursos utilizadas no projeto.</a>
+- <a href="#recursos">Requisitos e funcionalidades.</a>
+  -  <a href="#recursos-obrigatorios"> Obrigatórios da entrega.</a>
+  -  <a href="#recursos-extras">Extras.</a>
 - <a href="#endpoints">Endpoints da API.</a>
 - <a href="#endpoints">Swagger UI.</a>
 - <a href="#diretorios">Diretórios de arquivos do projeto.</a>
