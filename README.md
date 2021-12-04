@@ -207,7 +207,7 @@
 
 <h3 id="endpoints"> :boom: Endpoints da API</h3>
 
-<table>
+<table style="font-size:12px">
   <tr>
     <th>URL</th>
     <th>Verbo HTTP</th>
