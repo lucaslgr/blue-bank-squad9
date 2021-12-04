@@ -1,6 +1,4 @@
-<div style="align: center;">
-<h1> PROJETO <b style="color: #03A9F5;">BLUE BANK</b> </h1>
-</div>
+<h1 align="center" > PROJETO <b style="color: #03A9F5;">BLUE BANK</b> </h1>
 
 <h3>:loudspeaker: O que é o projeto? </h3>
 <p>O projeto <b>Blue Bank</b> é uma API REST de um banco fictício desenvolvido em Java com framework Spring e serviços da AWS Cloud. O Blue Bank é a entrega do desafio final do treinamento de <b>Java e AWS</b> fornecido pela <b>Gama Academy</b> e pelo <b>Banco PAN</b>.</p>
@@ -9,34 +7,34 @@
 <h3>:handshake: Equipe : <b style="color: #03A9F5;">L.A.J.Y.M</b></h3>
 <table>
     <tr>
-        <th style="width:80px;">Ayanara</th>
-        <th style="width:80px;">João</th>
-        <th style="width:80px;">Lucas</th>
-        <th style="width:80px;">Maxwel</th>
-        <th style="width:80px;">Yuri</th>
+        <th>Ayanara</th>
+        <th>João</th>
+        <th>Lucas</th>
+        <th>Maxwel</th>
+        <th>Yuri</th>
     </tr>
     <tr>
-        <td style="text-align: center;">
+        <td align="center">
             <a href="https://www.linkedin.com/in/ayanara/">
                 <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
-        <td style="text-align: center;">
+        <td align="center">
             <a href="https://www.linkedin.com/in/joaovictorschiavon/">
                 <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
-        <td style="text-align: center;">
+        <td align="center">
             <a href="https://www.linkedin.com/in/lucas-guimar%C3%A3es-rocha/">
                 <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
-        <td style="text-align: center;">
+        <td align="center">
             <a href="https://www.linkedin.com/in/maxwelfcoelho/">
                 <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
         </td>
-        <td style="text-align: center;">
+        <td align="center">
             <a href="https://www.linkedin.com/in/yuri-campos/">
                 <img src="assets/img/icons/linkedin_icon.png" width="40px">
             </a>
