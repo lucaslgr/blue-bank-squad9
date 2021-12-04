@@ -636,15 +636,15 @@ Body
 
 - <h4 id="deploy-ec2" >Deploy AWS EC2:</h4>
 
-  - <a href=""> Passo a passo</a>
-  - URL: http://ec2-52-23-240-140.compute-1.amazonaws.com:8080/
-  - <a href="http://ec2-52-23-240-140.compute-1.amazonaws.com:8080/swagger-ui.html"> Link Swagger UI</a>
+  - <a href=""> 🔗 Passo a passo</a>
+  - URL: 🔗 http://ec2-52-23-240-140.compute-1.amazonaws.com:8080/
+  - <a href="http://ec2-52-23-240-140.compute-1.amazonaws.com:8080/swagger-ui.html"> 🔗 Link Swagger UI</a>
 
 - <h4 id="deploy-bs" >Deploy AWS Beanstalk:</h4>
 
-  - <a href=""> Passo a passo</a>
-  - URL: http://bluebanksquad9.us-east-1.elasticbeanstalk.com
-  - <a href="http://bluebanksquad9.us-east-1.elasticbeanstalk.com/swagger-ui.html"> Link Swagger UI</a>
+  - <a href=""> 🔗 Passo a passo</a>
+  - URL: 🔗 http://bluebanksquad9.us-east-1.elasticbeanstalk.com
+  - <a href="http://bluebanksquad9.us-east-1.elasticbeanstalk.com/swagger-ui.html"> 🔗 Link Swagger UI</a>
   
 <hr>
 
