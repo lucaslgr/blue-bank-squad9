@@ -4,6 +4,8 @@
 <p>O projeto <b>Blue Bank</b> é uma API REST de um banco fictício desenvolvido em Java com framework Spring e serviços da AWS Cloud. O Blue Bank é a entrega do desafio final do treinamento de <b>Java e AWS</b> fornecido pela <b>Gama Academy</b> e pelo <b>Banco PAN</b>.</p>
 <a target="_blank" href="./assets/files/desafio-final-pan.pdf"> Acesse aqui o pdf com a descrição completa do desafio.</a>
 
+<hr>
+
 <h3>:handshake: Equipe : <b style="color: #03A9F5;">L.A.J.Y.M</b></h3>
 <table>
     <tr>
@@ -49,6 +51,8 @@
     </tr>
 </table>
 
+<hr>
+
 <h3> 📑 Sumário </h3>
 
 - <a href="#requisitos"> Requisitos para rodar o projeto.</a>
@@ -69,7 +73,7 @@
 - <a href="#endpoints">Swagger UI.</a>
 - <a href="#diretorios">Diretórios de arquivos do projeto.</a>
 
-## Rodar o projeto usando Docker
+<hr>
 
 <h3 id="requisitos"> 🧾 Requisitos para rodar o projeto.</h3>
 
@@ -86,28 +90,41 @@
 - <a href="https://openjdk.java.net/install/">Java 11</a>
 - <a href="https://www.mysql.com/downloads/">MySql</a>
 
+<hr>
 
-- Passo a passo:
-    - Gere o <b>.jar</b> da aplicação executando o comando no terminal:
-        - ```
-          mvn clean install -Dskiptests
-          ```
-    - Instancie e rode os containers executando o comando no terminal:
-        - ```
-            docker-compose up --build --force-recreate
-          ```
+<h3 id="como-rodar"> 🏗️ Rodar o projeto.</h3>
 
-## Para rodar o projeto utilizando outro arquivo de configuração de application.properties
+<h4 id="rodar-com-docker"> Com Docker:</h4> 
 
-- Para rodar o .jar vá até a pasta do projeto pelo terminal e rode o comando:
-    -  ```
-        java -jar -Dspring.profiles.active=localdebug blue-bank-0.0.1-SNAPSHOT.jar
+- Gere o <b>.jar</b> da aplicação executando o comando no terminal:
+    ```shell
+    mvn clean install -Dskiptests
+    ```
+    
+- Instancie e rode os containers executando o comando no terminal:
+    ```shell
+    docker-compose up --build --force-recreate
+    ```
+
+<h4 id="rodar-com-docker"> Sem Docker:</h4> 
+
+- Gere o <b>.jar</b> da aplicação executando o comando no terminal:
+    ```shell
+    mvn clean install -Dskiptests
+    ```
+
+- Para rodar o <b>.jar</b> vá até a pasta do projeto pelo terminal e rode o comando:
+    ```shell
+    java -jar -Dspring.profiles.active=localdebug blue-bank-0.0.1-SNAPSHOT.jar
      ```
-- Para setar diretamente no Intellij:
-    - <img src="assets/img/application-properties-param-intellij.png"/>
+- Para setar diretamente no Intellij o <b>profile de configurações do application.properties</b>:
+    <img src="assets/img/application-properties-param-intellij.png"/>
 
-<b>OBS: O application.properties default está com as configurações para rodar utilizando os containers que são
-levantados no docker-compose.</b>
+    <b>OBS: O profile de application.properties default está com as configurações para rodar utilizando os containers que são
+    levantados no docker-compose.</b>
+
+
+<hr>
 
 ## Diagrama DER do banco de dados da aplicação
 
