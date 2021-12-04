@@ -209,7 +209,7 @@
 
 <hr>
 
-<h3 id="endpoints"> :boom: Endpoints da API</h3>
+<h3 id="endpoints"> 🔌 Endpoints da API</h3>
 
 <table>
   <tr>
