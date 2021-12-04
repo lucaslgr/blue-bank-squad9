@@ -216,6 +216,7 @@
     <th>Verbo HTTP</th>
     <th>Dados</th>
   </tr>
+<tr></tr>
   <tr>
     <td colspan="3" align="center">  :arrow_right_hook: Realizar login de um cliente </td>
   </tr>
@@ -246,7 +247,7 @@ Body
 </pre>
     </td>
   </tr>
-
+<tr></tr>
   <tr>
     <td colspan="3" align="center">  :arrow_right_hook: Realizar cadastro de um novo cliente </td>
   </tr>
@@ -289,7 +290,7 @@ Body
 </pre>
     </td>
   </tr>
-
+<tr></tr>
 </table>
 
 
