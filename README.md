@@ -70,7 +70,7 @@
   - <a href="#recursos-obrigatorios"> Obrigatórios da entrega.</a>
   - <a href="#recursos-extras">Extras.</a>
 - <a href="#endpoints">Endpoints da API.</a>
-- <a href="#endpoints">Swagger UI.</a>
+- <a href="#swagger">Swagger UI.</a>
 - <a href="#diretorios">Diretórios de arquivos do projeto.</a>
 
 <hr>
@@ -202,6 +202,42 @@
     - [X] Implementação de testes unitários com JUnit.
   - Banco de Dados:
     - [X] Diagrama de DTR do banco de dados.
+
+<hr>
+
+<h3 id="endpoints"> :boom: Endpoints da API</h3>
+
+<table>
+  <tr>
+    <th>URL</th>
+    <th>Verbo HTTP</th>
+    <th>Header</th>
+    <th>Body</th>
+    <th>Descrição</th>
+  </tr>
+  <tr>
+    <td>
+      /api/clientes/login
+    </td>
+    <td>
+      POST
+    </td>
+    <td>
+      Content-Type: application/json
+    </td>
+    <td>
+      <pre>
+{
+ "email" : "string",
+ "senha" : "string"
+}
+      </pre>
+    </td>
+    <td>
+      Realiza login de um cliente.
+    </td>
+  </tr>
+</table>
 
 <hr>
 
