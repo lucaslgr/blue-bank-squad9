@@ -648,17 +648,6 @@ Body
   
 <hr>
 
-## Acessar documentação [SWAGGER]
-
-- Se estiver rodando localmente, acesse:
-    ```
-        http://localhost:8080/swagger-ui.html
-    ```
-- Se estiver rodando em algum servidor, acesse:
-    ```
-        <BASE_URL>/swagger-ui.html
-    ```
-
 ## Subindo a API no AWS EC2
 
 - <b> 1º - Criando a máquina virtual no EC2: </b>Siga os passos a passos indicados nas imagens após logar na sua conta na AWS.
