@@ -632,7 +632,7 @@ Body
 
 <hr>
 
-<h3 id="aws-swagger">Deploy AWS e links do Swagger UI</h3>
+<h3 id="aws-swagger"> 🔃 Deploy AWS e links do Swagger UI</h3>
 
 - <h4 id="deploy-ec2" >Deploy AWS EC2:</h4>
 
