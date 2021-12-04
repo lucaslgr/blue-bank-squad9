@@ -55,23 +55,24 @@
 
 <h3 id="sumario"> 📑 Sumário </h3>
 
-- <a href="#requisitos"> Requisitos para rodar o projeto.</a>
+- <a href="#requisitos"> Requisitos para rodar o projeto:</a>
     - <a href="#requisitos-com-docker"> Com Docker.</a>
     - <a href="#requisitos-sem-docker"> Sem Docker.</a>
-- <a href="#como-rodar">Como rodar o projeto.</a>
+- <a href="#como-rodar">Como rodar o projeto:</a>
     - <a href="#rodar-com-docker"> Com Docker.</a>
     - <a href="#rodar-sem-docker"> Sem Docker.</a>
-- <a href="#db"> Banco de dados.</a>
+- <a href="#db"> Banco de dados:</a>
   - <a href="#dtr">DTR do banco de dados.</a>
   - <a href="./db/db_bancoblue.sql"> 🔗 Script SQL para inicializar o banco.</a>
   - <a href="./db/script_inserir_dados.sql"> 🔗 Script SQL para popular o banco.</a>
 - <a href="#tecnologias">Tecnologias e recursos utilizadas no projeto.</a>
-- <a href="#recursos">Requisitos e funcionalidades.</a>
+- <a href="#recursos">Requisitos e funcionalidades:</a>
     - <a href="#recursos-obrigatorios"> Obrigatórios da entrega.</a>
     - <a href="#recursos-extras">Extras.</a>
 - <a href="#endpoints">Endpoints da API.</a>
-- <a href="#swagger">Swagger UI.</a>
-- <a href="#diretorios">Diretórios de arquivos do projeto.</a>
+- <a href="#aws-swagger">Deploy AWS e links do Swagger UI:</a>
+  - <a href="#deploy-ec2">Deploy AWS EC2.</a>
+  - <a href="#deploy-bs">Deploy AWS Beanstalk.</a>
 
 <hr>
 
@@ -629,7 +630,20 @@ Body
 <tr></tr>
 </table>
 
+<hr>
 
+<h3 id="aws-swagger">Deploy AWS e links do Swagger UI</h3>
+
+- <h4 id="deploy-ec2" >Deploy AWS EC2:</h4>
+  - <a href=""> Passo a passo</a>
+  - URL: http://ec2-52-23-240-140.compute-1.amazonaws.com:8080/
+  - <a href="http://ec2-52-23-240-140.compute-1.amazonaws.com:8080/swagger-ui.html"> Link Swagger UI</a>
+
+- <h4 id="deploy-bs" >Deploy AWS Beanstalk:</h4>
+  - <a href=""> Passo a passo</a>
+  - URL: http://bluebanksquad9.us-east-1.elasticbeanstalk.com
+  - <a href="http://bluebanksquad9.us-east-1.elasticbeanstalk.com/swagger-ui.html"> Link Swagger UI</a>
+  
 <hr>
 
 ## Acessar documentação [SWAGGER]
