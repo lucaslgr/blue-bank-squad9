@@ -220,39 +220,56 @@
     <td colspan="3" align="center">  :arrow_right_hook: Realizar login de um cliente </td>
   </tr>
   <tr>
-    <td>
+    <td rowspan="2">
       /api/clientes/login
     </td>
-    <td>
+    <td rowspan="2">
       POST
     </td>
     <td>
-      <pre>
+<pre>
 Header
 {
   "Content-Type" : "application/json"
 }
-
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
 Body
 {
   "email" : "string",
   "senha" : "string"
 }
-      </pre>
+</pre>
     </td>
   </tr>
-   <tr>
+
+  <tr>
     <td colspan="3" align="center">  :arrow_right_hook: Realizar cadastro de um novo cliente </td>
   </tr>
-    <tr>
-    <td>
+  <tr>
+    <td rowspan="2">
       /api/clientes
     </td>
-    <td>
+    <td rowspan="2">
       POST
     </td>
     <td>
-      <pre>
+<pre>
+Header
+{
+  "Content-Type" : "application/json"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
 {
   "celular": "string",
   "cpf": "string",
@@ -269,41 +286,13 @@ Body
   "sobrenome": "string",
   "telefone": "string"
 }
-      </pre>
+</pre>
     </td>
   </tr>
-  <tr>
-    <td colspan="3" align="center">  :arrow_right_hook: Ver dados de um cliente </td>
-  </tr>
-  <tr>
-    <td>
-      /api/clientes/{idCliente}
-    </td>
-    <td>
-      GET
-    </td>
-    <td>
-      <pre>
-{
-  "celular": "string",
-  "cpf": "string",
-  "dataDeNascimento": "2021-12-04T19:12:19.373Z",
-  "email": "string",
-  "nome": "string",
-  "nomeDaMae": "string",
-  "nomeDoPai": "string",
-  "patrimonio": 0,
-  "profissao": "string",
-  "rendaMensal": 0,
-  "rg": "string",
-  "senha": "string",
-  "sobrenome": "string",
-  "telefone": "string"
-}
-      </pre>
-    </td>
-  </tr>
+
 </table>
+
+
 <hr>
 
 ## Acessar documentação [SWAGGER]
