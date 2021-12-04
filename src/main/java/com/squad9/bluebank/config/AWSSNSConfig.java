@@ -13,9 +13,9 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class AWSSNSConfig {
     @Value("${cloud.aws.secret.key}")
-    private static  String SECRET_KEY;
+    private String SECRET_KEY;
     @Value("${cloud.aws.access.key}")
-    private static String ACCESS_KEY;
+    private String ACCESS_KEY;
 
     @Primary
     @Bean
