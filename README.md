@@ -129,8 +129,78 @@
 
 <h3 id="db"> :wastebasket: Banco de Dados</h3>
 
-<h4 id="dtr">DTR do banco de dados: </h4>
-&nbsp;&nbsp;&nbsp;&nbsp; <img src="./db/blue-bank-DB-DER.png" width="80%"/>
+- <h4 id="dtr">DTR do banco de dados: </h4>
+    <img src="./db/blue-bank-DB-DER.png" width="80%"/>
+
+<hr>
+
+<h3 id="tecnologias"> 🚀 Tecnologias e recursos utilizadas no projeto</h3>
+
+- Jira (Kanban)
+- Java 
+- Banco de Dados MySQL
+- Docker
+- Spring Web
+- Spring Security
+- Token JWT
+- Hibernate Validator
+- Swagger v2
+- Spring Cloud AWS
+- Spring Cloud AWS Messaging (SNS)
+- JUnit (Testes unitários)
+
+<hr>
+
+<h3 id="recursos">Requisitos e funcionalidades</h3>
+
+- <h4 id="recursos-obrigatorios"> Obrigatórios da entrega:</h4>
+    
+  - Planejamento (Metodologias Ágeis):
+    - [X] Kanban com todas as tarefas organizadas e responsáveis definidos.
+  - Projeto (Backend):
+    - [X] Cadastro de clientes.
+    - [X] Listagem de clientes.
+    - [X] Atualização de clientes.
+    - [X] Deletar clientes.
+    - [X] Histórico de transações entre contas.
+  - Banco de Dados:
+    - [X] Tabelas bem estruturadas e populadas com valores para testes.
+    - [X] O banco deve ser entregue em script SQL junto ao repositório.
+  - Gerais:
+    - [X] O código deve ser entregue em um repositório no Github.
+    - [X] A API deve ser disponibilizada em ambiente AWS com EC2 e em Beanstalk.
+    - [X] A aplicação deve ter um pipeline em Jenkins ou no <b>Aws Build (Foi implementado pelo AWS Build)</b>.
+    - [X] A aplicação precisa ser configurada no API Gateway da AWS.
+    - [X] A aplicação precisa ter no mínimo um endpoint de SNS para cadastro de emails e verificação automática.
+    - [X] A aplicação precisa ter no mínimo um Lambda.
+    - [X] Liste os endpoints no README.md
+    - [X] O Banco deve ser entregue em script SQL junto ao repositório.
+
+- <h4 id="recursos-extras">Extras:</h4>
+  - Planejamento (Metodologias Ágeis):
+    - [X] Criação do backlog com tarefas referentes ao desenvolvimento.
+    - [X] Criação do icebox com tarefas extras propostas para implementações futuras.
+    - [X] Detalhamento descritivo das tarefas da squad dentro dos seus cards.
+    - [X] Formatação Kanban no padrão: <b>icebox, backlog, to do, doing e done</b>.
+    - [X] Definição de data de entrega das tarefas nos cards.
+    - [X] Definição de responsável pelo card.
+    - [X] Priorização dos cards através de tags de relevância.
+    - [X] Associação dos cards com os <b>Épicos</b> abaixo para definição de uma data de entrega de cada etapa do projeto.
+      - Preparar inicio do projeto
+      - Backend
+      - Configurar servidor AWS
+      - Documentação
+      - Banco de dados
+      - Apresentação
+  - Projeto (Backend):
+    - [X] Implementação do Spring Security e Token JWT para autenticação de acesso a endpoints que o cliente precisa estar logado para ter acesso.
+    - [X] Implementação de validações de todos campos nos Models e nos DTOs de request utilizando Regex e anotações do Hibernate Validator.
+    - [X] Implementação do Swagger v2 para documentação da API e listagem de endpoints.
+    - [X] Implementação do <b>docker-compose.yaml</b> e <b>Dockerfile</b> para rodar o banco de dados e a API.
+    - [X] Configuração de diferentes <b>profiles de application.properties</b> com variáveis de ambiente para subir o projeto localmente, via Docker, no EC2 (AWS) ou no Beanstalk (AWS).
+    - [X] Implementação de testes unitários com JUnit.
+  - Banco de Dados:
+    - [X] Diagrama de DTR do banco de dados.
 
 <hr>
 
