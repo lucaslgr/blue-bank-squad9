@@ -216,7 +216,9 @@
     <th>Verbo HTTP</th>
     <th>Header</th>
     <th>Body</th>
-    <th>Descrição</th>
+  </tr>
+  <tr colspan="4" aria-colspan="4">
+    Realizar Login do cliente
   </tr>
   <tr>
     <td>
@@ -235,9 +237,6 @@
  "senha" : "string"
 }
       </pre>
-    </td>
-    <td>
-      Realiza login de um cliente.
     </td>
   </tr>
 <tr>
@@ -269,9 +268,6 @@
   "telefone": "string"
 }
       </pre>
-    </td>
-    <td>
-      Cadastra um novo cliente.
     </td>
   </tr>
 </table>
