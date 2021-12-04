@@ -130,13 +130,13 @@
 <h3 id="db"> :wastebasket: Banco de Dados.</h3>
 
 <h4 id="dtr">DTR do banco de dados: </h4>
-    <img align="center" src="./db/blue-bank-DB-DER.png" width="80%"/>
+&nbsp;&nbsp;&nbsp;&nbsp;<img align="center" src="./db/blue-bank-DB-DER.png" width="80%"/>
 
 <h4 id="sql-criar">Script SQL para inicializar o banco: </h4>
-    <a target="_blank" href="./db/db_bancoblue.sql">🔗 Link</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="./db/db_bancoblue.sql">🔗 Link</a>
 
 <h4 id="sql-popular">Script SQL para popular o banco: </h4>
-    <a target="_blank" href="./db/script_inserir_dados.sql">🔗 Link</a>
+&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="./db/script_inserir_dados.sql">🔗 Link</a>
 
 <hr>
 
