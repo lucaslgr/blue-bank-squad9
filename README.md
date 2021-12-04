@@ -217,8 +217,8 @@
     <th>Header</th>
     <th>Body</th>
   </tr>
-  <tr colspan="4" aria-colspan="4">
-    Realizar Login do cliente
+  <tr>
+    <td colspan="4">Realizar Login do cliente</td>
   </tr>
   <tr>
     <td>
