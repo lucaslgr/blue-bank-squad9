@@ -228,7 +228,7 @@
       POST
     </td>
     <td>
-      Content-Type: application/json
+- Content-Type: application/json
     </td>
     <td>
       <pre>
@@ -250,7 +250,42 @@
       POST
     </td>
     <td>
-      Content-Type: application/json
+- Content-Type: application/json
+    </td>
+    <td>
+      <pre>
+{
+  "celular": "string",
+  "cpf": "string",
+  "dataDeNascimento": "2021-12-04T19:12:19.373Z",
+  "email": "string",
+  "nome": "string",
+  "nomeDaMae": "string",
+  "nomeDoPai": "string",
+  "patrimonio": 0,
+  "profissao": "string",
+  "rendaMensal": 0,
+  "rg": "string",
+  "senha": "string",
+  "sobrenome": "string",
+  "telefone": "string"
+}
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="4" align="center">  :arrow_right_hook: Ver dados de um cliente </td>
+  </tr>
+  <tr>
+    <td>
+      /api/clientes/{idCliente}
+    </td>
+    <td>
+      GET
+    </td>
+    <td>
+- Content-Type: application/json
+- Authorization: Bearer <b>token</b>
     </td>
     <td>
       <pre>
