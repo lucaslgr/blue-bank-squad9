@@ -218,36 +218,6 @@
   </tr>
 <tr></tr>
   <tr>
-    <td colspan="3" align="center">  :arrow_right_hook: Ver historico de transações de um cliente </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      /api/clientes/{idCliente}/transacoes
-    </td>
-    <td rowspan="2">
-      GET
-    </td>
-    <td>
-<pre>
-Header
-{
-  "Accept" : "application/json",
-  "Authorization" : "Bearer {clienteToken}"
-}
-</pre>
-    </td>
-  </tr>
-  <tr>
-    <td>
-<pre>
-Body
-{
-}
-</pre>
-    </td>
-  </tr>
-<tr></tr>
-  <tr>
     <td colspan="3" align="center">  :arrow_right_hook: Retorna todos os clientes. </td>
   </tr>
   <tr>
