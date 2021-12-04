@@ -2,7 +2,7 @@
 
 <h3> :loudspeaker: O que é o projeto? </h3>
 <p>O projeto <b>Blue Bank</b> é uma API REST de um banco fictício desenvolvido em Java com framework Spring e serviços da AWS Cloud. O Blue Bank é a entrega do desafio final do treinamento de <b>Java e AWS</b> fornecido pela <b>Gama Academy</b> e pelo <b>Banco PAN</b>.</p>
-<a target="_blank" href="./assets/files/desafio-final-pan.pdf"> Acesse aqui o pdf com a descrição completa do desafio.</a>
+<a target="_blank" href="./assets/files/desafio-final-pan.pdf"> 🔗 Acesse aqui o pdf com a descrição completa do desafio.</a>
 
 <hr>
 
@@ -53,7 +53,7 @@
 
 <hr>
 
-<h3> 📑 Sumário </h3>
+<h3 id="sumario"> 📑 Sumário </h3>
 
 - <a href="#requisitos"> Requisitos para rodar o projeto.</a>
     - <a href="#requisitos-com-docker"> Com Docker.</a>
@@ -79,16 +79,16 @@
 
 <h4 id="requisitos-com-docker"> Com Docker:</h4> 
 
-- <a href="https://maven.apache.org/">Maven</a>
-- <a href="https://openjdk.java.net/install/">Java 11</a>
-- <a href="https://docs.docker.com/engine/install/">Docker</a>
-- <a href="https://docs.docker.com/compose/install/">Docker Compose</a>
+- <a target="_blank" href="https://maven.apache.org/">Maven</a>
+- <a target="_blank" href="https://openjdk.java.net/install/">Java 11</a>
+- <a target="_blank" href="https://docs.docker.com/engine/install/">Docker</a>
+- <a target="_blank" href="https://docs.docker.com/compose/install/">Docker Compose</a>
 
 <h4 id="requisitos-sem-docker"> Sem Docker:</h4>
 
-- <a href="https://maven.apache.org/">Maven</a>
-- <a href="https://openjdk.java.net/install/">Java 11</a>
-- <a href="https://www.mysql.com/downloads/">MySql</a>
+- <a target="_blank" href="https://maven.apache.org/">Maven</a>
+- <a target="_blank" href="https://openjdk.java.net/install/">Java 11</a>
+- <a target="_blank" href="https://www.mysql.com/downloads/">MySql</a>
 
 <hr>
 
@@ -117,6 +117,7 @@
     ```shell
     java -jar -Dspring.profiles.active=localdebug blue-bank-0.0.1-SNAPSHOT.jar
      ```
+
 - Para setar diretamente no Intellij o <b>profile de configurações do application.properties</b>:
     <img src="assets/img/application-properties-param-intellij.png"/>
 
@@ -126,9 +127,18 @@
 
 <hr>
 
-## Diagrama DER do banco de dados da aplicação
+<h3 id="db"> :wastebasket: Banco de Dados.</h3>
 
-<img src="./db/blue-bank-DB-DER.png" width="100%"/>
+<h4 id="dtr">DTR do banco de dados: </h4>
+    <img align="center" src="./db/blue-bank-DB-DER.png" width="80%"/>
+
+<h4 id="sql-criar">Script SQL para inicializar o banco: </h4>
+    <a target="_blank" href="./db/db_bancoblue.sql">🔗 Link</a>
+
+<h4 id="sql-popular">Script SQL para popular o banco: </h4>
+    <a target="_blank" href="./db/script_inserir_dados.sql">🔗 Link</a>
+
+<hr>
 
 ## Acessar documentação [SWAGGER]
 
