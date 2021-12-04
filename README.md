@@ -231,7 +231,8 @@
 <pre>
 Header
 {
-  "Content-Type" : "application/json"
+  "Content-Type" : "application/json",
+  "Accept" : "application/json"
 }
 </pre>
     </td>
@@ -262,7 +263,8 @@ Body
 <pre>
 Header
 {
-  "Content-Type" : "application/json"
+  "Content-Type" : "application/json",
+  "Accept" : "application/json"
 }
 </pre>
     </td>
@@ -305,7 +307,7 @@ Body
 <pre>
 Header
 {
-  "Content-Type" : "application/json",
+  "Accept" : "application/json",
   "Authorization" : "Bearer {clienteToken}"
 }
 </pre>
@@ -336,6 +338,7 @@ Body
 Header
 {
   "Content-Type" : "application/json",
+  "Accept" : "application/json",
   "Authorization" : "Bearer {clienteToken}"
 }
 </pre>
@@ -360,6 +363,36 @@ Body
   "senha": "string",
   "sobrenome": "string",
   "telefone": "string"
+}
+</pre>
+    </td>
+  </tr>
+<tr></tr>
+  <tr>
+    <td colspan="3" align="center">  :arrow_right_hook: Deletar um cliente </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      /api/clientes/{idCliente}
+    </td>
+    <td rowspan="2">
+      DELETE
+    </td>
+    <td>
+<pre>
+Header
+{
+  "Accept" : "application/json",
+  "Authorization" : "Bearer {clienteToken}"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
+{
 }
 </pre>
     </td>
