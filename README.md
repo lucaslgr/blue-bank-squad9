@@ -24,6 +24,11 @@
     </tr>
     <tr>
         <td align="center">
+            <a href="https://www.linkedin.com/in/lucas-guimar%C3%A3es-rocha/">
+                <img src="assets/img/icons/linkedin_icon.png" width="70px">
+            </a>
+        </td>
+        <td align="center">
             <a href="https://www.linkedin.com/in/ayanara/">
                 <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
@@ -34,17 +39,12 @@
             </a>
         </td>
         <td align="center">
-            <a href="https://www.linkedin.com/in/lucas-guimar%C3%A3es-rocha/">
+            <a href="https://www.linkedin.com/in/yuri-campos/">
                 <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
         </td>
         <td align="center">
             <a href="https://www.linkedin.com/in/maxwelfcoelho/">
-                <img src="assets/img/icons/linkedin_icon.png" width="70px">
-            </a>
-        </td>
-        <td align="center">
-            <a href="https://www.linkedin.com/in/yuri-campos/">
                 <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
         </td>
