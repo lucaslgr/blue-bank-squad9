@@ -267,7 +267,7 @@ Header
     </td>
   </tr>
   <tr>
-    <td style="background-color: #171A22">
+    <td>
 <pre>
 Body
 {
