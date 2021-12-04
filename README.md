@@ -151,7 +151,7 @@
 
 <hr>
 
-<h3 id="recursos">Requisitos e funcionalidades</h3>
+<h3 id="recursos"> :boom: Requisitos e funcionalidades</h3>
 
 - <h4 id="recursos-obrigatorios"> Obrigatórios da entrega:</h4>
     
