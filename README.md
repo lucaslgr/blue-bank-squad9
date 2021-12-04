@@ -1,8 +1,8 @@
 <h1 align="center" > PROJETO <b style="color: #03A9F5;">BLUE BANK</b> </h1>
 
-<h3>:loudspeaker: O que é o projeto? </h3>
+<h3> :loudspeaker: O que é o projeto? </h3>
 <p>O projeto <b>Blue Bank</b> é uma API REST de um banco fictício desenvolvido em Java com framework Spring e serviços da AWS Cloud. O Blue Bank é a entrega do desafio final do treinamento de <b>Java e AWS</b> fornecido pela <b>Gama Academy</b> e pelo <b>Banco PAN</b>.</p>
-<a href="./assets/files/desafio-final-pan.pdf"> Acesse aqui o pdf com a descrição completa do desafio.</a>
+<a target="_blank" href="./assets/files/desafio-final-pan.pdf"> Acesse aqui o pdf com a descrição completa do desafio.</a>
 
 <h3>:handshake: Equipe : <b style="color: #03A9F5;">L.A.J.Y.M</b></h3>
 <table>
@@ -16,31 +16,42 @@
     <tr>
         <td align="center">
             <a href="https://www.linkedin.com/in/ayanara/">
-                <img src="assets/img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
         </td>
         <td align="center">
             <a href="https://www.linkedin.com/in/joaovictorschiavon/">
-                <img src="assets/img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
         </td>
         <td align="center">
             <a href="https://www.linkedin.com/in/lucas-guimar%C3%A3es-rocha/">
-                <img src="assets/img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
         </td>
         <td align="center">
             <a href="https://www.linkedin.com/in/maxwelfcoelho/">
-                <img src="assets/img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
         </td>
         <td align="center">
             <a href="https://www.linkedin.com/in/yuri-campos/">
-                <img src="assets/img/icons/linkedin_icon.png" width="40px">
+                <img src="assets/img/icons/linkedin_icon.png" width="70px">
             </a>
         </td>
     </tr>
 </table>
+
+<h3> 📑 Sumário </h3>
+
+- <a href="#requisitos">Requisitos para rodar o projeto.</a>
+- <a href="#como-rodar">Como rodar o projeto.</a>
+- <a href="#dtr">DTR do banco de dados.</a>
+- <a href="#tecnologias">Tecnologias utilizadas no projeto.</a>
+- <a href="#recursos">Recursos implementados no projeto.</a>
+- <a href="#endpoints">Endpoints da API.</a>
+- <a href="#endpoints">Swagger UI.</a>
+- <a href="#diretorios">Diretórios de arquivos do projeto.</a>
 
 ## Rodar o projeto usando Docker
 
