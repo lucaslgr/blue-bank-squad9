@@ -321,6 +321,50 @@ Body
     </td>
   </tr>
 <tr></tr>
+  <tr>
+    <td colspan="3" align="center">  :arrow_right_hook: Atualizar dados de um cliente </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      /api/clientes/{idCliente}
+    </td>
+    <td rowspan="2">
+      PUT
+    </td>
+    <td>
+<pre>
+Header
+{
+  "Content-Type" : "application/json",
+  "Authorization" : "Bearer {clienteToken}"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
+{
+  "celular": "string",
+  "cpf": "string",
+  "dataDeNascimento": "2021-12-04T19:59:18.447Z",
+  "email": "string",
+  "nome": "string",
+  "nomeDaMae": "string",
+  "nomeDoPai": "string",
+  "patrimonio": 0,
+  "profissao": "string",
+  "rendaMensal": 0,
+  "rg": "string",
+  "senha": "string",
+  "sobrenome": "string",
+  "telefone": "string"
+}
+</pre>
+    </td>
+  </tr>
+<tr></tr>
 </table>
 
 
