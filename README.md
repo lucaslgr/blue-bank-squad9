@@ -44,25 +44,50 @@
 
 <h3> 📑 Sumário </h3>
 
-- <a href="#requisitos">Requisitos para rodar o projeto.</a>
+- <a href="#requisitos"> Requisitos para rodar o projeto.</a>
+  
+    - <a href="#requisitos-com-docker"> Com Docker.</a>
+    - <a href="#requisitos-sem-docker"> Sem Docker.</a>
 - <a href="#como-rodar">Como rodar o projeto.</a>
-- <a href="#db">Banco de dados.</a>
+
+    - <a href="#rodar-com-docker"> Com Docker.</a>
+    - <a href="#rodar-sem-docker"> Sem Docker.</a>
+    
+- <a href="#db"> Banco de dados.</a>
   - <a href="#dtr">DTR do banco de dados.</a>
   - <a href="#sql-criar">Script SQL para inicializar o banco.</a>
   - <a href="#sql-popular">Script SQL para popular o banco.</a>
+  
 - <a href="#tecnologias">Tecnologias e recursos utilizadas no projeto.</a>
+
 - <a href="#recursos">Requisitos e funcionalidades.</a>
-  -  <a href="#recursos-obrigatorios"> Obrigatórios da entrega.</a>
-  -  <a href="#recursos-extras">Extras.</a>
+  - <a href="#recursos-obrigatorios"> Obrigatórios da entrega.</a>
+  - <a href="#recursos-extras">Extras.</a>
+
 - <a href="#endpoints">Endpoints da API.</a>
+
 - <a href="#endpoints">Swagger UI.</a>
+
 - <a href="#diretorios">Diretórios de arquivos do projeto.</a>
 
 ## Rodar o projeto usando Docker
 
-- Requisitos:
-    - Maven
-    - Docker e Docker Compose instalados
+<h3 id="requisitos"> 🧾 Requisitos para rodar o projeto.</h3>
+
+<h4 id="requisitos-com-docker"> Com Docker:</h4> 
+
+- <a href="https://maven.apache.org/">Maven</a>
+- <a href="https://openjdk.java.net/install/">Java 11</a>
+- <a href="https://docs.docker.com/engine/install/">Docker</a>
+- <a href="https://docs.docker.com/compose/install/">Docker Compose</a>
+
+<h4 id="requisitos-sem-docker"> Sem Docker:</h4>
+
+- <a href="https://maven.apache.org/">Maven</a>
+- <a href="https://openjdk.java.net/install/">Java 11</a>
+- <a href="https://www.mysql.com/downloads/">MySql</a>
+
+
 - Passo a passo:
     - Gere o <b>.jar</b> da aplicação executando o comando no terminal:
         - ```
