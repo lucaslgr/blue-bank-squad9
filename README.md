@@ -570,7 +570,7 @@ Body
   </tr>
 <tr></tr>
   <tr>
-    <td colspan="3" align="center">  :arrow_right_hook: Cadastra um email de administrador como uma subscription no SNS da AWS para receber notificação de novos clientes cadastrados. </td>
+    <td colspan="3" align="center">  :arrow_right_hook: Cadastra um email de administrador como uma subscription no SNS da AWS para receber notificação de cadastro de novos clientes. </td>
   </tr>
   <tr>
     <td rowspan="2">
