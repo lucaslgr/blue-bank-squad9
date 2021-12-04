@@ -207,7 +207,7 @@
 
 <h3 id="endpoints"> :boom: Endpoints da API</h3>
 
-<font size="2">
+<font size="1">
 <table>
   <tr>
     <th>URL</th>
