@@ -356,9 +356,9 @@ Body
   "nome": "string",
   "nomeDaMae": "string",
   "nomeDoPai": "string",
-  "patrimonio": 0,
+  "patrimonio": 10,
   "profissao": "string",
-  "rendaMensal": 0,
+  "rendaMensal": 1,
   "rg": "string",
   "senha": "string",
   "sobrenome": "string",
@@ -497,6 +497,43 @@ Body
 {
   "numeroContaDestino" : "string",
   "valor" : 10
+}
+</pre>
+    </td>
+  </tr>
+<tr></tr>
+  <tr>
+    <td colspan="3" align="center">  :arrow_right_hook: Cadastra uma nova transação entre contas </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      /api/clientes/{idCliente}/transacao
+    </td>
+    <td rowspan="2">
+      POST
+    </td>
+    <td>
+<pre>
+Header
+{
+  "Content-Type" : "application/json",
+  "Accept" : "application/json",
+  "Authorization" : "Bearer {clienteToken}"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
+{
+  "dataEnvio": "2021-12-04T20:16:11.211Z",
+  "dataRecebimento": "2021-12-04T20:16:11.211Z",
+  "idContaEmissora": 2,
+  "idContaReceptora": 1,
+  "senhaContaEmissora": "string",
+  "valor": 10
 }
 </pre>
     </td>
