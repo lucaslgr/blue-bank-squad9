@@ -106,7 +106,7 @@
     docker-compose up --build --force-recreate
     ```
 
-<h4 id="rodar-com-docker"> Sem Docker:</h4> 
+<h4 id="rodar-sem-docker"> Sem Docker:</h4> 
 
 - Gere o <b>.jar</b> da aplicação executando o comando no terminal:
     ```shell
