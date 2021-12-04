@@ -207,7 +207,7 @@
 
 <h3 id="endpoints"> :boom: Endpoints da API</h3>
 
-<font size="1">
+<small>
 <table>
   <tr>
     <th>URL</th>
@@ -239,7 +239,7 @@
     </td>
   </tr>
 </table>
-</font>
+</small>
 <hr>
 
 ## Acessar documentação [SWAGGER]
