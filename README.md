@@ -236,7 +236,6 @@ Header
 </pre>
     </td>
   </tr>
-<tr></tr>
   <tr>
     <td>
 <pre>
