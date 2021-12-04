@@ -292,37 +292,6 @@ Body
   </tr>
 <tr></tr>
   <tr>
-    <td colspan="3" align="center">  :arrow_right_hook: Realizar login de um cliente </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      /api/clientes/login
-    </td>
-    <td rowspan="2">
-      POST
-    </td>
-    <td>
-<pre>
-Header
-{
-  "Content-Type" : "application/json"
-}
-</pre>
-    </td>
-  </tr>
-  <tr>
-    <td>
-<pre>
-Body
-{
-  "email" : "string",
-  "senha" : "string"
-}
-</pre>
-    </td>
-  </tr>
-<tr></tr>
-  <tr>
     <td colspan="3" align="center">  :arrow_right_hook: Consultar dados de um cliente </td>
   </tr>
   <tr>
@@ -344,6 +313,13 @@ Header
   </tr>
   <tr>
     <td>
+<pre>
+Body
+{
+  "Content-Type" : "application/json",
+  "Authorization" : "Bearer {clienteToken}"
+}
+</pre>
     </td>
   </tr>
 <tr></tr>
