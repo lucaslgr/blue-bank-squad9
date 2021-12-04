@@ -218,7 +218,7 @@
     <th>Body</th>
   </tr>
   <tr>
-    <td colspan="4" align="center">  :arrow_right_hook: Realizar Login do cliente </td>
+    <td colspan="4" align="center">  :arrow_right_hook: Realizar login de um cliente </td>
   </tr>
   <tr>
     <td>
@@ -239,7 +239,10 @@
       </pre>
     </td>
   </tr>
-<tr>
+   <tr>
+    <td colspan="4" align="center">  :arrow_right_hook: Realizar cadastro de um novo cliente </td>
+  </tr>
+    <tr>
     <td>
       /api/clientes
     </td>
