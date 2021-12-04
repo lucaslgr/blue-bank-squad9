@@ -469,6 +469,39 @@ Body
     </td>
   </tr>
 <tr></tr>
+  <tr>
+    <td colspan="3" align="center">  :arrow_right_hook: Cliente faz um deposito em uma conta, seja dele ou não </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      /api/clientes/{idCliente}/deposito
+    </td>
+    <td rowspan="2">
+      POST
+    </td>
+    <td>
+<pre>
+Header
+{
+  "Content-Type" : "application/json",
+  "Accept" : "application/json",
+  "Authorization" : "Bearer {clienteToken}"
+}
+</pre>
+    </td>
+  </tr>
+  <tr>
+    <td>
+<pre>
+Body
+{
+  "numeroContaDestino" : "string",
+  "valor" : 10
+}
+</pre>
+    </td>
+  </tr>
+<tr></tr>
 </table>
 
 
