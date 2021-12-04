@@ -230,13 +230,13 @@
       <pre>
 Header
 {
- "Content-Type" : "application/json"
+  "Content-Type" : "application/json"
 }
 
 Body
 {
- "email" : "string",
- "senha" : "string"
+  "email" : "string",
+  "senha" : "string"
 }
       </pre>
     </td>
