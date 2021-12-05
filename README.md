@@ -62,7 +62,7 @@
     - <a href="#rodar-com-docker"> Com Docker.</a>
     - <a href="#rodar-sem-docker"> Sem Docker.</a>
 - <a href="#db"> Banco de dados:</a>
-  - <a href="#dtr">DTR do banco de dados.</a>
+  - <a href="#der">DER do banco de dados.</a>
   - <a href="./db/db_bancoblue.sql"> 🔗 Script SQL para inicializar o banco.</a>
   - <a href="./db/script_inserir_dados.sql"> 🔗 Script SQL para popular o banco.</a>
 - <a href="#tecnologias">Tecnologias e recursos utilizadas no projeto.</a>
@@ -129,7 +129,7 @@
 
 <h3 id="db"> :wastebasket: Banco de Dados</h3>
 
-- <h4 id="dtr">DTR do banco de dados: </h4>
+- <h4 id="der">DER do banco de dados: </h4>
   <img src="./db/blue-bank-DB-DER.png" width="80%"/>
 
 <hr>
@@ -205,7 +205,7 @@
           o projeto localmente, via Docker, no EC2 (AWS) ou no Beanstalk (AWS).
         - [X] Implementação de testes unitários com JUnit.
     - Banco de Dados:
-        - [X] Diagrama de DTR do banco de dados.
+        - [X] Diagrama de DER do banco de dados.
 
 <hr>
 
@@ -642,7 +642,7 @@ Body
 
 - <h4 id="deploy-bs" >Deploy AWS Beanstalk:</h4>
 
-  - <a href="./assets/step-by-step/deploy-ec2-bs.md"> 🔗 Passo a passo</a>
+  - <a href="./assets/step-by-step/deploy-bd-aws.md"> 🔗 Passo a passo</a>
   - URL: 🔗 http://bluebanksquad9.us-east-1.elasticbeanstalk.com
   - <a href="http://bluebanksquad9.us-east-1.elasticbeanstalk.com/swagger-ui.html"> 🔗 Link Swagger UI</a>
   

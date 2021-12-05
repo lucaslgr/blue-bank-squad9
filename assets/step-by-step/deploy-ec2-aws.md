@@ -9,8 +9,6 @@
 
     <img src="../img/aws-ec2/4.png" />
 
-    <img src="../img/aws-ec2/5.png" />
-
     <img src="../img/aws-ec2/6.png" />
 
     <img src="../img/aws-ec2/7.png" />
@@ -60,7 +58,7 @@
 
     - Localmente na sua máquina configure um novo profile de application-<b>awsec2</b>.properties da aplicação Spring
       conforme a imagem abaixo.
-      <img src="./img/aws-ec2/16.png" width="90%" />
+      <img src="../img/aws-ec2/16.png" width="90%" />
 
     - Localmente na sua máquina gere o arquivo .jar da aplicação:
         ```
