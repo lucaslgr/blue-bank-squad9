@@ -144,7 +144,14 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
         }
         ClienteResponseDTO cliente = clienteService.encontrarClientePeloId(idCliente);
-        if (!cliente.getContaResponseDTO().getIdConta().equals(transacaoRequestDTO.getIdContaEmissora())) {
+        final ContaResponseDTO contaEmissora = cliente.getContaResponseDTO();
+
+        if(contaEmissora == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(formataUmRetornoGenerico("error", "Cliente ainda não possui uma conta"));
+        }
+
+        if (!contaEmissora.getIdConta().equals(transacaoRequestDTO.getIdContaEmissora())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(formataUmRetornoGenerico("error", "Operação inválida"));
         }
