@@ -10,10 +10,10 @@ INSERT INTO `blue_bank`.`enderecos` (`cep`, `logradouro`, `bairro`, `cidade`, `e
 INSERT INTO `blue_bank`.`enderecos` (`cep`, `logradouro`, `bairro`, `cidade`, `estado`, `numero_casa`, `id_cliente`) VALUES ('85604-491', 'Napoleão Bonaparte', ' Bairro Alto', 'Curitiba', 'PR', '216', 3);
 
 -- INSERINDO CONTAS
--- As senhas das contas são todas 123, apeenas para testes.
-INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('2885214654-7', '062454561', '2020-01-15', '$2a$12$8iGLVu3XQDoSGvucddsVaOPXTzGZz5tRNUZ.jfGgP8f/Di4o6oocO', '38500', 1);
-INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('82451-5', '31255616', '2019-11-10', '$2a$12$1sZqgM0EiARa2BHJuCpQB.If1jxLgk.Wi8VEVWL9gsgeW6BbDj.pq', '10580', 2);
-INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('07429709-2', '2156561', '2019-07-11', '$2a$12$pT1qzS02.ntRiUJgkqfYOOuCiKBjNX4GQ8bKKpFI.uewhgb6zKZL6', '5000', 3);
+-- As senhas das contas são todas 123456, apeenas para testes.
+INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('2885214654-7', '062454561', '2020-01-15', '$2a$12$JnVoKQ1WW7/LPlw5uXXdfO.dWnB03uheZDq0ToCyIbNFWP0nB2bGi', '38500', 1);
+INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('82451-5', '31255616', '2019-11-10', '$2a$12$9EWC7rc/6Lg/UkCHvgkzEuE/aiUTtIoVFRvVROCjrhWzIdFVRXsVe', '10580', 2);
+INSERT INTO `blue_bank`.`contas_corrente` (`numero`, `agencia`, `data_criacao`, `senha`, `saldo`, `id_cliente`) VALUES ('07429709-2', '2156561', '2019-07-11', '$2a$12$56aDsq.rH1BepCZQwTjw..QyICFY9V5ImVbki8l4hSMANV1NPAbji', '5000', 3);
 
 -- INSERINDO TRANSACOES
 INSERT INTO `blue_bank`.`transacoes` (`valor`, `id_conta_emissora`, `id_conta_receptora`, `data_envio`, `data_recebimento`) VALUES ('5000', '1', '3', '2020-05-11', '2020-05-11');
