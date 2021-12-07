@@ -11,14 +11,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
-
 @Service
 public class ContaServiceImpl implements ContaService {
 
     private ContaRepository contaRepository;
     private ClienteRepository clienteRepository;
     private PasswordEncoder passwordEncoder;
-
+             
     @Autowired
     public ContaServiceImpl(ContaRepository contaRepository, ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
         this.contaRepository = contaRepository;
@@ -30,13 +29,22 @@ public class ContaServiceImpl implements ContaService {
 
     //Cadastra um nova conta
     @Override
-    public ContaResponseDTO cadastrarNovaConta(ContaRequestDTO contaRequestDTO) throws Exception {
-        // Verificar se a pessoa já pelo id
+    public ContaResponseDTO cadastrarNovaConta(ContaRequestDTO contaRequestDTO, DetalheUsuario detalheUsuario) throws Exception {
+        // Verificar se a pessoa já existe pelo id
         var cliente = clienteRepository.findByCpf(contaRequestDTO.getCpf()).orElseThrow(() -> new Exception("Cliente não existe"));
 
         //Verificar se o cliente já possui conta
         if (contaRepository.findByCliente(cliente).isPresent()) {
             throw new Exception("Cliente já possui conta");
+        }
+
+        // Verificar se o cpf para cadastro da conta é o mesmo do ID do cliente
+        var email = detalheUsuario.getUsername();
+        var userCliente = clienteRepository.findByEmail(email);
+        var cpfUsuario =  userCliente.get().getCpf();
+        
+        if (!cpfUsuario.equals(contaRequestDTO.getCpf())) {
+            throw new Exception("CPF digitado não é o mesmo do cliente");
         }
 
         // Gerar número da conta
