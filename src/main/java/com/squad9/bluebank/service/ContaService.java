@@ -7,7 +7,7 @@ import com.squad9.bluebank.dto.DepositoRequestDTO;
 public interface ContaService {
 
     //Cadastrar nova conta
-    public ContaResponseDTO cadastrarNovaConta(ContaRequestDTO contaRequestDTO) throws Exception;
+    public ContaResponseDTO cadastrarNovaConta(ContaRequestDTO contaRequestDTO, DetalheUsuario detalheUsuario) throws Exception;
 
     //Retornar dados conta
     public ContaResponseDTO retornaDadosDaConta(Long IdConta) throws Exception;

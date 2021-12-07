@@ -190,7 +190,7 @@ public class ClienteController {
 
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(contaService.cadastrarNovaConta(contaRequestDTO));
+                    .body(contaService.cadastrarNovaConta(contaRequestDTO, detalheUsuario));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
