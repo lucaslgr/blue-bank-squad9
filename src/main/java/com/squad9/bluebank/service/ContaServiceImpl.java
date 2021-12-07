@@ -7,10 +7,17 @@ import com.squad9.bluebank.model.Conta;
 import com.squad9.bluebank.repository.ClienteRepository;
 import com.squad9.bluebank.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Random;
+
+import javax.validation.Valid;
 
 @Service
 public class ContaServiceImpl implements ContaService {
@@ -18,7 +25,15 @@ public class ContaServiceImpl implements ContaService {
     private ContaRepository contaRepository;
     private ClienteRepository clienteRepository;
     private PasswordEncoder passwordEncoder;
-    private DetalheUsuario detalheUsuario;
+    
+    public ResponseEntity<?> criarConta(
+        @RequestBody @Valid ContaRequestDTO contaRequestDTO,
+        @PathVariable Long idCLiente,
+        @AuthenticationPrincipal DetalheUsuario detalheUsuario) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+        .body(ContaService.cadastrarNovaConta(contaRequestDTO, detalheUsuario));
+        }
+    )
 
     @Autowired
     public ContaServiceImpl(ContaRepository contaRepository, ClienteRepository clienteRepository, PasswordEncoder passwordEncoder) {
@@ -45,7 +60,7 @@ public class ContaServiceImpl implements ContaService {
         var userCliente = clienteRepository.findByEmail(email);
         var cpfUsuario =  userCliente.get().getCpf();
         
-        if (cpfUsuario != contaRequestDTO.getCpf()) {
+        if (!cpfUsuario.equals(contaRequestDTO.getCpf())) {
             throw new Exception("CPF digitado não é o mesmo do cliente");
         }
 
