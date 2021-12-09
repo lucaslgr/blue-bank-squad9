@@ -645,5 +645,11 @@ Body
   - <a href="./assets/step-by-step/deploy-bd-aws.md"> 🔗 Passo a passo</a>
   - URL: 🔗 http://bluebanksquad9.us-east-1.elasticbeanstalk.com
   - <a href="http://bluebanksquad9.us-east-1.elasticbeanstalk.com/swagger-ui.html"> 🔗 Link Swagger UI</a>
+
+- <h4 id="deploy-gateway" >Deploy AWS Gateway:</h4>
+
+  - <a href="./assets/step-by-step/deploy-gateway-aws.md"> 🔗 Passo a passo</a>
+  - URL: 🔗 https://89s3vx1lah.execute-api.us-east-1.amazonaws.com/Producao/cliente-service
+  - <a href=""> 🔗 Link Swagger UI</a>
   
 <hr>
