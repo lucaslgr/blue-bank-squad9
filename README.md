@@ -73,6 +73,7 @@
 - <a href="#aws-swagger">Deploy AWS e links do Swagger UI:</a>
   - <a href="#deploy-ec2">Deploy AWS EC2.</a>
   - <a href="#deploy-bs">Deploy AWS Beanstalk.</a>
+  - <a href="#deploy-gateway">AWS Gateway</a>
 
 <hr>
 
@@ -645,5 +646,10 @@ Body
   - <a href="./assets/step-by-step/deploy-bd-aws.md"> 🔗 Passo a passo</a>
   - URL: 🔗 http://bluebanksquad9.us-east-1.elasticbeanstalk.com
   - <a href="http://bluebanksquad9.us-east-1.elasticbeanstalk.com/swagger-ui.html"> 🔗 Link Swagger UI</a>
+
+- <h4 id="deploy-gateway" >Deploy AWS Gateway:</h4>
+
+  - <a href="./assets/step-by-step/deploy-gateway-aws.md"> 🔗 Passo a passo</a>
+  - URL: 🔗 https://89s3vx1lah.execute-api.us-east-1.amazonaws.com/Producao/cliente-service
   
 <hr>
