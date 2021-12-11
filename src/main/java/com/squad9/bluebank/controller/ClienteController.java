@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import java.util.List;
-
 import static com.squad9.bluebank.util.formatadorStringJson.formataUmRetornoGenerico;
 
 @RequestMapping(value = "api/clientes", produces = "application/json")
@@ -159,7 +157,7 @@ public class ClienteController {
         ClienteResponseDTO cliente = clienteService.encontrarClientePeloId(idCliente);
         final ContaResponseDTO contaEmissora = cliente.getContaResponseDTO();
 
-        if(contaEmissora == null) {
+        if (contaEmissora == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(formataUmRetornoGenerico("error", "Cliente ainda não possui uma conta"));
         }
