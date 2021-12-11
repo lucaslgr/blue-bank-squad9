@@ -53,6 +53,17 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Lista todos os clientes")
+    @GetMapping
+    public ResponseEntity<?> listarTodosClientes() {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.retornarTodosOsClientes());
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
+        }
+    }
+
     @PostMapping(value = "/login")
     public ResponseEntity<?> loginCliente(@RequestBody @Valid LoginRequestDTO loginRequestDTO) throws BadCredentialsException {
         try {
@@ -146,7 +157,7 @@ public class ClienteController {
         ClienteResponseDTO cliente = clienteService.encontrarClientePeloId(idCliente);
         final ContaResponseDTO contaEmissora = cliente.getContaResponseDTO();
 
-        if(contaEmissora == null) {
+        if (contaEmissora == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(formataUmRetornoGenerico("error", "Cliente ainda não possui uma conta"));
         }

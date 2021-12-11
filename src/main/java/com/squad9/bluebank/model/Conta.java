@@ -25,7 +25,7 @@ public class Conta {
     @Pattern(regexp = "(^([0-9]{4,20})-([0-9]{1})$)", message = "Número da conta inválido.")
     private String numero;
 
-    @Column(name = "agencia", length = 5, nullable = false)
+    @Column(name = "agencia", length = 9, nullable = false)
     @NotBlank(message = "O campo agencia não pode estar vazio.")
     @Pattern(regexp = "(^([0-9]{4,9})$)",
             message = "Número da agência inválido.")
