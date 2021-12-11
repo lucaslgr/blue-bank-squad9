@@ -1,5 +1,6 @@
 package com.squad9.bluebank.service;
 
+import com.squad9.bluebank.dto.ClienteInfoPublicaResponseDTO;
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
 import com.squad9.bluebank.dto.LoginRequestDTO;
@@ -112,9 +113,9 @@ public class ClienteServiceImpl implements ClienteService {
 
     //Listar todos os clientes
     @Override
-    public List<ClienteResponseDTO> retornarTodosOsClientes() {
+    public List<ClienteInfoPublicaResponseDTO> retornarTodosOsClientes() throws Exception{
         var clientes = this.clienteRepository.findAll();
-        return clientes.stream().map(ClienteResponseDTO::converter).collect(Collectors.toList());
+        return clientes.stream().map(ClienteInfoPublicaResponseDTO::converter).collect(Collectors.toList());
     }
 
     //Listar cliente por ID
