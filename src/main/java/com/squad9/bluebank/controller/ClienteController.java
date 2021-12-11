@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static com.squad9.bluebank.util.formatadorStringJson.formataUmRetornoGenerico;
 
 @RequestMapping(value = "api/clientes", produces = "application/json")
@@ -47,6 +49,17 @@ public class ClienteController {
             snsService.publicaMensagemNoTopicoDeCadastroDeNovosClientes(clienteResponseDTO);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(clienteResponseDTO);
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
+        }
+    }
+
+    @ApiOperation(value = "Lista todos os clientes")
+    @GetMapping
+    public ResponseEntity<?> listarTodosClientes() {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.pegarTodosClientes());
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
