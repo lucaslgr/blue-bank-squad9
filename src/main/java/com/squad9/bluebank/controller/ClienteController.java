@@ -59,7 +59,7 @@ public class ClienteController {
     @GetMapping
     public ResponseEntity<?> listarTodosClientes() {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.pegarTodosClientes());
+            return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.retornarTodosOsClientes());
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));
