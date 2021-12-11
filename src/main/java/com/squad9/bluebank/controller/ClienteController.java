@@ -53,6 +53,17 @@ public class ClienteController {
         }
     }
 
+    @ApiOperation(value = "Lista todos os clientes")
+    @GetMapping
+    public ResponseEntity<?> listarTodosClientes() {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.retornarTodosOsClientes());
+        } catch (Exception error) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(formataUmRetornoGenerico("error", error.getMessage()));
+        }
+    }
+
     @PostMapping(value = "/login")
     public ResponseEntity<?> loginCliente(@RequestBody @Valid LoginRequestDTO loginRequestDTO) throws BadCredentialsException {
         try {
@@ -144,7 +155,14 @@ public class ClienteController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("");
         }
         ClienteResponseDTO cliente = clienteService.encontrarClientePeloId(idCliente);
-        if (!cliente.getContaResponseDTO().getIdConta().equals(transacaoRequestDTO.getIdContaEmissora())) {
+        final ContaResponseDTO contaEmissora = cliente.getContaResponseDTO();
+
+        if (contaEmissora == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(formataUmRetornoGenerico("error", "Cliente ainda não possui uma conta"));
+        }
+
+        if (!contaEmissora.getIdConta().equals(transacaoRequestDTO.getIdContaEmissora())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(formataUmRetornoGenerico("error", "Operação inválida"));
         }
@@ -190,7 +208,7 @@ public class ClienteController {
 
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(contaService.cadastrarNovaConta(contaRequestDTO));
+                    .body(contaService.cadastrarNovaConta(contaRequestDTO, detalheUsuario));
         } catch (Exception error) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(formataUmRetornoGenerico("error", error.getMessage()));

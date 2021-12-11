@@ -1,5 +1,6 @@
 package com.squad9.bluebank.service;
 
+import com.squad9.bluebank.dto.ClienteInfoPublicaResponseDTO;
 import com.squad9.bluebank.dto.ClienteRequestDTO;
 import com.squad9.bluebank.dto.ClienteResponseDTO;
 import com.squad9.bluebank.dto.LoginRequestDTO;
@@ -15,7 +16,7 @@ public interface ClienteService {
     String loginCliente(LoginRequestDTO loginRequestDTO) throws Exception;
 
     //Listar todos os clientes
-    List<ClienteResponseDTO> retornarTodosOsClientes();
+    List<ClienteInfoPublicaResponseDTO> retornarTodosOsClientes() throws Exception;
 
     //Listar cliente por ID
     ClienteResponseDTO encontrarClientePeloId(Long id) throws Exception;
