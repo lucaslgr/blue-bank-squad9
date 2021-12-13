@@ -72,5 +72,5 @@
     - Após terminar o upload rode o arquivo .jar do seu projeto diretamente pela sua instância do ubuntu via ssh setando
       o profile de application.properties correto:
         ```
-        java -jar -Dspring.profiles.active=awsec2 blue-bank-0.0.1-SNAPSHOT.jar
+        java -jar -Dspring.profiles.active=aws blue-bank-0.0.1-SNAPSHOT.jar
         ```
